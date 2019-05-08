@@ -1,5 +1,5 @@
 <template>
-  <div class= "cuenta">
+  <div class= "cuenta" v-on:click= "seleccionarCuenta">
     <form class= "form" action="">
       <input class = "input" :id= "id" ref="accountName"  type="text" name = "nombreCuenta" :value = nombre>
     </form>
@@ -55,6 +55,10 @@ export default {
       var idCuenta = this.id
       let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
       this.cuentas.splice(cuenta,1)
+    },
+
+    seleccionarCuenta(){
+      "TODO"
     },
 
     nombreRepetido(nombreActual,idCuenta){
