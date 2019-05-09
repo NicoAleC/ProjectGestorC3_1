@@ -29,8 +29,8 @@ export default {
   methods:{
 
     anadirCuenta(){
-      var index =  Math.random().toString(36).substring(2, 15)                
-      var nuevaCuenta = {id:  index,
+      var codigo =  Math.random().toString(36).substring(2, 15)                
+      var nuevaCuenta = {id:  codigo,
                          nombre: 'Cuenta ' + index,ingresos: {},
                          egresos: {}}
       this.$store.dispatch('addAccount', nuevaCuenta) 
