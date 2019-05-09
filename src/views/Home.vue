@@ -1,17 +1,19 @@
 <template>
   <div class="home">
-    <Home msg="Welcome to Your Vue.js App"/>
+    <h1>HOLA
+    </h1>
+    <DataTable/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Home from '@/components/Home.vue'
+import DataTable from '@/components/DataTable.vue'
 
 export default {
   name: 'home',
   components: {
-    Home
+    DataTable
   }
 }
 </script>

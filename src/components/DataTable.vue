@@ -1,10 +1,8 @@
 <template>
   <div class="hello">
-    <h1>Esta es la pagina de inicio de secion</h1>
-    <h2>Mensaje recibido: {{ msg }}</h2>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons">
     <v-toolbar flat color="white">
-      <v-toolbar-title>My CRUD</v-toolbar-title>
+      <v-toolbar-title>Detalle de cuenta</v-toolbar-title>
       <v-divider
         class="mx-2"
         inset
@@ -240,10 +238,7 @@ export default {
       this.close();
     }
   },
-  name: "HelloWorld",
-  props: {
-    msg: String
-  }
+  name: "DataTable"
 };
 </script>
 
