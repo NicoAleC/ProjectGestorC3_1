@@ -155,16 +155,17 @@ export default {
 
 //Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
     obtenerSaldo(){
+
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
       let listaIngresos = cuenta1.ingresos
       let listaEgresos = cuenta1.egresos
       let ingresosTotales = 0
       let egresosTotales = 0
 
-      listaIngresos.array.forEach(transaccion => {
+      listaIngresos.forEach(transaccion => {
         ingresosTotales +=   transaccion.monto
       });
-      listaEgresos.array.forEach(transaccion =>{
+      listaEgresos.forEach(transaccion =>{
         egresosTotales += transaccion.monto
       })
 
