@@ -1,21 +1,26 @@
 <template>
-  <div class="hello">
-    <h1>Esta es la pagina de inicio de secion</h1>
-    <h2>Mensaje recibido: {{ msg }}</h2>
+  <div class="hello"> 
+
+    <ListaCuentas></ListaCuentas>
+    <CategoryForm></CategoryForm>
     
   </div>
 </template>
 
 <script>
+import ListaCuentas from '@/components/ListaCuentas.vue'
+import Formulario from '@/components/CategoryForm.vue'
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  components:{
+    ListaCuentas: ListaCuentas,
+    Formulario: Formulario
+  },
+ 
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
   
 </style>

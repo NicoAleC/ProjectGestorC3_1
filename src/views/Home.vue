@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Home msg="Welcome to Your Vue.js App"/>
-    <ModalComponent/>
+    <CategoryForm/>
     <!--<IncomeExpense/>-->
   </div>
 </template>
@@ -9,13 +9,13 @@
 <script>
 // @ is an alias to /src
 import Home from '@/components/Home.vue'
-import ModalComponent from '@/components/ModalComponent.vue'
+import CategoryForm from '@/components/CategoryForm.vue'
 
 export default {
   name: 'home',
   components: {
     Home,
-    ModalComponent
+    CategoryForm
   }
 }
 </script>
