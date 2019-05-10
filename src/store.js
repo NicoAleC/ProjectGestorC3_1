@@ -16,6 +16,9 @@ export default new Vuex.Store({
     },
     addCategory (context, nuevaCategoria){
       context.CUENTAS.push(nuevaCategoria)
+    },
+    changeCurrentAccount(context,nuevoId){
+      context.CUENTA_ACTUAL = nuevoId
     }
   },
   actions: {
@@ -24,6 +27,9 @@ export default new Vuex.Store({
     },
     addCategory(context,nuevaCategoria){
       context.commit('addCategory',nuevaCategoria)
+    },
+    changeCurrentAccount(context,nuevoId){
+      context.commit('changeCurrentAccount',nuevoId)
     }
   }
 })

@@ -24,6 +24,9 @@ export default {
   computed: {
     cuentas(){
       return this.$store.state.CUENTAS
+    },
+    cuentaActual(){
+      return this.$store.state.CUENTA_ACTUAL
     }
   },
   methods:{

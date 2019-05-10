@@ -2,7 +2,7 @@
   <div class="hello">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons">
     <v-toolbar flat color="white">
-      <v-toolbar-title>Detalle de cuenta</v-toolbar-title>
+      <v-toolbar-title>{{obtenerNombreCuenta()}}</v-toolbar-title>
       <v-divider
         class="mx-2"
         inset
@@ -87,6 +87,7 @@
 <script>
 export default {
   data: () => ({
+    nombreCuenta: 'Seleccionar Cuenta',
     dialog: false,
     headers: [
       {
@@ -107,7 +108,9 @@ export default {
     cuentas(){
       return this.$store.state.CUENTAS
     },
-    
+    cuentaActual(){
+      return this.$store.state.CUENTA_ACTUAL
+    },  
   },
 
   watch: {
@@ -144,12 +147,17 @@ export default {
         this.desserts.push(this.editedItem);
       }
       this.close();
+    },
+    obtenerNombreCuenta(cuentaActual){
+      var idCuentaActual =  this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+    return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre
+
     }
   },
   name: "DataTable"
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>

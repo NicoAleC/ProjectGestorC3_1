@@ -27,6 +27,7 @@ export default {
     },
     cuentaActual(){
       return this.$store.state.CUENTA_ACTUAL
+    
     }
 
   },
@@ -61,7 +62,8 @@ export default {
     },
 
     seleccionarCuenta(){
-      this.cuentaActual = this.id
+      var idAMandar = this.id
+      this.$store.dispatch('changeCurrentAccount',idAMandar)
     },
 
     nombreRepetido(nombreActual,idCuenta){
@@ -152,7 +154,5 @@ export default {
 .button:hover::after {
 	opacity: 1;
 	transform: scale(1,1);
-}
-
-  
+} 
 </style>
