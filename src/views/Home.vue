@@ -24,6 +24,7 @@ import DataTable from '@/components/DataTable'
 }
 .dataTable{
   float: left; 
+
 }
 
 </style>

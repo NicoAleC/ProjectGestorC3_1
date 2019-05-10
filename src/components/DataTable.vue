@@ -14,9 +14,7 @@
           <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
         </template>
         <v-card>
-          <v-card-title>
-            <span class="headline">{{ formTitle }}</span>
-          </v-card-title>
+
 <!--
           <v-card-text>
             <v-container grid-list-md>
@@ -78,7 +76,7 @@
         </td>
       </template>
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
+        <v-btn color="primary" @click="obtenerNombreCuenta">Reset</v-btn>
       </template>
     </v-data-table>
   </div>
@@ -87,7 +85,6 @@
 <script>
 export default {
   data: () => ({
-    nombreCuenta: 'Seleccionar Cuenta',
     dialog: false,
     headers: [
       {
@@ -100,7 +97,7 @@ export default {
       { text: "Monto", value: "monto" },
       { text: "Fecha", value: "fecha" },
       { text: "Categoría", value: "categoria" },
-      { text: "Actions", value: "name", sortable: false }
+      { text: "Acciones", value: "name", sortable: false }
     ]
   }),
 
@@ -151,8 +148,27 @@ export default {
     obtenerNombreCuenta(cuentaActual){
       var idCuentaActual =  this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-    return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre
+      return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre + ".  Saldo: " + "this.obtenerSaldo() " + "Bs"
 
+    },
+
+
+//Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
+    obtenerSaldo(){
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      let listaIngresos = cuenta1.ingresos
+      let listaEgresos = cuenta1.egresos
+      let ingresosTotales = 0
+      let egresosTotales = 0
+
+      listaIngresos.array.forEach(transaccion => {
+        ingresosTotales +=   transaccion.monto
+      });
+      listaEgresos.array.forEach(transaccion =>{
+        egresosTotales += transaccion.monto
+      })
+
+      return ingresosTotales - egresosTotales
     }
   },
   name: "DataTable"
@@ -160,4 +176,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

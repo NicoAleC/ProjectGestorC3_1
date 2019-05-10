@@ -1,7 +1,7 @@
 <template>
-  <div class= "cuenta" v-on:click= "seleccionarCuenta">
+  <div class= "cuenta">
     <form class= "form" action="">
-      <input class = "input" :id= "id" ref="accountName"  type="text" name = "nombreCuenta" :value = nombre>
+      <input class = "input" :id= "id" ref="accountName" v-on:click = "seleccionarCuenta"  type="text" name = "nombreCuenta" :value = nombre>
     </form>
     <button class = "button" id = "btnEditar" type = "button" v-on:click = "editarNombre">  <span>{{nombreBoton}}</span>
 </button>
