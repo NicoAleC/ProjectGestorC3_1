@@ -7,7 +7,7 @@
 
       </div>
      </transition>
-      <button @click="isOpen=!isOpen">Register Income/Expense</button>
+      <button @click="isOpen=!isOpen">Category Options</button>
    </div>
 </template>
 

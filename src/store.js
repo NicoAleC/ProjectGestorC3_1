@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     CUENTAS: [],
     CATEGORIAS_INGRESOS: ['Salario,Transferencia,Otros'],
-    CATEGORIAS_EGRESOS: ['Expensas,Transferencia,Otros']
+    CATEGORIAS_EGRESOS: ['Expensas,Transferencia,Otros'],
+    CUENTA_ACTUAL: ''
   },
   mutations: {
     addAccount (context, nuevaCuenta) {
