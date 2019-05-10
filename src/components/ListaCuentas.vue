@@ -31,8 +31,8 @@ export default {
     anadirCuenta(){
       var index =  Math.random().toString(36).substring(2, 15)                
       var nuevaCuenta = {id:  index,
-                         nombre: 'Cuenta ' + index,ingresos: {},
-                         egresos: {}}
+                         nombre: 'Cuenta ' + index,ingresos: [],
+                         egresos: [[{ntrans: 101213, monto: 32.5, }]]}
       this.$store.dispatch('addAccount', nuevaCuenta) 
     },
   }

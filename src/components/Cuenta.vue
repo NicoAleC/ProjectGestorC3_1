@@ -24,6 +24,9 @@ export default {
 
     cuentas(){
       return this.$store.state.CUENTAS
+    },
+    cuentaActual(){
+      return this.$store.state.CUENTA_ACTUAL
     }
 
   },
@@ -58,7 +61,7 @@ export default {
     },
 
     seleccionarCuenta(){
-      "TODO"
+      this.cuentaActual = this.id
     },
 
     nombreRepetido(nombreActual,idCuenta){

@@ -1,19 +1,36 @@
 <template>
   <div class="home">
-    <h1>HOLA
-    </h1>
-    <DataTable/>
+    <ListaCuentas class="listas"/>
+    <DataTable class="data"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import DataTable from '@/components/DataTable.vue'
+import ListaCuentas from '@/components/ListaCuentas.vue'
 
 export default {
   name: 'home',
   components: {
-    DataTable
+    DataTable,
+    ListaCuentas
   }
 }
 </script>
+
+<style scoped>
+
+* {
+  box-sizing: border-box;
+}
+
+.listas {
+  float: left;
+}
+
+.data {
+  float: left;
+}
+
+</style>
