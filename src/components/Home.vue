@@ -14,7 +14,7 @@ export default {
   name: 'HelloWorld',
   components:{
     ListaCuentas: ListaCuentas,
-    Formulario: Formulario
+    Formulario: Formulario,
   },
  
 }

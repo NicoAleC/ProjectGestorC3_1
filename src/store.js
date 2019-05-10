@@ -14,16 +14,22 @@ export default new Vuex.Store({
     addAccount (context, nuevaCuenta) {
       context.CUENTAS.push(nuevaCuenta)
     },
-    addCategory (context, nuevaCategoria){
-      context.CUENTAS.push(nuevaCategoria)
+    addCategoryIncome (context, newCategory){
+      context.CATEGORIAS_INGRESOS.push(newCategory)
+    },
+    addCategoryExpense (context, newCategory){
+      context.CATEGORIAS_EGRESOS.push(newCategory)
     }
   },
   actions: {
     addAccount (context, nuevaCuenta) {
       context.commit('addAccount', nuevaCuenta)
     },
-    addCategory(context,nuevaCategoria){
-      context.commit('addCategory',nuevaCategoria)
+    addCategoryIncome(context,newCategory){
+      context.commit('addCategory',newCategory)
+    },
+    addCategoryExpense(context,newCategory){
+      context.commit('addCategory',newCategory)
     }
   }
 })

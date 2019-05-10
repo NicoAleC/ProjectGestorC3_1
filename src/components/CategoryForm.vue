@@ -7,7 +7,7 @@
 
       </div>
      </transition>
-      <button @click="isOpen=!isOpen">Category Options</button>
+      <button class="button" @click="isOpen=!isOpen">Category Options</button>
    </div>
 </template>
 
@@ -25,3 +25,24 @@ import CategoryList from '@/components/CategoryList.vue'
        }
    }
 </script>
+<style scoped>
+.button{
+  padding: 0;
+  border: none;
+  background: none;
+  position: relative;
+  left:    0;
+  bottom:   0;
+  font-family : inherit;
+  padding-left: 94px;
+  padding-right:94px;
+  background-color: #3C3C3C;
+  line-height: 50px;
+	height: 50px;
+	text-align: center;
+	width: 100%;
+	cursor: pointer;
+  color: #FFF;
+	transition: all 0.3s;
+}
+</style>

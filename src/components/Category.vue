@@ -1,9 +1,9 @@
 <template>
   <div class= "category" v-on:click= "selectCategory">
     <form class= "form" action="">
-      <input class = "input" :id= "id" ref="categoryName"  type="text" name = "categoryName" :value = nombre>
+      <input class = "input" :id= "id" ref="categoryName"  type="text" name = "categoryName" :value = name>
     </form>
-    <button class = "button" id = "buttonEdit" type = "button" v-on:click = "editName">  <span>{{nombreBoton}}</span>
+    <button class = "button" id = "buttonEdit" type = "button" v-on:click = "saveCategory">  <span>{{buttonName}}</span>
 </button>
     <button class = "button" id = "buttonDelete" type = "button" v-on:click = "deleteCategory">  <span>Delete</span>
 </button>
@@ -17,54 +17,105 @@ export default {
 
   data() {
     return{
-    nombreBoton: "Save Category",
+    buttonName: "Save Category",
     }  
   },
   computed: {
-    categoryIncome(){
+    categoryIncomes(){
       return this.$store.state.CATEGORIAS_INGRESOS;
     },
-    categoryExpense(){
+    categoryExpenses(){
       return this.$store.state.CATEGORIAS_EGRESOS;
     }
   },
   methods:{
+    saveCategory: function(){
 
-    editarNombre: function(){
-
-      var idCuenta = this.id
-      if(this.nombreBoton == "Editar"){
-        //this.$refs.accountName
-        document.getElementById(idCuenta).disabled = false//Habilitar la edicion en el input
-        this.nombreBoton = "Guardar"//Cambiar el nombre del boton
-
-      }else{//Guardar la edicion
-        var nombreActual = document.getElementById(idCuenta).value
-        if(nombreActual == "" || this.nombreRepetido(nombreActual,idCuenta)){
-          console.log("Nombre inválido")//Mostrar ventana de error
-        }else{
-
-          document.getElementById(this.id).disabled = true//Deshabilitar la edicion en el input
-          this.nombreBoton = "Editar"//Cambiar el nombre del boton
-          let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
-          this.cuentas[indexCuenta].nombre = nombreActual
-        }
-      }     
-    },
-
-    eliminarCuenta(){
-      var idCuenta = this.id
-      let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
-      this.cuentas.splice(cuenta,1)
-    },
-
-    seleccionarCuenta(){
-      "TODO"
-    },
-
-    nombreRepetido(nombreActual,idCuenta){
-      return  this.cuentas.find(cuenta => cuenta.nombre === nombreActual && cuenta.id != idCuenta) ? true : false
-    },    
+    }
   }
 }
 </script>
+
+<style scoped>
+* {
+  box-sizing: border-box;
+}
+  .input{
+    border: none;
+    background: none;
+    background-color : 	#F5F5F5; 
+    width: 150px;
+    height: 40px;
+    padding-top: 10px;
+    top: 0;
+    float: left;
+    padding-bottom: 10px
+  }
+  .form{
+    float:left;
+    width:40%;  
+  }
+  .category{
+    width: 100%;
+    height: 50px;
+    position: relative;
+  }
+  .category::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+  .button {
+  top:  0;
+  padding: 0;
+  border: none;
+  background: none;
+  margin-right: 0px;
+  position: absolute;
+  border-style: solid;
+  border-color: #3C3C3C;
+  border-right-width: 1px;
+  float: left;
+  width: 30%;
+  height: 40px;
+  font-family : inherit;
+  background-color: #3C3C3C;
+	color: #FFF;
+	transition: all 0.5s;
+	position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+.button::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(255,255,255,0.1);
+	transition: all 0.3s;
+}
+.button:hover::before {
+	opacity: 0 ;
+	transform: scale(0.5,0.5);
+}
+.button::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border: 1px solid rgba(255,255,255,0.5);
+	transform: scale(1.2,1.2);
+}
+.button:hover::after {
+	opacity: 1;
+	transform: scale(1,1);
+}
+</style>

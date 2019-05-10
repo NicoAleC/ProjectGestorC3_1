@@ -3,7 +3,8 @@
 <div>
   <ListaCuentas class="listaCuentas"></ListaCuentas>
   <DataTable class = "dataTable"></DataTable>
-  <CategoryForm/>
+  <!--<CategoryList class="categoryList"></CategoryList>-->
+  <CategoryForm class="categoryForm"></CategoryForm>
 </div>
 </template>
 
@@ -11,13 +12,16 @@
 import ListaCuentas from '@/components/ListaCuentas'
 import DataTable from '@/components/DataTable'
 import CategoryForm from '@/components/CategoryForm.vue'
+import CategoryList from '@/components/CategoryList.vue'
+
 
 
   export default {
     components: {
       ListaCuentas: ListaCuentas,
       DataTable:DataTable,
-      CategoryForm
+      CategoryForm,
+      CategoryList
     }
   }
 </script>
@@ -29,6 +33,8 @@ import CategoryForm from '@/components/CategoryForm.vue'
 }
 .dataTable{
   float: left; 
+}.categoryForm{
+  float: left;
 }
 
 </style>
