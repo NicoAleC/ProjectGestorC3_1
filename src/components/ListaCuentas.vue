@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     cuentas(){
-      return this.$store.state.CUENTAS;
+      return this.$store.state.CUENTAS
     }
   },
   methods:{
@@ -31,8 +31,9 @@ export default {
     anadirCuenta(){
       var codigo =  Math.random().toString(36).substring(2, 15)                
       var nuevaCuenta = {id:  codigo,
-                         nombre: 'Cuenta ' + index,ingresos: {},
-                         egresos: {}}
+                         nombre: 'Cuenta ' + codigo,ingresos: [],
+                         egresos: []}
+
       this.$store.dispatch('addAccount', nuevaCuenta) 
     },
   }
