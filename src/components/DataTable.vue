@@ -90,7 +90,7 @@ export default {
       {
         text: "Número de transacción",
         align: "left",
-        sortable: true,
+        sortable: false,
         value: "ntrans"
       },
       { text: "Descripción", value: "descripcion" },
@@ -148,14 +148,13 @@ export default {
     obtenerNombreCuenta(cuentaActual){
       var idCuentaActual =  this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre + ".  Saldo: " + "this.obtenerSaldo() " + "Bs"
+      return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre + ".  Saldo: " + this.obtenerSaldo()  + "Bs"
 
     },
 
-
 //Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
     obtenerSaldo(){
-
+      let idCuentaActual =  this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
       let listaIngresos = cuenta1.ingresos
       let listaEgresos = cuenta1.egresos
@@ -169,7 +168,7 @@ export default {
         egresosTotales += transaccion.monto
       })
 
-      return ingresosTotales - egresosTotales
+      return (ingresosTotales - egresosTotales)
     }
   },
   name: "DataTable"

@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    CUENTAS: [],
+    CUENTAS: [{id: 0, nombre: 'Mateo', 
+              ingresos: [{descripcion: 'mensualidad abril',monto: 1500, fecha: '12/12/12', categoria: 'Transferencia'}]
+             ,egresos: [{descripcion: 'pago universidad', monto: 300, fecha: '12/12/19',categoria:'Expensas'}]}],
     CATEGORIAS_INGRESOS: ['Salario,Transferencia,Otros'],
     CATEGORIAS_EGRESOS: ['Expensas,Transferencia,Otros'],
     CUENTA_ACTUAL: ''
