@@ -1,10 +1,15 @@
 <template>
 <div class = "UICategory">
   <div class="categoryList">
-      <Category></Category>
+      <Category
+        v-bind:id= "categoria.id"
+        v-for="categoria in escogerTransaccion()"
+        v-bind:nombre= "categoria.nombre"
+        :key= "categoria.id"
+      ></Category>
   </div>
 
-      <button class = "button" @click="addCategory"> <span>Add Category</span></button>
+      <button class = "button" @click="addCategory"> <span>AÑADIR CATEGORIA</span></button>
 </div>
 
 
@@ -19,21 +24,32 @@ export default {
   },
   computed: {
     categoryIncomes(){
-      return this.$store.state.CATEGORIAS_INGRESOS;
+      return this.$store.state.CATEGORIAS_INGRESOS
     },
     categoryExpenses(){
-      return this.$store.state.CATEGORIAS_EGRESOS;
+      return this.$store.state.CATEGORIAS_EGRESOS
+    },
+    transaccionActual(){
+      return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods:{
 
-    addCategoryIncome(){
-      var code =  Math.random().toString(36).substring(2, 15)                
-      var newCategory = {id:  code,
-                         name: 'Cuenta ' + codigo}
+    addCategory(){
+      var codigo =  Math.random().toString(36).substring(2, 15)                
+      var newCategory = {id:  codigo,
+                         nombre: 'Categoria ' + codigo}
 
-      this.$store.dispatch('addAccountIncome', newCategory) 
-    }      
+      if(this.transaccionActual == "Ingresos"){
+        this.$store.dispatch('addCategoryIncome', newCategory) 
+      }else{
+        this.$store.dispatch('addCategoryExpense', newCategory) 
+      }
+    },
+    escogerTransaccion(){
+      return this.transaccionActual == "Ingresos" ? this.categoryIncomes : this.categoryExpenses
+    }
+    
   }
 }
 </script>
@@ -48,7 +64,6 @@ body {
   flex-wrap: wrap;
   font-family: 'Open Sans Condensed', sans-serif;
 }
-
 .UICategory{
   position:relative;
   background-color: #3C3C3C;

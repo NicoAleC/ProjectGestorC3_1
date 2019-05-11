@@ -7,7 +7,7 @@
 
       </div>
      </transition>
-      <button class="button" @click="isOpen=!isOpen">Category Options</button>
+      <button class="button" @click="isOpen=!isOpen">EDITAR CATEGORIAS</button>
    </div>
 </template>
 

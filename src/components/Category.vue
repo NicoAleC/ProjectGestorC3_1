@@ -1,11 +1,12 @@
 <template>
-  <div class= "category" v-on:click= "selectCategory">
+
+  <div class= "category">
     <form class= "form" action="">
-      <input class = "input" :id= "id" ref="categoryName"  type="text" name = "categoryName" :value = name>
+      <input class = "input" :id= "id" ref="categoryName"  type="text" name = "categoryName" :value = nombre>
     </form>
-    <button class = "button" id = "buttonEdit" type = "button" v-on:click = "saveCategory">  <span>{{buttonName}}</span>
+    <button class = "button" id = "buttonEdit" type = "button" v-on:click = "editCategory">  <span>{{buttonName}}</span>
 </button>
-    <button class = "button" id = "buttonDelete" type = "button" v-on:click = "deleteCategory">  <span>Delete</span>
+    <button class = "button" id = "buttonDelete" type = "button" v-on:click = "deleteCategory">  <span>Eliminar</span>
 </button>
   </div>
 </template>
@@ -13,24 +14,73 @@
 <script>
 export default {
   name: 'category',
-  props: ['id','name'],
-
+  props: ['id','nombre'],
   data() {
     return{
-    buttonName: "Save Category",
+    buttonName: "Guardar",
     }  
   },
+
   computed: {
     categoryIncomes(){
-      return this.$store.state.CATEGORIAS_INGRESOS;
+      return this.$store.state.CATEGORIAS_INGRESOS
     },
     categoryExpenses(){
-      return this.$store.state.CATEGORIAS_EGRESOS;
+      return this.$store.state.CATEGORIAS_EGRESOS
+    },
+    tipoTransaccion(){
+      return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods:{
-    saveCategory: function(){
 
+    editCategory(){
+      var idCategoria = this.id
+      if(this.buttonName == "Editar"){
+        document.getElementById(idCategoria).disabled = false
+        this.buttonName = "Guardar"
+      }else{
+        var nombreActual = document.getElementById(idCategoria).value
+        if(nombreActual == "" || this.nombreRepetido(nombreActual,idCategoria)){
+          console("Nombre inválido")
+        }else{
+          document.getElementById(this.id).disabled = true
+          this.buttonName = "Editar"
+          let indexCategoria
+          if(this.tipoTransaccion == 'Ingresos'){
+            indexCategoria = this.categoryIncomes.findIndex(categoria => categoria.id === idCategoria)
+            this.categoryIncomes[indexCategoria].nombre = nombreActual
+          }else{
+            indexCategoria = this.categoryExpenses.findIndex(categoria => categoria.id === idCategoria)
+            this.categoryExpenses[indexCategoria].nombre = nombreActual
+          }
+
+        }
+      }
+    },
+
+    deleteCategory: function(){
+      var idCategoria = this.id
+      let categoria
+      if(this.tipoTransaccion == "Ingresos"){
+        categoria = this.categoryIncomes.find(categoria => categoria.id === idCategoria)
+        this.categoryIncomes.splice(categoria,1)
+       
+      }else{
+        categoria = this.categoryExpenses.find(categoria => categoria.id === idCategoria)
+        this.categoryExpenses.splice(categoria,1)
+
+      }   
+
+    },
+    nombreRepetido(nombreActual,idCategoria){
+      if(this.tipoTransaccion == "ingresos"){
+        return  this.categoryIncomes.find(categoria => categoria.nombre === nombreActual 
+                                          && categoria.id != idCategoria) ? true : false
+      }else{
+        return  this.categoryExpenses.find(categoria => categoria.nombre === nombreActual 
+                                          && categoria.id != idCategoria) ? true : false
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="hello">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons">
     <v-toolbar flat color="white">
-      <v-toolbar-title>Detalle de cuenta</v-toolbar-title>
+      <v-toolbar-title>{{obtenerNombreCuenta()}}</v-toolbar-title>
       <v-divider
         class="mx-2"
         inset
@@ -14,9 +14,7 @@
           <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
         </template>
         <v-card>
-          <v-card-title>
-            <span class="headline">{{ formTitle }}</span>
-          </v-card-title>
+
 <!--
           <v-card-text>
             <v-container grid-list-md>
@@ -78,7 +76,7 @@
         </td>
       </template>
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
+        <v-btn color="primary" @click="obtenerNombreCuenta">Reset</v-btn>
       </template>
     </v-data-table>
   </div>
@@ -92,14 +90,14 @@ export default {
       {
         text: "Número de transacción",
         align: "left",
-        sortable: true,
+        sortable: false,
         value: "ntrans"
       },
       { text: "Descripción", value: "descripcion" },
       { text: "Monto", value: "monto" },
       { text: "Fecha", value: "fecha" },
       { text: "Categoría", value: "categoria" },
-      { text: "Actions", value: "name", sortable: false }
+      { text: "Acciones", value: "name", sortable: false }
     ]
   }),
 
@@ -107,7 +105,12 @@ export default {
     cuentas(){
       return this.$store.state.CUENTAS
     },
-    
+    cuentaActual(){
+      return this.$store.state.CUENTA_ACTUAL
+    },  
+    tipoTransaccion(){
+      return this.$sotre.state.TIPO_TRANSACCION
+    }
   },
 
   watch: {
@@ -144,12 +147,37 @@ export default {
         this.desserts.push(this.editedItem);
       }
       this.close();
+    },
+    obtenerNombreCuenta(cuentaActual){
+      var idCuentaActual =  this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre + ".  Saldo: " + this.obtenerSaldo()  + "Bs"
+
+    },
+
+//Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
+    obtenerSaldo(){
+      let idCuentaActual =  this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      let listaIngresos = cuenta1.ingresos
+      let listaEgresos = cuenta1.egresos
+      let ingresosTotales = 0
+      let egresosTotales = 0
+
+      listaIngresos.forEach(transaccion => {
+        ingresosTotales +=   transaccion.monto
+      });
+      listaEgresos.forEach(transaccion =>{
+        egresosTotales += transaccion.monto
+      })
+
+      return (ingresosTotales - egresosTotales)
     }
   },
   name: "DataTable"
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
