@@ -108,6 +108,9 @@ export default {
     cuentaActual(){
       return this.$store.state.CUENTA_ACTUAL
     },  
+    tipoTransaccion(){
+      return this.$sotre.state.TIPO_TRANSACCION
+    }
   },
 
   watch: {
