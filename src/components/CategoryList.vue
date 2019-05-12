@@ -40,14 +40,14 @@ export default {
       var newCategory = {id:  codigo,
                          nombre: 'Categoria ' + codigo}
 
-      if(this.transaccionActual == "Ingresos"){
+      if(this.transaccionActual == 'Ingresos'){
         this.$store.dispatch('addCategoryIncome', newCategory) 
       }else{
         this.$store.dispatch('addCategoryExpense', newCategory) 
       }
     },
     escogerTransaccion(){
-      return this.transaccionActual == "Ingresos" ? this.categoryIncomes : this.categoryExpenses
+      return this.transaccionActual == 'Ingresos' ? this.categoryIncomes : this.categoryExpenses
     }
     
   }

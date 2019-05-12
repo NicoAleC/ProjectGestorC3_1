@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     CUENTAS: [{id: 11, nombre: 'Mateo', 
-              ingresos: [{descripcion: 'mensualidad abril',monto: 1500, fecha: '12/12/12', categoria: 'Transferencia'}]
-             ,egresos: [{descripcion: 'pago universidad', monto: 300, fecha: '12/12/19',categoria:'Expensas'}]}],
+              ingresos: [{ntrans: 1, descripcion: 'mensualidad abril',monto: 1500, fecha: '12/12/12', categoria: 'Transferencia'}]
+             ,egresos: [{ntrans: 3, descripcion: 'pago universidad', monto: 300, fecha: '12/12/19',categoria:'Expensas'}]}],
     CATEGORIAS_INGRESOS: [{id:0, nombre: 'Salario'},
                           {id:1, nombre: 'Transferencia'},
                           {id:2, nombre: 'Otros'}],
