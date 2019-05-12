@@ -1,11 +1,21 @@
 <template>
 
-<div>
-
-  <ListaCuentas class="listaCuentas"></ListaCuentas>
-  <DataTable class = "dataTable"></DataTable>
-  <CategoryForm class="categoryForm"></CategoryForm>
-  <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
+<div class="grilla">
+  <div class="grid-item">
+    <ListaCuentas class="listaCuentas"></ListaCuentas>
+  </div>
+  <div class="grid-item">
+      <DataTable class = "dataTable"></DataTable>
+  </div>
+  <div class="grid-item">
+    <CategoryForm class="categoryForm"></CategoryForm>
+  </div>
+  <div class="grid-item">
+    <Transfer class = "transfer"></Transfer>
+  </div>
+  <div class="grid-item">
+    <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
+  </div>
 </div>
 </template>
 
@@ -14,32 +24,24 @@ import ListaCuentas from '@/components/ListaCuentas'
 import DataTable from '@/components/DataTable'
 import CategoryForm from '@/components/CategoryForm.vue'
 import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
+import Transfer from '@/components/Transfer.vue'
 
 export default {
   components: {
     ListaCuentas: ListaCuentas,
     DataTable: DataTable,
     CategoryForm: CategoryForm,
-    EscogerTransaccion: EscogerTransaccion
+    EscogerTransaccion: EscogerTransaccion,
+    Transfer: Transfer
   }
 }
 </script>
 
 <style scoped>
-
-.listaCuentas{
-  float: left;
-}
-.dataTable{
-  float: left;
-  top: 300px
-}
-.categoryForm{
-  float: left;
-}
-.escogerTransaccion{
-  position: absolute;
-  bottom: 280px;
-  right: 500px
+.grilla {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
 }
 </style>

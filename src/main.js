@@ -8,6 +8,9 @@ import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 
+Vue.use(Vuetify, {
+  iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
 Vue.config.productionTip = false
 
 new Vue({
