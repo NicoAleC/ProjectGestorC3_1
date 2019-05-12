@@ -1,7 +1,11 @@
 <template>
   <div class= "escogerTransferencia">
-    <button  class = "button" id = "irAIngresos" type = "button" v-on:click = "irAIngresos">  <span>INGRESOS</span></button>
-    <button  class = "button" id = "irAEgresos" type = "button" v-on:click = "irAEgresos">  <span>EGRESOS</span></button>
+    <button  class = "button" id = "irAIngresos" type = "button" v-on:click = "irAIngresos">
+      <span>INGRESOS</span>
+    </button>
+    <button  class = "button" id = "irAEgresos" type = "button" v-on:click = "irAEgresos">
+      <span>EGRESOS</span>
+    </button>
   </div>
 </template>
 
@@ -36,11 +40,10 @@ export default {
 </script>
 
 <style scoped>
+.escogerTransferencia{
+  height:25%;
+}
   .button {
-    top:  0;
-    padding: 0;
-    border: none;
-    background: none;
     margin-right: 0px;
     position: relative;
     border-style: solid;
@@ -48,14 +51,14 @@ export default {
     border-right-width: 1px;
     float: left;
     width: 50%;
-    height: 50%;
+    height: 100%;
     font-family : inherit;
     background-color: #3C3C3C;
     color: #FFF;
     transition: all 0.5s;
     position: relative;
     padding-top: 10px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 .button::before {
   content: '';
