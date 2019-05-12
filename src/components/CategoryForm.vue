@@ -30,7 +30,8 @@ export default {
   border: none;
   background: none;
   position: relative;
-  left: 0;bottom: 0;
+  left: 0;
+  bottom: 0;
   font-family : inherit;
   padding-left: 94px;
   padding-right:94px;
@@ -42,5 +43,6 @@ export default {
   cursor: pointer;
   color: #FFF;
   transition: all 0.3s;
+  font-size: 13px;
 }
 </style>

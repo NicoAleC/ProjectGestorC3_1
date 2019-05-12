@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'category',
+  name: 'transaccion',
   props: ['id', 'name'],
   data () {
     return {
@@ -36,22 +36,19 @@ export default {
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-}
-
   .button {
     top:  0;
     padding: 0;
     border: none;
     background: none;
     margin-right: 0px;
-    position: absolute;
+    position: relative;
     border-style: solid;
     border-color: #3C3C3C;
     border-right-width: 1px;
-    float: left;width: 200px;
-    height: 40px;
+    float: left;
+    width: 50%;
+    height: 50%;
     font-family : inherit;
     background-color: #3C3C3C;
     color: #FFF;

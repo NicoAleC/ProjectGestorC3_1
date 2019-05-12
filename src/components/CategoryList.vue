@@ -70,7 +70,7 @@ body {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 30px;
-  width: 300px
+  width: 100%;
 
 }
 .categoryList{

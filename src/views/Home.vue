@@ -1,22 +1,23 @@
 <template>
-
-<div class="grilla">
-  <div class="grid-item">
-    <ListaCuentas class="listaCuentas"></ListaCuentas>
+  <div class="grilla">
+    <div class="grid-item">
+      <ListaCuentas class="listaCuentas"></ListaCuentas>
+    </div>
+    <div class="grid-item-1">
+      <div>
+        <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
+      </div>
+      <div>
+        <DataTable class = "dataTable"></DataTable>
+      </div>
+    </div>
+    <div class="grid-item">
+      <CategoryForm class="categoryForm"></CategoryForm>
+    </div>
+    <div class="grid-item">
+      <Transfer class = "transfer"></Transfer>
+    </div>
   </div>
-  <div class="grid-item">
-      <DataTable class = "dataTable"></DataTable>
-  </div>
-  <div class="grid-item">
-    <CategoryForm class="categoryForm"></CategoryForm>
-  </div>
-  <div class="grid-item">
-    <Transfer class = "transfer"></Transfer>
-  </div>
-  <div class="grid-item">
-    <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
-  </div>
-</div>
 </template>
 
 <script>
@@ -43,5 +44,8 @@ export default {
   grid-template-columns: auto auto auto;
   grid-gap: 10px;
   padding: 10px;
+}
+.grid-item-1{
+  display: grid;
 }
 </style>
