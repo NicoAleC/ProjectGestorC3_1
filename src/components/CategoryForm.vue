@@ -43,6 +43,6 @@ export default {
   cursor: pointer;
   color: #FFF;
   transition: all 0.3s;
-  font-size: 13px;
+  font-size: 12px;
 }
 </style>
