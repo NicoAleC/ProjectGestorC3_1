@@ -1,5 +1,5 @@
 <template>
-<div> 
+<div>
  <Home></Home>
 </div>
 </template>
@@ -9,8 +9,8 @@ import Home from '@/views/Home.vue'
 
 export default {
   name: 'App',
-  components:{
-    Home : Home
-  } 
+  components: {
+    Home: Home
+  }
 }
 </script>

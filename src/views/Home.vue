@@ -1,9 +1,9 @@
 <template>
 
 <div>
-  
+
   <ListaCuentas class="listaCuentas"></ListaCuentas>
-  <DataTable class = "dataTable"></DataTable> 
+  <DataTable class = "dataTable"></DataTable>
   <CategoryForm class="categoryForm"></CategoryForm>
   <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
 </div>
@@ -15,15 +15,14 @@ import DataTable from '@/components/DataTable'
 import CategoryForm from '@/components/CategoryForm.vue'
 import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
 
-
-  export default {
-    components: {
-      ListaCuentas: ListaCuentas,
-      DataTable:DataTable,
-      CategoryForm: CategoryForm,
-      EscogerTransaccion: EscogerTransaccion
-    }
+export default {
+  components: {
+    ListaCuentas: ListaCuentas,
+    DataTable: DataTable,
+    CategoryForm: CategoryForm,
+    EscogerTransaccion: EscogerTransaccion
   }
+}
 </script>
 
 <style scoped>
@@ -32,10 +31,10 @@ import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
   float: left;
 }
 .dataTable{
-  float: left; 
+  float: left;
   top: 300px
 }
-.categoryForm{    
+.categoryForm{
   float: left;
 }
 .escogerTransaccion{
@@ -44,4 +43,3 @@ import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
   right: 500px
 }
 </style>
-

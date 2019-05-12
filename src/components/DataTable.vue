@@ -37,7 +37,7 @@
               </v-layout>
             </v-container>
           </v-card-text>-->
-          
+
           <!--Aqui va lo que Alan hizo-->
 
           <v-card-actions>
@@ -88,76 +88,75 @@ export default {
     dialog: false,
     headers: [
       {
-        text: "Número de transacción",
-        align: "left",
+        text: 'Número de transacción',
+        align: 'left',
         sortable: false,
-        value: "ntrans"
+        value: 'ntrans'
       },
-      { text: "Descripción", value: "descripcion" },
-      { text: "Monto", value: "monto" },
-      { text: "Fecha", value: "fecha" },
-      { text: "Categoría", value: "categoria" },
-      { text: "Acciones", value: "name", sortable: false }
+      { text: 'Descripción', value: 'descripcion' },
+      { text: 'Monto', value: 'monto' },
+      { text: 'Fecha', value: 'fecha' },
+      { text: 'Categoría', value: 'categoria' },
+      { text: 'Acciones', value: 'name', sortable: false }
     ]
   }),
 
   computed: {
-    cuentas(){
+    cuentas () {
       return this.$store.state.CUENTAS
     },
-    cuentaActual(){
+    cuentaActual () {
       return this.$store.state.CUENTA_ACTUAL
-    },  
-    tipoTransaccion(){
+    },
+    tipoTransaccion () {
       return this.$sotre.state.TIPO_TRANSACCION
     }
   },
 
   watch: {
-    dialog(val) {
-      val || this.close();
+    dialog (val) {
+      val || this.close()
     }
   },
 
   methods: {
-    editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
+    editItem (item) {
+      this.editedIndex = this.desserts.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
     },
 
-    deleteItem(item) {
-      const index = this.desserts.indexOf(item);
-      confirm("Are you sure you want to delete this item?") &&
-        this.desserts.splice(index, 1);
+    deleteItem (item) {
+      const index = this.desserts.indexOf(item)
+      confirm('Are you sure you want to delete this item?') &&
+        this.desserts.splice(index, 1)
     },
 
-    close() {
-      this.dialog = false;
+    close () {
+      this.dialog = false
       setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      }, 300);
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
     },
 
-    save() {
+    save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.desserts[this.editedIndex], this.editedItem)
       } else {
-        this.desserts.push(this.editedItem);
+        this.desserts.push(this.editedItem)
       }
-      this.close();
+      this.close()
     },
-    obtenerNombreCuenta(cuentaActual){
-      var idCuentaActual =  this.cuentaActual
+    obtenerNombreCuenta (cuentaActual) {
+      var idCuentaActual = this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      return cuenta1 == undefined ? "Seleccionar Cuenta": cuenta1.nombre + ".  Saldo: " + this.obtenerSaldo()  + "Bs"
-
+      return cuenta1 === undefined ? 'Seleccionar Cuenta' : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs'
     },
 
-//Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
-    obtenerSaldo(){
-      let idCuentaActual =  this.cuentaActual
+    // Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
+    obtenerSaldo () {
+      let idCuentaActual = this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
       let listaIngresos = cuenta1.ingresos
       let listaEgresos = cuenta1.egresos
@@ -165,17 +164,17 @@ export default {
       let egresosTotales = 0
 
       listaIngresos.forEach(transaccion => {
-        ingresosTotales +=   transaccion.monto
-      });
-      listaEgresos.forEach(transaccion =>{
+        ingresosTotales += transaccion.monto
+      })
+      listaEgresos.forEach(transaccion => {
         egresosTotales += transaccion.monto
       })
 
       return (ingresosTotales - egresosTotales)
     }
   },
-  name: "DataTable"
-};
+  name: 'DataTable'
+}
 </script>
 
 <style scoped>
