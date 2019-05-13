@@ -23,7 +23,7 @@ export default new Vuex.Store({
       { id: 0, nombre: 'Expensas' },
       { id: 1, nombre: 'Transferencia' },
       { id: 2, nombre: 'Otros' }],
-    CUENTA_ACTUAL: '',
+    CUENTA_ACTUAL: 11,
     TIPO_TRANSACCION: 'Ingresos'
   },
   mutations: {

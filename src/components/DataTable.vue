@@ -172,6 +172,8 @@ export default {
     save () {
       this.editedItem.monto = parseFloat(this.editedItem.monto)
       this.editedItem.fecha = this.editedItem.fecha.toString()
+      this.editedItem.categoria = this.editedItem.categoria.toString()
+      console.log(this.editedItem.categoria)
       var indexTrans = -1
       do {
         this.editedItem.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
@@ -181,10 +183,10 @@ export default {
       if (this.editedItem.monto < 1) {
         condicion = false
         alert('El monto ingresado no puede ser menor a 1')
-      } else if (this.editedItem.fecha === '') {
+      } else if (this.editedItem.fecha === '' || this.editedItem.fecha === "") {
         condicion = false
         alert('La fecha no puede estar vacía')
-      } else if(this.editItem.categoria === '') {
+      } else if(this.editedItem.categoria.length === 0) {
         condicion = false
         alert('La categoría no puede estar vacía')
       }
@@ -207,8 +209,6 @@ export default {
         ? 'Seleccionar Cuenta'
         : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs'
     },
-
-    // Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
     obtenerSaldo () {
       let idCuentaActual = this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)

@@ -33,7 +33,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="close">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="saveTransfer">Transferir</v-btn>
         </v-card-actions>\
       </v-card>
@@ -64,6 +64,9 @@ export default {
     }
   },
   methods: {
+    close () {
+      this.dialog = false
+    },
     saveTransfer () {
       let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
 
@@ -90,6 +93,7 @@ export default {
         fecha: this.fecha,
         categoria: 'Transferencia' }
       ingresosCuentaAenviar.push(nuevoIngreso)
+      this.close()
     }
   }
 }
