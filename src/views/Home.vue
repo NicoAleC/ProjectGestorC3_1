@@ -4,7 +4,7 @@
       <ListaCuentas class="listaCuentas"></ListaCuentas>
     </div>
     <div class="grid-item-1">
-      <div>
+      <div class = "trans">
         <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
       </div>
       <div class="data">
@@ -47,10 +47,15 @@ export default {
 }
 .grid-item-1{
   display: grid;
+  height: 50;
 }
 
 .data {
   width: 800px;
   height: auto;;
+}
+
+.trans{
+height: 50px;
 }
 </style>

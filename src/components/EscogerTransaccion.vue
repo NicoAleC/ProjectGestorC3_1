@@ -1,11 +1,13 @@
 <template>
   <div class= "escogerTransferencia">
+    <v-responsive :height = 50>
     <button  class = "button" id = "irAIngresos" type = "button" v-on:click = "irAIngresos">
       <span>INGRESOS</span>
     </button>
     <button  class = "button" id = "irAEgresos" type = "button" v-on:click = "irAEgresos">
       <span>EGRESOS</span>
     </button>
+    </v-responsive>
   </div>
 </template>
 
