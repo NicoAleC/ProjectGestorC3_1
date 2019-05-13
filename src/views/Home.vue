@@ -52,7 +52,7 @@ export default {
 
 .data {
   width: 800px;
-  height: auto;;
+  height: 450px;
 }
 
 .trans{
