@@ -29,12 +29,13 @@
 
           </v-container>
           <small>Elija la cuenta a transferir y la cantidad:</small>
+          <small> {{ fecha }} </small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="saveTransfer">Transferir</v-btn>
-        </v-card-actions>
+        </v-card-actions>\
       </v-card>
     </v-dialog>
   </v-layout>
@@ -52,6 +53,14 @@ export default {
     },
     cuentaActual () {
       return this.$store.state.CUENTA_ACTUAL
+    },
+    fecha(){
+      var myDate = new Date();
+      var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
+      var date = ('0' + myDate.getDate()).slice(-2);
+      var year = myDate.getFullYear();
+      var formattedDate = date + '/' + month + '/' + year;
+      return formattedDate
     }
   },
   methods: {
@@ -66,7 +75,7 @@ export default {
       var nuevoEgreso = {ntrans: Math.random().toString(36).substring(2, 15),
                           descripcion: 'Transferencia a' +this.cuentas[indexCuentaAenviar].nombre,
                           //poner fecha sistema
-                          monto: parseFloat(this.amount), fecha: '12/12/12', categoria: 'Transferencia' }
+                          monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
       egresosCuentaActual.push(nuevoEgreso)
 
       //ingreso a la cuentaAenviar
@@ -77,7 +86,7 @@ export default {
       var nuevoIngreso = {ntrans: Math.random().toString(36).substring(2, 15),
                           descripcion: 'Transferencia de' +this.cuentas[indexCuentaActual].nombre,
                           //poner fecha sistema
-                          monto: parseFloat(this.amount), fecha: '12/12/12', categoria: 'Transferencia' }
+                          monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
       ingresosCuentaAenviar.push(nuevoIngreso)
     }
   }
