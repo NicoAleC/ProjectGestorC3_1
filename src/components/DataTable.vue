@@ -17,6 +17,7 @@
           <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
         </template>
         <v-card class="popup">
+          <v-responsive :height = 500>
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
           </v-card-title>
@@ -38,11 +39,13 @@
               </v-layout>
             </v-container>
           </v-card-text>
+          <div class = "divisor"></div>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
             <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
           </v-card-actions>
+          </v-responsive>
         </v-card>
       </v-dialog>
       </v-layout>
@@ -232,5 +235,7 @@ export default {
 </script>
 
 <style scoped>
-
+.divisor {
+  margin-top: 160px;
+}
 </style>

@@ -5,6 +5,7 @@
         <v-btn color="primary" dark v-on="on">Transferir</v-btn>
       </template>
       <v-card>
+        <v-responsive :height = 500>
         <v-card-title>
           <span class="headline">Transferencia</span>
         </v-card-title>
@@ -31,11 +32,14 @@
           <small>Elija la cuenta a transferir y la cantidad:</small>
           <small> {{ fecha }} </small>
         </v-card-text>
+        <div class = "divisor"></div>
+        <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="close">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="saveTransfer">Transferir</v-btn>
-        </v-card-actions>\
+        </v-card-actions>
+        </v-responsive>
       </v-card>
     </v-dialog>
   </v-layout>
@@ -98,3 +102,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.divisor {
+  margin-top: 200px;
+}
+
+</style>
