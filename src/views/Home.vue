@@ -7,8 +7,8 @@
       <div>
         <EscogerTransaccion class = "escogerTransaccion"></EscogerTransaccion>
       </div>
-      <div>
-        <DataTable class = "dataTable"></DataTable>
+      <div class="data">
+        <DataTable class = "data"></DataTable>
       </div>
     </div>
     <div class="grid-item">
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import ListaCuentas from '@/components/ListaCuentas'
-import DataTable from '@/components/DataTable'
+import ListaCuentas from '@/components/ListaCuentas.vue'
+import DataTable from '@/components/DataTable.vue'
 import CategoryForm from '@/components/CategoryForm.vue'
 import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
 import Transfer from '@/components/Transfer.vue'
@@ -47,5 +47,10 @@ export default {
 }
 .grid-item-1{
   display: grid;
+}
+
+.data {
+  width: 800px;
+  height: auto;;
 }
 </style>
