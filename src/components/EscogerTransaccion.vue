@@ -40,6 +40,7 @@ export default {
 <style scoped>
 .escogerTransferencia{
   height:25%;
+  width: 100%;
 }
   .button {
     margin-right: 0px;

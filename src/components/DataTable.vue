@@ -46,8 +46,7 @@
         </v-card>
       </v-dialog>
       </v-layout>
-    
-    <v-data-table :headers="headers" :items="escogerTransaccion()" class="elevation-1">
+      <v-data-table :headers="headers" :items="escogerTransaccion()" class="elevation-1">
       <template v-slot:items="props">
         <td>{{ props.item.ntrans }}</td>
         <td class="text-xs-right">{{ props.item.descripcion }}</td>
@@ -128,8 +127,8 @@ export default {
   },
 
   methods: {
-    categorias(){
-      if(this.tipoTransaccion === 'Ingresos'){
+    categorias () {
+      if (this.tipoTransaccion === 'Ingresos') {
         return this.categoriasIngresos
       } else {
         return this.categoriasEgresos
@@ -184,18 +183,18 @@ export default {
       } else if (this.editedItem.fecha === '') {
         condicion = false
         alert('La fecha no puede estar vacía')
-      } else if(this.editItem.categoria === '') {
+      } else if (this.editItem.categoria === '') {
         condicion = false
         alert('La categoría no puede estar vacía')
       }
-      if (condicion){
+      if (condicion) {
         if (this.editedIndex > -1) {
           Object.assign(
             this.escogerTransaccion()[this.editedIndex],
             this.editedItem
-          );
+          )
         } else {
-          this.escogerTransaccion().push(this.editedItem);
+          this.escogerTransaccion().push(this.editedItem)
         }
         this.close()
       }
@@ -207,8 +206,6 @@ export default {
         ? 'Seleccionar Cuenta'
         : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs'
     },
-
-    // Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
     obtenerSaldo () {
       let idCuentaActual = this.cuentaActual
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
