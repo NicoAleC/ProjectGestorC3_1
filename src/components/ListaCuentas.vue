@@ -61,7 +61,7 @@ body {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 30px;
-  width: 400px
+  width: 300px
 }
 .listaCuentas{
   overflow: scroll;

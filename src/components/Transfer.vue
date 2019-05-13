@@ -36,10 +36,9 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="close">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="saveTransfer">Transferir</v-btn>
-        </v-card-actions>
-        </v-responsive>
+          <v-btn color= #3C3C3C flat @click="dialog = false">Close</v-btn>
+          <v-btn color= #3C3C3C flat @click="saveTransfer">Transferir</v-btn>
+        </v-card-actions>\
       </v-card>
     </v-dialog>
   </v-layout>
@@ -87,7 +86,6 @@ export default {
       egresosCuentaActual.push(nuevoEgreso)
 
       // ingreso a la cuentaAenviar
-
       var cuentaAenviar = this.cuentas[indexCuentaAenviar]
       var ingresosCuentaAenviar = cuentaAenviar.ingresos
 
