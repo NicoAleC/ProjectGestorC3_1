@@ -22,15 +22,15 @@ export default {
       return this.$store.state.TIPO_TRANSACCION
     }
   },
-  methods:{
+  methods: {
 
-    irAIngresos(){
-      let tipo = "Ingresos"
-      this.$store.dispatch('changeTransaction',tipo)
+    irAIngresos () {
+      let tipo = 'Ingresos'
+      this.$store.dispatch('changeTransaction', tipo)
     },
-    irAEgresos(){
-      let tipo = "Egresos"
-      this.$store.dispatch('changeTransaction',tipo)
+    irAEgresos () {
+      let tipo = 'Egresos'
+      this.$store.dispatch('changeTransaction', tipo)
     }
 
   }

@@ -74,11 +74,11 @@ export default {
         sortable: false,
         value: 'ntrans'
       },
-      { text: "Descripción", value: "descripcion" },
-      { text: "Monto", value: "monto" },
-      { text: "Fecha", value: "fecha" },
-      { text: "Categoría", value: "categoria" },
-      { text: "Acciones", value: "name", sortable: false }
+      { text: 'Descripción', value: 'descripcion' },
+      { text: 'Monto', value: 'monto' },
+      { text: 'Fecha', value: 'fecha' },
+      { text: 'Categoría', value: 'categoria' },
+      { text: 'Acciones', value: 'name', sortable: false }
     ],
     editedIndex: -1,
     editedItem: {
@@ -98,19 +98,19 @@ export default {
   }),
 
   computed: {
-    cuentas() {
+    cuentas () {
       return this.$store.state.CUENTAS
     },
-    cuentaActual() {
+    cuentaActual () {
       return this.$store.state.CUENTA_ACTUAL
     },
-    tipoTransaccion() {
+    tipoTransaccion () {
       return this.$store.state.TIPO_TRANSACCION
     },
-    categoriasIngresos() {
+    categoriasIngresos () {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoriasEgresos() {
+    categoriasEgresos () {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
     formTitle () {
@@ -125,8 +125,8 @@ export default {
   },
 
   methods: {
-    categorias(){
-      if(this.tipoTransaccion === 'Ingresos'){
+    categorias () {
+      if (this.tipoTransaccion === 'Ingresos') {
         console.log(this.categoriasIngresos)
         return this.categoriasIngresos
       } else {
@@ -134,30 +134,30 @@ export default {
         return this.categoriasEgresos
       }
     },
-    escogerTransaccion() {
-      var cuenta = this.cuentas.find(cuenta => cuenta.id === this.cuentaActual);
+    escogerTransaccion () {
+      var cuenta = this.cuentas.find(cuenta => cuenta.id === this.cuentaActual)
       if (this.tipoTransaccion === 'Ingresos') {
-        return cuenta.ingresos;
+        return cuenta.ingresos
       } else {
-        return cuenta.egresos;
+        return cuenta.egresos
       }
     },
-    editItem(item) {
+    editItem (item) {
       this.editedIndex = this.escogerTransaccion().findIndex(
         transaccion => transaccion.ntrans === item.ntrans
-      );
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
+      )
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
     },
 
-    deleteItem(item) {
-      var trans = this.escogerTransaccion();
-      let idTrans = item.ntrans;
+    deleteItem (item) {
+      var trans = this.escogerTransaccion()
+      let idTrans = item.ntrans
       let indexTrans = trans.findIndex(
         transaccion => transaccion.ntrans === idTrans
-      );
+      )
       confirm('Are you sure you want to delete this item?') &&
-        trans.splice(indexTrans, 1);
+        trans.splice(indexTrans, 1)
     },
 
     close () {
@@ -172,7 +172,7 @@ export default {
       this.editedItem.monto = parseFloat(this.editedItem.monto)
       this.editedItem.fecha = this.editedItem.fecha.toString()
       var indexTrans = -1
-      do{
+      do {
         this.editedItem.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
         indexTrans = this.escogerTransaccion().findIndex(transaccion => transaccion.ntrans === this.editedItem.ntrans)
       } while (indexTrans > 0)
@@ -185,37 +185,37 @@ export default {
         Object.assign(
           this.escogerTransaccion()[this.editedIndex],
           this.editedItem
-        );
+        )
       } else if (condicion) {
-        this.escogerTransaccion().push(this.editedItem);
+        this.escogerTransaccion().push(this.editedItem)
       }
       this.close()
     },
-    obtenerNombreCuenta(cuentaActual) {
-      var idCuentaActual = this.cuentaActual;
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual);
-      return cuenta1 == undefined
+    obtenerNombreCuenta (cuentaActual) {
+      var idCuentaActual = this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      return cuenta1 === undefined
         ? 'Seleccionar Cuenta'
-        : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs';
+        : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs'
     },
 
-    //Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
-    obtenerSaldo() {
-      let idCuentaActual = this.cuentaActual;
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual);
-      let listaIngresos = cuenta1.ingresos;
-      let listaEgresos = cuenta1.egresos;
-      let ingresosTotales = 0;
-      let egresosTotales = 0;
+    // Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
+    obtenerSaldo () {
+      let idCuentaActual = this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      let listaIngresos = cuenta1.ingresos
+      let listaEgresos = cuenta1.egresos
+      let ingresosTotales = 0
+      let egresosTotales = 0
 
       listaIngresos.forEach(transaccion => {
-        ingresosTotales += transaccion.monto;
-      });
+        ingresosTotales += transaccion.monto
+      })
       listaEgresos.forEach(transaccion => {
-        egresosTotales += transaccion.monto;
-      });
+        egresosTotales += transaccion.monto
+      })
 
-      return ingresosTotales - egresosTotales;
+      return ingresosTotales - egresosTotales
     }
   },
   name: 'DataTable'

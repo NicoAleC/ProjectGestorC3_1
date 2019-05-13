@@ -54,12 +54,12 @@ export default {
     cuentaActual () {
       return this.$store.state.CUENTA_ACTUAL
     },
-    fecha(){
-      var myDate = new Date();
-      var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
-      var date = ('0' + myDate.getDate()).slice(-2);
-      var year = myDate.getFullYear();
-      var formattedDate = date + '/' + month + '/' + year;
+    fecha () {
+      var myDate = new Date()
+      var month = ('0' + (myDate.getMonth() + 1)).slice(-2)
+      var date = ('0' + myDate.getDate()).slice(-2)
+      var year = myDate.getFullYear()
+      var formattedDate = date + '/' + month + '/' + year
       return formattedDate
     }
   },
@@ -67,24 +67,28 @@ export default {
     saveTransfer () {
       let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
 
-      //egreso a nuestra cuenta
+      // egreso a nuestra cuenta
       let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
       var cuentaActual = this.cuentas[indexCuentaActual]
       var egresosCuentaActual = cuentaActual.egresos
 
-      var nuevoEgreso = {ntrans: Math.random().toString(36).substring(2, 15),
-                          descripcion: 'Transferencia a' +this.cuentas[indexCuentaAenviar].nombre,
-                          monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
+      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
+        monto: parseFloat(this.amount),
+        fecha: this.fecha,
+        categoria: 'Transferencia' }
       egresosCuentaActual.push(nuevoEgreso)
 
-      //ingreso a la cuentaAenviar
+      // ingreso a la cuentaAenviar
 
       var cuentaAenviar = this.cuentas[indexCuentaAenviar]
       var ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      var nuevoIngreso = {ntrans: Math.random().toString(36).substring(2, 15),
-                          descripcion: 'Transferencia de' +this.cuentas[indexCuentaActual].nombre,
-                          monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
+      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
+        monto: parseFloat(this.amount),
+        fecha: this.fecha,
+        categoria: 'Transferencia' }
       ingresosCuentaAenviar.push(nuevoIngreso)
     }
   }
