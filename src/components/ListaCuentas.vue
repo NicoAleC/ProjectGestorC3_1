@@ -38,7 +38,7 @@ export default {
         egresos: [] }
 
       this.$store.dispatch('addAccount', nuevaCuenta)
-    },
+    }
   }
 }
 </script>

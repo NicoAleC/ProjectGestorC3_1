@@ -9,28 +9,28 @@
       <v-toolbar-title>{{obtenerNombreCuenta()}}</v-toolbar-title>
       <v-divider class="mx-2" inset vertical></v-divider>
       <v-spacer></v-spacer>
-      <v-dialog v-model="dialog" max-width="500px">
+      <v-dialog v-model="dialog" persistent max-width="500px">
         <template v-slot:activator="{ on }">
           <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
         </template>
-        <v-card>
+        <v-card class="popup">
+          <v-card-title>
+            <span class="headline">{{ formTitle }}</span>
+          </v-card-title>
           <v-card-text>
             <v-container grid-list-md>
-              <v-layout wrap>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.ntrans" label="Número de transacción"></v-text-field>
-                </v-flex>
+              <v-layout row justify-center>
                 <v-flex xs12 sm6 md4>
                   <v-text-field v-model="editedItem.descripcion" label="Descripción"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.monto" label="Monto (Bs.)"></v-text-field>
+                  <v-text-field v-model="editedItem.monto" label="Monto (Bs.)" type="number" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.fecha" label="Fecha"></v-text-field>
+                  <v-text-field v-model="editedItem.fecha" label="Fecha" type="date" required></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.categoria" label="Categoría"></v-text-field>
+                <v-flex xs12 sm6>
+                  <v-autocomplete :items="categorias()" item-text="nombre" item-value="nombre" v-model="editedItem.categoria" label ="Categoría" required></v-autocomplete>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -83,29 +83,38 @@ export default {
     editedIndex: -1,
     editedItem: {
       ntrans: 0,
-      descripcion: "",
+      descripcion: '',
       monto: 0.0,
-      fecha: "",
-      categoria: ""
+      fecha: '',
+      categoria: ''
     },
     defaultItem: {
       ntrans: 0,
-      descripcion: "",
+      descripcion: '',
       monto: 0.0,
-      fecha: "",
-      categoria: ""
+      fecha: '',
+      categoria: ''
     }
   }),
 
   computed: {
     cuentas() {
-      return this.$store.state.CUENTAS;
+      return this.$store.state.CUENTAS
     },
     cuentaActual() {
-      return this.$store.state.CUENTA_ACTUAL;
+      return this.$store.state.CUENTA_ACTUAL
     },
     tipoTransaccion() {
-      return this.$store.state.TIPO_TRANSACCION;
+      return this.$store.state.TIPO_TRANSACCION
+    },
+    categoriasIngresos() {
+      return this.$store.state.CATEGORIAS_INGRESOS
+    },
+    categoriasEgresos() {
+      return this.$store.state.CATEGORIAS_EGRESOS
+    },
+    formTitle () {
+      return this.editedIndex === -1 ? 'Nueva Transacción' : 'Editar Transacción'
     }
   },
 
@@ -116,9 +125,18 @@ export default {
   },
 
   methods: {
+    categorias(){
+      if(this.tipoTransaccion === 'Ingresos'){
+        console.log(this.categoriasIngresos)
+        return this.categoriasIngresos
+      } else {
+        console.log(this.categoriasEgresos)
+        return this.categoriasEgresos
+      }
+    },
     escogerTransaccion() {
       var cuenta = this.cuentas.find(cuenta => cuenta.id === this.cuentaActual);
-      if (this.tipoTransaccion === "Ingresos") {
+      if (this.tipoTransaccion === 'Ingresos') {
         return cuenta.ingresos;
       } else {
         return cuenta.egresos;
@@ -138,7 +156,7 @@ export default {
       let indexTrans = trans.findIndex(
         transaccion => transaccion.ntrans === idTrans
       );
-      confirm("Are you sure you want to delete this item?") &&
+      confirm('Are you sure you want to delete this item?') &&
         trans.splice(indexTrans, 1);
     },
 
@@ -151,14 +169,24 @@ export default {
     },
 
     save () {
-      if (this.editedIndex > -1) {
-        this.editedItem.monto = parseFloat(this.editedItem.monto)
+      this.editedItem.monto = parseFloat(this.editedItem.monto)
+      this.editedItem.fecha = this.editedItem.fecha.toString()
+      var indexTrans = -1
+      do{
+        this.editedItem.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
+        indexTrans = this.escogerTransaccion().findIndex(transaccion => transaccion.ntrans === this.editedItem.ntrans)
+      } while (indexTrans > 0)
+      var condicion = true
+      if (this.editedItem.monto < 1) {
+        condicion = false
+        alert('El monto ingresado no puede ser menor a 1')
+      }
+      if (this.editedIndex > -1 || condicion) {
         Object.assign(
           this.escogerTransaccion()[this.editedIndex],
           this.editedItem
         );
-      } else {
-        this.editedItem.monto = parseFloat(this.editedItem.monto);
+      } else if (condicion) {
         this.escogerTransaccion().push(this.editedItem);
       }
       this.close()
@@ -167,8 +195,8 @@ export default {
       var idCuentaActual = this.cuentaActual;
       let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual);
       return cuenta1 == undefined
-        ? "Seleccionar Cuenta"
-        : cuenta1.nombre + ".  Saldo: " + this.obtenerSaldo() + "Bs";
+        ? 'Seleccionar Cuenta'
+        : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs';
     },
 
     //Transaccion = {Descripcion: , Monto: , Fecha: , Categoria: }
@@ -195,4 +223,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
