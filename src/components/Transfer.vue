@@ -74,7 +74,6 @@ export default {
 
       var nuevoEgreso = {ntrans: Math.random().toString(36).substring(2, 15),
                           descripcion: 'Transferencia a' +this.cuentas[indexCuentaAenviar].nombre,
-                          //poner fecha sistema
                           monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
       egresosCuentaActual.push(nuevoEgreso)
 
@@ -85,7 +84,6 @@ export default {
 
       var nuevoIngreso = {ntrans: Math.random().toString(36).substring(2, 15),
                           descripcion: 'Transferencia de' +this.cuentas[indexCuentaActual].nombre,
-                          //poner fecha sistema
                           monto: parseFloat(this.amount), fecha: this.fecha , categoria: 'Transferencia' }
       ingresosCuentaAenviar.push(nuevoIngreso)
     }
