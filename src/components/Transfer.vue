@@ -64,6 +64,9 @@ export default {
     }
   },
   methods: {
+    close () {
+      this.dialog = false
+    },
     saveTransfer () {
       let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
 
@@ -90,6 +93,7 @@ export default {
         fecha: this.fecha,
         categoria: 'Transferencia' }
       ingresosCuentaAenviar.push(nuevoIngreso)
+      this.close()
     }
   }
 }
