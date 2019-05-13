@@ -24,13 +24,14 @@
                   <v-text-field v-model="editedItem.descripcion" label="Descripción"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.monto" label="Monto (Bs.)" type="number" required></v-text-field>
+                  <v-text-field v-model="editedItem.monto" label="Monto (Bs.)" type="number"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.fecha" label="Fecha" type="date" required></v-text-field>
+                  <v-text-field v-model="editedItem.fecha" label="Fecha" type="date"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-autocomplete :items="categorias()" item-text="nombre" item-value="nombre" v-model="editedItem.categoria" label ="Categoría" required></v-autocomplete>
+                  <v-text-field v-model="editedItem.categoria" label="Categoría"></v-text-field>
+                  <!--v-autocomplete :items="categorias()" item-text="nombre" item-value="nombre" v-model="editedItem.categoria" label ="Categoría" required></v-autocomplete-->
                 </v-flex>
               </v-layout>
             </v-container>
@@ -127,10 +128,8 @@ export default {
   methods: {
     categorias(){
       if(this.tipoTransaccion === 'Ingresos'){
-        console.log(this.categoriasIngresos)
         return this.categoriasIngresos
       } else {
-        console.log(this.categoriasEgresos)
         return this.categoriasEgresos
       }
     },
@@ -180,16 +179,24 @@ export default {
       if (this.editedItem.monto < 1) {
         condicion = false
         alert('El monto ingresado no puede ser menor a 1')
+      } else if (this.editedItem.fecha === '') {
+        condicion = false
+        alert('La fecha no puede estar vacía')
+      } else if(this.editItem.categoria === '') {
+        condicion = false
+        alert('La categoría no puede estar vacía')
       }
-      if (this.editedIndex > -1 || condicion) {
-        Object.assign(
-          this.escogerTransaccion()[this.editedIndex],
-          this.editedItem
-        );
-      } else if (condicion) {
-        this.escogerTransaccion().push(this.editedItem);
+      if (condicion){
+        if (this.editedIndex > -1) {
+          Object.assign(
+            this.escogerTransaccion()[this.editedIndex],
+            this.editedItem
+          );
+        } else {
+          this.escogerTransaccion().push(this.editedItem);
+        }
+        this.close()
       }
-      this.close()
     },
     obtenerNombreCuenta(cuentaActual) {
       var idCuentaActual = this.cuentaActual;
