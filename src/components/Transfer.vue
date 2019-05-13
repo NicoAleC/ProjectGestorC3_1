@@ -38,7 +38,8 @@
           <v-spacer></v-spacer>
           <v-btn color= #3C3C3C flat @click="dialog = false">Close</v-btn>
           <v-btn color= #3C3C3C flat @click="saveTransfer">Transferir</v-btn>
-        </v-card-actions>\
+        </v-card-actions>
+        </v-responsive>
       </v-card>
     </v-dialog>
   </v-layout>
