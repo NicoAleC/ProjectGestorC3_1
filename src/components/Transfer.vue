@@ -83,7 +83,6 @@ export default {
       egresosCuentaActual.push(nuevoEgreso)
 
       // ingreso a la cuentaAenviar
-
       var cuentaAenviar = this.cuentas[indexCuentaAenviar]
       var ingresosCuentaAenviar = cuentaAenviar.ingresos
 

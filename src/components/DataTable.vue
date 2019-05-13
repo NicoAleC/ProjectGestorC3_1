@@ -182,10 +182,10 @@ export default {
       if (this.editedItem.monto < 1) {
         condicion = false
         alert('El monto ingresado no puede ser menor a 1')
-      } else if (this.editedItem.fecha === '' || this.editedItem.fecha === "") {
+      } else if (this.editedItem.fecha === '' || this.editedItem.fecha === '') {
         condicion = false
         alert('La fecha no puede estar vacía')
-      } else if(this.editedItem.categoria.length === 0) {
+      } else if (this.editedItem.categoria.length === 0) {
         condicion = false
         alert('La categoría no puede estar vacía')
       }

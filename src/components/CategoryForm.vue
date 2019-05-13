@@ -33,8 +33,8 @@ export default {
   left: 0;
   bottom: 0;
   font-family : inherit;
-  padding-left: 94px;
-  padding-right:94px;
+  padding-left: 50px;
+  padding-right:50px;
   background-color: #3C3C3C;
   line-height: 50px;
   height: 50px;
