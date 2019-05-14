@@ -59,7 +59,7 @@ export default {
 
     seleccionarCuenta () {
       var idAMandar = this.id
-      this.$store.dispatch('changeCurrentAccount', idAMandar)
+      this.$store.dispatch('cambiarCuentaActual', idAMandar)
     },
 
     nombreRepetido (nombreActual, idCuenta) {
