@@ -1,31 +1,31 @@
 <template>
 
-  <div class= "category">
-    <form class= "form" action="">
-      <input class = "input" :id= "id" ref="categoryName"  type="text" name = "categoryName" :value = nombre>
+  <div class= "categoria">
+    <form class= "formulario" action="">
+      <input class = "input" :id= "id" ref="nombreCategoria"  type="text" name = "nombreCategoria" :value = nombre>
     </form>
-    <button class = "button" id = "buttonEdit" type = "button" v-on:click = "editCategory">  <span>{{buttonName}}</span>
+    <button class = "button" id = "botonEditar" type = "button" v-on:click = "editarCategoria">  <span>{{nombreBoton}}</span>
 </button>
-    <button class = "button" id = "buttonDelete" type = "button" v-on:click = "deleteCategory">  <span>Eliminar</span>
+    <button class = "button" id = "botonBorrar" type = "button" v-on:click = "borrarCategoria">  <span>Eliminar</span>
 </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'category',
+  name: 'categoria',
   props: ['id', 'nombre'],
   data () {
     return {
-      buttonName: 'Guardar',
+      nombreBoton: 'Guardar',
     }
   },
 
   computed: {
-    categoryIncomes () {
+    categoriaIngresos () {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoryExpenses () {
+    categoriaEgresos () {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
     tipoTransaccion () {
@@ -34,47 +34,47 @@ export default {
   },
   methods: {
 
-    editCategory () {
+    editarCategoria () {
       var idCategoria = this.id
-      if (this.buttonName === 'Editar') {
+      if (this.nombreBoton === 'Editar') {
         document.getElementById(idCategoria).disabled = false
-        this.buttonName = 'Guardar'
+        this.nombreBoton = 'Guardar'
       } else {
         var nombreActual = document.getElementById(idCategoria).value
         if (nombreActual === '' || this.nombreRepetido(nombreActual, idCategoria)) {
           console('Nombre inválido')
         } else {
           document.getElementById(this.id).disabled = true
-          this.buttonName = 'Editar'
+          this.nombreBoton = 'Editar'
           let indexCategoria
           if (this.tipoTransaccion === 'Ingresos') {
-            indexCategoria = this.categoryIncomes.findIndex(categoria => categoria.id === idCategoria)
-            this.categoryIncomes[indexCategoria].nombre = nombreActual
+            indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
+            this.categoriaIngresos[indexCategoria].nombre = nombreActual
           } else {
-            indexCategoria = this.categoryExpenses.findIndex(categoria => categoria.id === idCategoria)
-            this.categoryExpenses[indexCategoria].nombre = nombreActual
+            indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
+            this.categoriaEgresos[indexCategoria].nombre = nombreActual
           }
         }
       }
     },
 
-    deleteCategory: function () {
+    borrarCategoria: function () {
       var idCategoria = this.id
       let categoria
       if (this.tipoTransaccion === 'Ingresos') {
-        categoria = this.categoryIncomes.find(categoria => categoria.id === idCategoria)
-        this.categoryIncomes.splice(categoria, 1)
+        categoria = this.categoriaIngresos.find(categoria => categoria.id === idCategoria)
+        this.categoriaIngresos.splice(categoria, 1)
       } else {
-        categoria = this.categoryExpenses.find(categoria => categoria.id === idCategoria)
-        this.categoryExpenses.splice(categoria, 1)
+        categoria = this.categoriaEgresos.find(categoria => categoria.id === idCategoria)
+        this.categoriaEgresos.splice(categoria, 1)
       }
     },
     nombreRepetido (nombreActual, idCategoria) {
       if (this.tipoTransaccion === 'ingresos') {
-        return !!this.categoryIncomes.find(categoria => categoria.nombre === nombreActual &&
+        return !!this.categoriaIngresos.find(categoria => categoria.nombre === nombreActual &&
                                           categoria.id !== idCategoria)
       } else {
-        return !!this.categoryExpenses.find(categoria => categoria.nombre === nombreActual &&
+        return !!this.categoriaEgresos.find(categoria => categoria.nombre === nombreActual &&
                                           categoria.id !== idCategoria)
       }
     }
@@ -97,16 +97,16 @@ export default {
     float: left;
     padding-bottom: 10px
   }
-  .form{
+  .formulario{
     float:left;
     width:40%;
   }
-  .category{
+  .categoria{
     width: 100%;
     height: 50px;
     position: relative;
   }
-  .category::after {
+  .categoria::after {
   content: "";
   clear: both;
   display: table;
