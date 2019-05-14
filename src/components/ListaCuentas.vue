@@ -37,7 +37,7 @@ export default {
         ingresos: [],
         egresos: [] }
 
-      this.$store.dispatch('addAccount', nuevaCuenta)
+      this.$store.dispatch('anadirCuenta', nuevaCuenta)
     }
   }
 }

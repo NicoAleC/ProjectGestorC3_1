@@ -27,37 +27,37 @@ export default new Vuex.Store({
     TIPO_TRANSACCION: 'Ingresos'
   },
   mutations: {
-    addAccount (context, nuevaCuenta) {
+    anadirCuenta (context, nuevaCuenta) {
       context.CUENTAS.push(nuevaCuenta)
     },
-    addCategoryIncome (context, newCategory) {
-      context.CATEGORIAS_INGRESOS.push(newCategory)
+    anadirCategoriaIngreso (context, nuevaCategoria) {
+      context.CATEGORIAS_INGRESOS.push(nuevaCategoria)
     },
-    addCategoryExpense (context, newCategory) {
-      context.CATEGORIAS_EGRESOS.push(newCategory)
+    anadirCategoriaEgreso (context, nuevaCategoria) {
+      context.CATEGORIAS_EGRESOS.push(nuevaCategoria)
     },
-    changeCurrentAccount (context, nuevoId) {
+    cambiarCuentaActual (context, nuevoId) {
       context.CUENTA_ACTUAL = nuevoId
     },
-    changeTransaction (context, transaccion) {
+    cambiarTransaccion (context, transaccion) {
       context.TIPO_TRANSACCION = transaccion
     }
   },
   actions: {
-    addAccount (context, nuevaCuenta) {
-      context.commit('addAccount', nuevaCuenta)
+    anadirCuenta (context, nuevaCuenta) {
+      context.commit('anadirCuenta', nuevaCuenta)
     },
-    addCategoryIncome (context, newCategory) {
-      context.commit('addCategoryIncome', newCategory)
+    anadirCategoriaIngreso (context, nuevaCategoria) {
+      context.commit('anadirCategoriaIngreso', nuevaCategoria)
     },
-    addCategoryExpense (context, newCategory) {
-      context.commit('addCategoryExpense', newCategory)
+    anadirCategoriaEgreso (context, nuevaCategoria) {
+      context.commit('anadirCategoriaEgreso', nuevaCategoria)
     },
-    changeCurrentAccount (context, nuevoId) {
-      context.commit('changeCurrentAccount', nuevoId)
+    cambiarCuentaActual (context, nuevoId) {
+      context.commit('cambiarCuentaActual', nuevoId)
     },
-    changeTransaction (context, transaccion) {
-      context.commit('changeTransaction', transaccion)
+    cambiarTransaccion (context, transaccion) {
+      context.commit('cambiarTransaccion', transaccion)
     }
   }
 })
