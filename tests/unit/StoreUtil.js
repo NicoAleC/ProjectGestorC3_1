@@ -1,10 +1,7 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
-
 export default {
-  name: 'store',
+  name: 'StoreUtil',
 
   getDefaultStore() {
     return new Vuex.Store({
