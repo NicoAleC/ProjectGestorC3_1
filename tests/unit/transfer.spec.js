@@ -10,10 +10,10 @@ describe('Transfer.vue', () => {
       propsData: { msg }
     })
   })
-  /*it('render button', () => {
+  /* it('render button', () => {
     expect(wrapper.find('.button').exists())
   })
   it('input slot', () => {
     expect(wrapper.find('.input').exists())
-  })*/
+  }) */
 })
