@@ -190,7 +190,11 @@ export default {
       } else if (this.itemEditado.categoria.length === 0) {
         condicion = false
         alert('La categoría no puede estar vacía')
+      } else if(this.itemEditado.monto > this.obtenerSaldo() && this.tipoTransaccion === 'Egregsos'){
+        condicion = false
+        alert('¡No tiene suficiente saldo para realizar este gasto!')
       }
+      
       if (condicion) {
         if (this.indexEditado > -1) {
           Object.assign(
