@@ -1,24 +1,24 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
 import StoreUtil from './StoreUtil'
-import Category from '@/components/Category.vue'
+import CategoryList from '@/components/CategoryList.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-describe('Category.vue', () => {
+describe('CategoryList.vue', () => {
   let wrapper
   let store
   beforeEach(function () {
     store = StoreUtil.getDefaultStore()
-    wrapper = shallowMount(Category, {
+    wrapper = shallowMount(CategoryList, {
       store
     })
   })
   it('render button', () => {
     expect(wrapper.find('.button').exists())
   })
-  it('input slot', () => {
-    expect(wrapper.find('.input').exists())
+  it('lista categorias', () => {
+    expect(wrapper.find('.listaCategoria').exists())
   })
 })

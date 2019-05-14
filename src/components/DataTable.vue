@@ -79,10 +79,10 @@ export default {
         sortable: false,
         value: 'ntrans'
       },
-      { text: 'Descripción', value: 'descripcion', sortable: false},
+      { text: 'Descripción', value: 'descripcion', sortable: false },
       { text: 'Monto', value: 'monto' },
       { text: 'Fecha', value: 'fecha' },
-      { text: 'Categoría', value: 'categoria', sortable: false},
+      { text: 'Categoría', value: 'categoria', sortable: false },
       { text: 'Acciones', value: 'name', sortable: false }
     ],
     indexEditado: -1,
@@ -171,8 +171,8 @@ export default {
 
     salvar () {
       this.itemEditado.monto = parseFloat(this.itemEditado.monto)
-      var aux_fecha = this.itemEditado.fecha.toString().replace('-', '/')
-      this.itemEditado.fecha = aux_fecha.replace('-', '/')
+      var auxFecha = this.itemEditado.fecha.toString().replace('-', '/')
+      this.itemEditado.fecha = auxFecha.replace('-', '/')
       this.itemEditado.categoria = this.itemEditado.categoria.toString()
       console.log(this.itemEditado.categoria)
       var indexTrans = -1
@@ -190,7 +190,11 @@ export default {
       } else if (this.itemEditado.categoria.length === 0) {
         condicion = false
         alert('La categoría no puede estar vacía')
+      } else if (this.itemEditado.monto > this.obtenerSaldo() && this.tipoTransaccion === 'Egregsos') {
+        condicion = false
+        alert('¡No tiene suficiente saldo para realizar este gasto!')
       }
+
       if (condicion) {
         if (this.indexEditado > -1) {
           Object.assign(

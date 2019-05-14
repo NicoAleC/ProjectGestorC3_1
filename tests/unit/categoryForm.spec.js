@@ -1,16 +1,16 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
-import Transfer from '@/components/Transfer.vue'
+import CategoryForm from '@/components/CategoryForm.vue'
 
-describe('Transfer.vue', () => {
+describe('CategoryForm.vue', () => {
   const msg = 'new message'
   let wrapper
   beforeEach(function () {
-    wrapper = shallowMount(Transfer, {
+    wrapper = shallowMount(CategoryForm, {
       propsData: { msg }
     })
   })
   it('render button', () => {
-    expect(wrapper.find('.divisor').exists())
+    expect(wrapper.find('.button').exists())
   })
 })
