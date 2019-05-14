@@ -63,7 +63,7 @@ export default {
       var month = ('0' + (myDate.getMonth() + 1)).slice(-2)
       var date = ('0' + myDate.getDate()).slice(-2)
       var year = myDate.getFullYear()
-      var formattedDate = date + '/' + month + '/' + year
+      var formattedDate = year + '/' + month + '/' + date
       return formattedDate
     }
   },

@@ -1,6 +1,6 @@
 <template>
-<div class = "UICategory">
-  <div class="categoryList">
+<div class = "UICategoria">
+  <div class="listaCategoria">
       <Category
         v-bind:id= "categoria.id"
         v-for="categoria in escogerTransaccion()"
@@ -9,7 +9,7 @@
       ></Category>
   </div>
 
-      <button class = "button" @click="addCategory"> <span>AÑADIR CATEGORIA</span></button>
+      <button class = "button" @click="anadirCategoria"> <span>AÑADIR CATEGORIA</span></button>
 </div>
 
 </template>
@@ -17,15 +17,15 @@
 <script>
 import Category from '@/components/Category.vue'
 export default {
-  name: 'CategoryList',
+  name: 'ListaCategoria',
   components: {
     Category: Category
   },
   computed: {
-    categoryIncomes () {
+    categoriaIngresos () {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoryExpenses () {
+    categoriaEgresos () {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
     transaccionActual () {
@@ -34,19 +34,19 @@ export default {
   },
   methods: {
 
-    addCategory () {
+    anadirCategoria () {
       var codigo = Math.random().toString(36).substring(2, 15)
-      var newCategory = { id: codigo,
+      var nuevaCategoria = { id: codigo,
         nombre: 'Categoria ' + codigo }
 
       if (this.transaccionActual === 'Ingresos') {
-        this.$store.dispatch('addCategoryIncome', newCategory)
+        this.$store.dispatch('anadirCategoriaIngreso', nuevaCategoria)
       } else {
-        this.$store.dispatch('addCategoryExpense', newCategory)
+        this.$store.dispatch('anadirCategoriaEgreso', nuevaCategoria)
       }
     },
     escogerTransaccion () {
-      return this.transaccionActual === 'Ingresos' ? this.categoryIncomes : this.categoryExpenses
+      return this.transaccionActual === 'Ingresos' ? this.categoriaIngresos : this.categoriaEgresos
     }
 
   }
@@ -63,7 +63,7 @@ body {
   flex-wrap: wrap;
   font-family: 'Open Sans Condensed', sans-serif;
 }
-.UICategory{
+.UICategoria{
   position:relative;
   background-color: #3C3C3C;
   padding-left: 10px;
@@ -73,7 +73,7 @@ body {
   width: 100%;
 
 }
-.categoryList{
+.listaCategoria{
   overflow: scroll;
   height: 300px;
 }

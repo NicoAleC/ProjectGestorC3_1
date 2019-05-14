@@ -28,11 +28,11 @@ export default {
 
     irAIngresos () {
       let tipo = 'Ingresos'
-      this.$store.dispatch('changeTransaction', tipo)
+      this.$store.dispatch('cambiarTransaccion', tipo)
     },
     irAEgresos () {
       let tipo = 'Egresos'
-      this.$store.dispatch('changeTransaction', tipo)
+      this.$store.dispatch('cambiarTransaccion', tipo)
     }
 
   }
