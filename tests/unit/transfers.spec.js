@@ -11,9 +11,6 @@ describe('Transfer.vue', () => {
     })
   })
   it('render button', () => {
-    expect(wrapper.find('.button').exists())
-  })
-  it('input slot', () => {
-    expect(wrapper.find('.input').exists())
+    expect(wrapper.find('.divisor').exists())
   })
 })
