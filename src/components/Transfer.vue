@@ -110,7 +110,7 @@ export default {
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      if (this.obtenerSaldo() - nuevoEgreso.monto < 0) {
+      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
         egresosCuentaActual.push(nuevoEgreso)
