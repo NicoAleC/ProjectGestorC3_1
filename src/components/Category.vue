@@ -58,7 +58,7 @@ export default {
       }
     },
 
-    borraCategoria: function () {
+    borrarCategoria: function () {
       var idCategoria = this.id
       let categoria
       if (this.tipoTransaccion === 'Ingresos') {
