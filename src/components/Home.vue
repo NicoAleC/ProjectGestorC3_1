@@ -1,8 +1,6 @@
 <template>
-  <div class="hello"> 
-
+  <div class="hello">
     <ListaCuentas></ListaCuentas>
-    
   </div>
 </template>
 
@@ -10,14 +8,13 @@
 import ListaCuentas from '@/components/ListaCuentas.vue'
 export default {
   name: 'HelloWorld',
-  components:{
-    ListaCuentas: ListaCuentas
+  components: {
+    ListaCuentas: ListaCuentas,
   },
- 
+
 }
 </script>
 
-
 <style scoped>
-  
+
 </style>

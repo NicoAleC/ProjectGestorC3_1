@@ -1,44 +1,54 @@
 <template>
-<div class = "interfazCuentas">
-  <div class="listaCuentas">
-      <Cuenta
-        v-bind:id= "cuenta.id"
-        v-for="cuenta in cuentas"
-        v-bind:nombre= "cuenta.nombre"
-        :key= "cuenta.id"
-      ></Cuenta>
+<div class = "UICategoria">
+  <div class="listaCategoria">
+      <Category
+        v-bind:id= "categoria.id"
+        v-for="categoria in escogerTransaccion()"
+        v-bind:nombre= "categoria.nombre"
+        :key= "categoria.id"
+      ></Category>
   </div>
-      <button class = "button" @click="anadirCuenta"> <span>AÑADIR CUENTA</span></button>
+
+      <button class = "button" @click="anadirCategoria"> <span>AÑADIR CATEGORIA</span></button>
 </div>
 
 </template>
 
 <script>
-import Cuenta from '@/components/Cuenta.vue'
+import Category from '@/components/Category.vue'
 export default {
-  name: 'ListaCuentas',
+  name: 'ListaCategoria',
   components: {
-    Cuenta: Cuenta
+    Category: Category
   },
   computed: {
-    cuentas () {
-      return this.$store.state.CUENTAS
+    categoriaIngresos () {
+      return this.$store.state.CATEGORIAS_INGRESOS
     },
-    cuentaActual () {
-      return this.$store.state.CUENTA_ACTUAL
+    categoriaEgresos () {
+      return this.$store.state.CATEGORIAS_EGRESOS
+    },
+    transaccionActual () {
+      return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods: {
 
-    anadirCuenta () {
+    anadirCategoria () {
       var codigo = Math.random().toString(36).substring(2, 15)
-      var nuevaCuenta = { id: codigo,
-        nombre: 'Cuenta ' + codigo,
-        ingresos: [],
-        egresos: [] }
+      var nuevaCategoria = { id: codigo,
+        nombre: 'Categoria ' + codigo }
 
-      this.$store.dispatch('anadirCuenta', nuevaCuenta)
+      if (this.transaccionActual === 'Ingresos') {
+        this.$store.dispatch('anadirCategoriaIngreso', nuevaCategoria)
+      } else {
+        this.$store.dispatch('anadirCategoriaEgreso', nuevaCategoria)
+      }
+    },
+    escogerTransaccion () {
+      return this.transaccionActual === 'Ingresos' ? this.categoriaIngresos : this.categoriaEgresos
     }
+
   }
 }
 </script>
@@ -53,19 +63,19 @@ body {
   flex-wrap: wrap;
   font-family: 'Open Sans Condensed', sans-serif;
 }
-
-.interfazCuentas{
+.UICategoria{
   position:relative;
   background-color: #3C3C3C;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 30px;
-  width: 300px
+  width: 100%;
+
 }
-.listaCuentas{
+.listaCategoria{
   overflow: scroll;
-  height: 500px;
+  height: 300px;
 }
 .button{
   padding: 0;
@@ -76,7 +86,7 @@ body {
   bottom:   0;
   font-family : inherit;
   padding-left: 94px;
-  padding-right:94px;
+  padding-right: 94px;
   background-color: #3C3C3C;
   line-height: 50px;
   height: 50px;
@@ -117,8 +127,8 @@ body {
 .button::after {
   content: '';
   position: absolute;
-  bottom: 0
-  ;left: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
