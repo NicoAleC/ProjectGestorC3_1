@@ -9,10 +9,10 @@ export default new Vuex.Store({
       { id: 11,
         nombre: 'Mateo',
         ingresos: [
-          { ntrans: 1, descripcion: 'mensualidad abril', monto: 1500, fecha: '12/12/12', categoria: 'Transferencia' }
+          { ntrans: 1, descripcion: 'mensualidad abril', monto: 1500, fecha: '2012/12/12', categoria: 'Transferencia' }
         ],
         egresos: [
-          { ntrans: 3, descripcion: 'pago universidad', monto: 300, fecha: '12/12/19', categoria: 'Expensas' }
+          { ntrans: 3, descripcion: 'pago universidad', monto: 300, fecha: '2012/12/19', categoria: 'Expensas' }
         ]
       }],
     CATEGORIAS_INGRESOS: [

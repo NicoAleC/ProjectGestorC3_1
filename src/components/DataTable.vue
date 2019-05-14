@@ -19,22 +19,22 @@
         <v-card class="popup">
           <v-responsive :height = 500>
           <v-card-title>
-            <span class="headline">{{ formTitle }}</span>
+            <span class="headline">{{ titulo }}</span>
           </v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12 sm6>
-                  <v-autocomplete :items="categorias()" item-text="nombre" item-value="nombre" v-model="editedItem.categoria" label ="Categoría" required></v-autocomplete>
+                  <v-autocomplete :items="categorias()" item-text="nombre" item-value="nombre" v-model="itemEditado.categoria" label ="Categoría" required></v-autocomplete>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.descripcion" label="Descripción"></v-text-field>
+                  <v-text-field v-model="itemEditado.descripcion" label="Descripción"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.monto" label="Monto (Bs.)" type="number"></v-text-field>
+                  <v-text-field v-model="itemEditado.monto" label="Monto (Bs.)" type="number"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.fecha" label="Fecha" type="date"></v-text-field>
+                  <v-text-field v-model="itemEditado.fecha" label="Fecha" type="date"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -42,8 +42,8 @@
           <div class = "divisor"></div>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+            <v-btn color="blue darken-1" flat @click="cerrar">Cancel</v-btn>
+            <v-btn color="blue darken-1" flat @click="salvar">salvar</v-btn>
           </v-card-actions>
           </v-responsive>
         </v-card>
@@ -57,8 +57,8 @@
         <td class="text-xs-right">{{ props.item.fecha }}</td>
         <td class="text-xs-right">{{ props.item.categoria }}</td>
         <td class="justify-center layout px-0">
-          <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-          <v-icon small @click="deleteItem(props.item)">delete</v-icon>
+          <v-icon small class="mr-2" @click="editarItem(props.item)">edit</v-icon>
+          <v-icon small @click="borrarItem(props.item)">delete</v-icon>
         </td>
       </template>
       <template v-slot:no-data>
@@ -79,21 +79,21 @@ export default {
         sortable: false,
         value: 'ntrans'
       },
-      { text: 'Descripción', value: 'descripcion' },
+      { text: 'Descripción', value: 'descripcion', sortable: false},
       { text: 'Monto', value: 'monto' },
       { text: 'Fecha', value: 'fecha' },
-      { text: 'Categoría', value: 'categoria' },
+      { text: 'Categoría', value: 'categoria', sortable: false},
       { text: 'Acciones', value: 'name', sortable: false }
     ],
-    editedIndex: -1,
-    editedItem: {
+    indexEditado: -1,
+    itemEditado: {
       ntrans: 0,
       descripcion: '',
       monto: 0.0,
       fecha: '',
       categoria: ''
     },
-    defaultItem: {
+    itemPorDefecto: {
       ntrans: 0,
       descripcion: '',
       monto: 0.0,
@@ -118,14 +118,14 @@ export default {
     categoriasEgresos () {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
-    formTitle () {
-      return this.editedIndex === -1 ? 'Nueva Transacción' : 'Editar Transacción'
+    titulo () {
+      return this.indexEditado === -1 ? 'Nueva Transacción' : 'Editar Transacción'
     }
   },
 
   watch: {
     dialog (val) {
-      val || this.close()
+      val || this.cerrar()
     }
   },
 
@@ -145,63 +145,62 @@ export default {
         return cuenta.egresos
       }
     },
-    editItem (item) {
-      this.editedIndex = this.escogerTransaccion().findIndex(
+    editarItem (item) {
+      this.indexEditado = this.escogerTransaccion().findIndex(
         transaccion => transaccion.ntrans === item.ntrans
       )
-      this.editedItem = Object.assign({}, item)
+      this.itemEditado = Object.assign({}, item)
       this.dialog = true
     },
-
-    deleteItem (item) {
+    borrarItem (item) {
       var trans = this.escogerTransaccion()
       let idTrans = item.ntrans
       let indexTrans = trans.findIndex(
         transaccion => transaccion.ntrans === idTrans
       )
-      confirm('Are you sure you want to delete this item?') &&
+      confirm('¿Seguro que quiere borrar este item?') &&
         trans.splice(indexTrans, 1)
     },
-
-    close () {
+    cerrar () {
       this.dialog = false
       setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
+        this.itemEditado = Object.assign({}, this.itemPorDefecto)
+        this.indexEditado = -1
       }, 300)
     },
 
-    save () {
-      this.editedItem.monto = parseFloat(this.editedItem.monto)
-      this.editedItem.fecha = this.editedItem.fecha.toString()
-      this.editedItem.categoria = this.editedItem.categoria.toString()
-      console.log(this.editedItem.categoria)
+    salvar () {
+      this.itemEditado.monto = parseFloat(this.itemEditado.monto)
+      var aux_fecha = this.itemEditado.fecha.toString().replace('-', '/')
+      this.itemEditado.fecha = aux_fecha.replace('-', '/')
+      this.itemEditado.categoria = this.itemEditado.categoria.toString()
+      console.log(this.itemEditado.categoria)
       var indexTrans = -1
       do {
-        this.editedItem.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
-        indexTrans = this.escogerTransaccion().findIndex(transaccion => transaccion.ntrans === this.editedItem.ntrans)
+        this.itemEditado.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
+        indexTrans = this.escogerTransaccion().findIndex(transaccion => transaccion.ntrans === this.itemEditado.ntrans)
       } while (indexTrans > 0)
       var condicion = true
-      if (this.editedItem.monto < 1) {
+      if (this.itemEditado.monto < 1) {
         condicion = false
         alert('El monto ingresado no puede ser menor a 1')
-      } else if (this.editedItem.fecha === '' || this.editedItem.fecha === '') {
+      } else if (this.itemEditado.fecha === '' || this.itemEditado.fecha === '') {
         condicion = false
         alert('La fecha no puede estar vacía')
-      } else if (this.editedItem.categoria.length === 0) {
+      } else if (this.itemEditado.categoria.length === 0) {
         condicion = false
         alert('La categoría no puede estar vacía')
       }
       if (condicion) {
-        if (this.editedIndex > -1) {
+        if (this.indexEditado > -1) {
           Object.assign(
-            this.escogerTransaccion()[this.editedIndex],
-            this.editedItem
+            this.escogerTransaccion()[this.indexEditado],
+            this.itemEditado
           )
         } else {
-          this.escogerTransaccion().push(this.editedItem)
+          this.escogerTransaccion().push(this.itemEditado)
         }
-        this.close()
+        this.cerrar()
       }
     },
     obtenerNombreCuenta (cuentaActual) {
@@ -229,7 +228,7 @@ export default {
       return ingresosTotales - egresosTotales
     }
   },
-  name: 'DataTable'
+  nombre: 'DataTable'
 }
 </script>
 
