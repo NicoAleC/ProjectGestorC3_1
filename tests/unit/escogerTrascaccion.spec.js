@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
-import TestUtil from './TestUtil.js'
+import store from './store'
 import EscogerTransaccion from '@/components/EscogerTransaccion.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -15,17 +15,17 @@ describe('EscogerTransaccion.vue', () => {
     })
 
     beforeEach(function () {
-        store = TestUtil.getDefaultStore();
-        wrapper = shallowMount(Home,
+        store = store.getDefaultStore();
+        wrapper = shallowMount(EscogerTransaccion,
             {
                 store
             })
     })
 
-    it('', () => {
-        const wrapper = shallowMount(EscogerTransaccion)
-        wrapper.vm.
-        expect(wrapper.text()).to.include(msg)
+    it('cambio de estado exitoso', () => {
+        wrapper.vm.irAIngresos()
+        //wrapper.irAIngresos()
+        expect(wrapper.vm.tipoTransaccion()).to.equals('Ingresos')
     })
 
     afterEach(function () {
