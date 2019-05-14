@@ -23,11 +23,9 @@ describe('EscogerTransaccion.vue', () => {
     })
 
     it('', () => {
-        const msg = 'new message'
-
         const wrapper = shallowMount(EscogerTransaccion)
         wrapper.vm.
-            expect(wrapper.text()).to.include(msg)
+        expect(wrapper.text()).to.include(msg)
     })
 
     afterEach(function () {

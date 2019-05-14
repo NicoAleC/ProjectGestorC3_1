@@ -171,8 +171,8 @@ export default {
 
     salvar () {
       this.itemEditado.monto = parseFloat(this.itemEditado.monto)
-      var aux_fecha = this.itemEditado.fecha.toString().replace('-', '/')
-      this.itemEditado.fecha = aux_fecha.replace('-', '/')
+      var auxFecha = this.itemEditado.fecha.toString().replace('-', '/')
+      this.itemEditado.fecha = auxFecha.replace('-', '/')
       this.itemEditado.categoria = this.itemEditado.categoria.toString()
       console.log(this.itemEditado.categoria)
       var indexTrans = -1
