@@ -224,7 +224,6 @@ export default {
       listaEgresos.forEach(transaccion => {
         egresosTotales += transaccion.monto
       })
-
       return ingresosTotales - egresosTotales
     }
   },

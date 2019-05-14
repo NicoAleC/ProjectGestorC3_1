@@ -71,6 +71,22 @@ export default {
     close () {
       this.dialog = false
     },
+    obtenerSaldo () {
+      let idCuentaActual = this.cuentaActual
+      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+      let listaIngresos = cuenta1.ingresos
+      let listaEgresos = cuenta1.egresos
+      let ingresosTotales = 0
+      let egresosTotales = 0
+
+      listaIngresos.forEach(transaccion => {
+        ingresosTotales += transaccion.monto
+      })
+      listaEgresos.forEach(transaccion => {
+        egresosTotales += transaccion.monto
+      })
+      return ingresosTotales - egresosTotales
+    },
     saveTransfer () {
       let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
 
@@ -84,7 +100,6 @@ export default {
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      egresosCuentaActual.push(nuevoEgreso)
 
       // ingreso a la cuentaAenviar
       var cuentaAenviar = this.cuentas[indexCuentaAenviar]
@@ -95,7 +110,12 @@ export default {
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      ingresosCuentaAenviar.push(nuevoIngreso)
+      if (this.obtenerSaldo() - nuevoEgreso.monto < 0) {
+        alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
+      } else {
+        egresosCuentaActual.push(nuevoEgreso)
+        ingresosCuentaAenviar.push(nuevoIngreso)
+      }
       this.close()
     }
   }
