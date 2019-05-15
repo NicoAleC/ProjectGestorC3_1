@@ -1,0 +1,178 @@
+ WEBPACK  Compiling...
+
+Download the Vue Devtools extension for a better development experience:
+https://github.com/vuejs/vue-devtools
+You are running Vue in development mode.
+Make sure to turn on production mode when deploying for production.
+See more tips at https://vuejs.org/guide/deployment.html
+ WARNING  Compiled with 1 warnings
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Newline required at end of file but not found (eol-last) at tests\unit\transfer.spec.js:24:3:
+  22 |     expect(wrapper.vm.obtenerSaldo()).to.equal(1200)
+  23 |   })
+> 24 | })
+     |   ^
+
+
+1 error found.
+1 error potentially fixable with the `--fix` option.
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+ WEBPACK  Compiled with 1 warning(s)
+
+Warning in ./tests/unit/transfer.spec.js
+
+  Module Warning (from ./node_modules/eslint-loader/index.js):
+  error: Newline required at end of file but not found (eol-last) at tests\unit\transfer.spec.js:24:3:
+    22 |     expect(wrapper.vm.obtenerSaldo()).to.equal(1200)
+    23 |   })
+  > 24 | })
+       |   ^
+  
+  
+  1 error found.
+  1 error potentially fixable with the `--fix` option.
+
+ MOCHA  Testing...
+
+    <section class="suite">
+      <h1>Category.vue</h1>
+      <dl>
+        <dt>render button</dt>
+        <dd><pre><code>Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.find(&#x27;.button&#x27;).exists())</code></pre></dd>
+        <dt>input slot</dt>
+        <dd><pre><code>Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.find(&#x27;.input&#x27;).exists())</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>CategoryForm.vue</h1>
+      <dl>
+        <dt>render button</dt>
+        <dd><pre><code>Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.find(&#x27;.button&#x27;).exists())</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>CategoryList.vue</h1>
+      <dl>
+        <dt>render button</dt>
+        <dd><pre><code>Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.find(&#x27;.button&#x27;).exists())</code></pre></dd>
+        <dt>lista categorias</dt>
+        <dd><pre><code>Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.find(&#x27;.listaCategoria&#x27;).exists())</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>DataTable.vue</h1>
+      <dl>
+        <dt>detectada lista de egresos</dt>
+        <dd><pre><code>store.dispatch(&#x27;cambiarTransaccion&#x27;, &#x27;Egresos&#x27;)
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.escogerTransaccion()[0].ntrans).to.equals(3)</code></pre></dd>
+Otros
+        <dt>agrega elementos a la lista de ingresos</dt>
+        <dd><pre><code>wrapper.vm.itemEditado.monto = &#x27;30&#x27;
+wrapper.vm.itemEditado.fecha = &#x27;2012/10/20&#x27;
+wrapper.vm.itemEditado.categoria = &#x27;Otros&#x27;
+wrapper.vm.salvar()
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.escogerTransaccion()[1].monto).to.equals(30)</code></pre></dd>
+Otros
+        <dt>agrega elementos a la lista de egresos</dt>
+        <dd><pre><code>store.dispatch(&#x27;cambiarTransaccion&#x27;, &#x27;Egresos&#x27;)
+wrapper.vm.itemEditado.monto = &#x27;20&#x27;
+wrapper.vm.itemEditado.fecha = &#x27;2010/10/20&#x27;
+wrapper.vm.itemEditado.categoria = &#x27;Otros&#x27;
+wrapper.vm.salvar()
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.escogerTransaccion()[1].monto).to.equals(20)</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>EscogerTransaccion.vue</h1>
+      <dl>
+        <dt>cambio de estado a Ingresos</dt>
+        <dd><pre><code>wrapper.vm.irAIngresos()
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.tipoTransaccion).to.equals(&#x27;Ingresos&#x27;)</code></pre></dd>
+        <dt>cambio de estado a Egresos</dt>
+        <dd><pre><code>wrapper.vm.irAEgresos()
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.tipoTransaccion).to.equals(&#x27;Egresos&#x27;)</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>Transfer.vue</h1>
+      <dl>
+        <dt>transferencia registra un ingreso a la cuenta destino y un egreso a la cuenta actual</dt>
+        <dd><pre><code>let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[&#x22;shallowMount&#x22;])(_components_Transfer_vue__WEBPACK_IMPORTED_MODULE_2__[&#x22;default&#x22;], {
+  store
+})
+var cuentaNueva = { id: 1000, nombre: &#x27;Prueba&#x27;, ingresos: [], egresos: [] }
+wrapper.vm.$store.dispatch(&#x27;anadirCuenta&#x27;, cuentaNueva)
+let cuentasStore = wrapper.vm.cuentas
+let idCuenta2 = 1000
+wrapper.vm.amount = 100
+wrapper.vm.selectedaccount = idCuenta2
+let egresosC1Antes = JSON.parse(JSON.stringify(cuentasStore[0].egresos))
+let ingresosC2Antes = JSON.parse(JSON.stringify(cuentasStore[1].ingresos))
+wrapper.vm.saveTransfer()
+let egresosC1Despues = cuentasStore[0].egresos
+let ingresosC2Despues = cuentasStore[1].ingresos
+let bool = !!((egresosC1Antes.length + 1 === egresosC1Despues.length) &#x26;&#x26;
+        (ingresosC2Antes.length + 1 === ingresosC2Despues.length))
+chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;assert&#x22;].equal(bool, true)</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>CategoryList.vue</h1>
+      <dl>
+        <dt>La lista de categor&#xED;as cambia si est&#xE1;s en ingresos o egresos</dt>
+        <dd><pre><code>let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[&#x22;mount&#x22;])(_components_CategoryList_vue__WEBPACK_IMPORTED_MODULE_3__[&#x22;default&#x22;], {
+  store
+})
+var listaIngresos = JSON.parse(JSON.stringify(wrapper.vm.escogerTransaccion()))
+let tipo = &#x27;Egresos&#x27;
+wrapper.vm.$store.dispatch(&#x27;cambiarTransaccion&#x27;, tipo)
+var listaEgresos = JSON.parse(JSON.stringify(wrapper.vm.escogerTransaccion()))
+var bool = listaIngresos === listaEgresos
+chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;assert&#x22;].equal(bool, false)</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>ListaCuentas.vue</h1>
+      <dl>
+4
+        <dt>Se elimina una cuenta correctamente</dt>
+        <dd><pre><code>let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[&#x22;mount&#x22;])(_components_ListaCuentas_vue__WEBPACK_IMPORTED_MODULE_4__[&#x22;default&#x22;], {
+  store
+})
+let cuentaNueva1 = { id: 1000, nombre: &#x27;Prueba 1&#x27;, ingresos: [], egresos: [] }
+let cuentaNueva2 = { id: 1001, nombre: &#x27;Prueba 2&#x27;, ingresos: [], egresos: [] }
+let cuentaNueva3 = { id: 1002, nombre: &#x27;Prueba 3&#x27;, ingresos: [], egresos: [] }
+wrapper.vm.$store.dispatch(&#x27;anadirCuenta&#x27;, cuentaNueva1)
+wrapper.vm.$store.dispatch(&#x27;anadirCuenta&#x27;, cuentaNueva2)
+wrapper.vm.$store.dispatch(&#x27;anadirCuenta&#x27;, cuentaNueva3)
+let cuentas = wrapper.findAll(_components_Cuenta_vue__WEBPACK_IMPORTED_MODULE_5__[&#x22;default&#x22;])
+console.log(cuentas.length)
+let largoAntes = cuentas.length
+cuentas.at(0).vm.eliminarCuenta()
+let cuentasDespues = wrapper.findAll(_components_Cuenta_vue__WEBPACK_IMPORTED_MODULE_5__[&#x22;default&#x22;])
+let largoDespues = cuentasDespues.length
+chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;assert&#x22;].equal(largoAntes, largoDespues + 1)</code></pre></dd>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>Transfer.vue</h1>
+      <dl>
+        <dt>verifica no se excede la transferencia</dt>
+        <dd><pre><code>let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[&#x22;shallowMount&#x22;])(_components_Transfer_vue__WEBPACK_IMPORTED_MODULE_3__[&#x22;default&#x22;], {
+  store
+})
+var cuentaNueva = { id: 1000, nombre: &#x27;Prueba&#x27;, ingresos: [], egresos: [] }
+store.dispatch(&#x27;anadirCuenta&#x27;, cuentaNueva)
+let idCuenta2 = 1000
+wrapper.vm.amount = -100
+wrapper.vm.selectedaccount = idCuenta2
+wrapper.vm.saveTransfer()
+Object(chai__WEBPACK_IMPORTED_MODULE_0__[&#x22;expect&#x22;])(wrapper.vm.obtenerSaldo()).to.equal(1200)</code></pre></dd>
+      </dl>
+    </section>
+ MOCHA  Tests completed successfully
+
