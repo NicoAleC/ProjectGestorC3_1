@@ -1,0 +1,615 @@
+{
+  "stats": {
+    "suites": 9,
+    "tests": 14,
+    "passes": 14,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-05-15T23:54:16.981Z",
+    "end": "2019-05-15T23:54:17.359Z",
+    "duration": 378,
+    "testsRegistered": 14,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "c11c9e53-f897-4eee-8103-9e427be48e29",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "1206a992-4391-4550-92cc-ad4c8984684e",
+        "title": "Category.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [
+          {
+            "title": "\"before each\" hook",
+            "fullTitle": "Category.vue \"before each\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "store = _StoreUtil__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getDefaultStore()\nwrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_Category_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n  store\n})",
+            "err": {},
+            "isRoot": false,
+            "uuid": "e87efc23-b3ee-4eaa-89bd-3affcb6126a6",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "render button",
+            "fullTitle": "Category.vue render button",
+            "timedOut": false,
+            "duration": 6,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "Object(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.find('.button').exists())",
+            "err": {},
+            "isRoot": false,
+            "uuid": "d822c1bd-e243-4b31-bd6c-4666739e0870",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "input slot",
+            "fullTitle": "Category.vue input slot",
+            "timedOut": false,
+            "duration": 1,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "Object(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.find('.input').exists())",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2a9886ff-c815-471d-8d51-91fcf094c7ef",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "d822c1bd-e243-4b31-bd6c-4666739e0870",
+          "2a9886ff-c815-471d-8d51-91fcf094c7ef"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 7,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "a764e545-b79e-4cad-88bd-59540aea4af0",
+        "title": "CategoryForm.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [
+          {
+            "title": "\"before each\" hook",
+            "fullTitle": "CategoryForm.vue \"before each\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_CategoryForm_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n  propsData: { msg }\n})",
+            "err": {},
+            "isRoot": false,
+            "uuid": "fa643f3e-0020-4baf-ba3f-d550b55f0b4d",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "render button",
+            "fullTitle": "CategoryForm.vue render button",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "Object(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.find('.button').exists())",
+            "err": {},
+            "isRoot": false,
+            "uuid": "0412bee5-4d21-45cb-bac6-34251abe3c3f",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "0412bee5-4d21-45cb-bac6-34251abe3c3f"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "060db1e7-4681-46fa-ae8a-d00d243cf17a",
+        "title": "CategoryList.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [
+          {
+            "title": "\"before each\" hook",
+            "fullTitle": "CategoryList.vue \"before each\" hook",
+            "timedOut": false,
+            "duration": 3,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "store = _StoreUtil__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getDefaultStore()\nwrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_CategoryList_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n  store\n})",
+            "err": {},
+            "isRoot": false,
+            "uuid": "ab0df897-6a9e-4c2b-a437-dd07fc5a1053",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "render button",
+            "fullTitle": "CategoryList.vue render button",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "Object(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.find('.button').exists())",
+            "err": {},
+            "isRoot": false,
+            "uuid": "ac619bc4-f2d8-44ea-a8df-dc7a8a390cdb",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "lista categorias",
+            "fullTitle": "CategoryList.vue lista categorias",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "Object(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.find('.listaCategoria').exists())",
+            "err": {},
+            "isRoot": false,
+            "uuid": "0da83fc2-74ac-4ff5-bda0-b3b3cca2b930",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "ac619bc4-f2d8-44ea-a8df-dc7a8a390cdb",
+          "0da83fc2-74ac-4ff5-bda0-b3b3cca2b930"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "e0fe820e-028d-41db-a284-aaadb6667958",
+        "title": "DataTable.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "DataTable.vue \"before all\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "",
+            "err": {},
+            "isRoot": false,
+            "uuid": "727ecda4-cd4c-4c25-a1ab-3d082f87645b",
+            "isHook": true,
+            "skipped": false
+          },
+          {
+            "title": "\"before each\" hook",
+            "fullTitle": "DataTable.vue \"before each\" hook",
+            "timedOut": false,
+            "duration": 10,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "store = _StoreUtil__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getDefaultStore()\nwrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_DataTable_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  {\n    store\n  })",
+            "err": {},
+            "isRoot": false,
+            "uuid": "4fc97d48-aa11-4150-bde1-cd99e9d3c28f",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "DataTable.vue \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "",
+            "err": {},
+            "isRoot": false,
+            "uuid": "f8bdcf5b-045a-4ef8-bf02-277d8b0669eb",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "detectada lista de egresos",
+            "fullTitle": "DataTable.vue detectada lista de egresos",
+            "timedOut": false,
+            "duration": 6,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "store.dispatch('cambiarTransaccion', 'Egresos')\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.escogerTransaccion()[0].ntrans).to.equals(3)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "9fdce189-1495-4f04-a6f6-bacff8a438f5",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "agrega elementos a la lista de ingresos",
+            "fullTitle": "DataTable.vue agrega elementos a la lista de ingresos",
+            "timedOut": false,
+            "duration": 17,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "wrapper.vm.itemEditado.monto = '30'\nwrapper.vm.itemEditado.fecha = '2012/10/20'\nwrapper.vm.itemEditado.categoria = 'Otros'\nwrapper.vm.salvar()\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.escogerTransaccion()[1].monto).to.equals(30)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "941e16d7-009f-4db8-8f5f-6fc1fa9a1364",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "agrega elementos a la lista de egresos",
+            "fullTitle": "DataTable.vue agrega elementos a la lista de egresos",
+            "timedOut": false,
+            "duration": 19,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "store.dispatch('cambiarTransaccion', 'Egresos')\nwrapper.vm.itemEditado.monto = '20'\nwrapper.vm.itemEditado.fecha = '2010/10/20'\nwrapper.vm.itemEditado.categoria = 'Otros'\nwrapper.vm.salvar()\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.escogerTransaccion()[1].monto).to.equals(20)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "9187351a-1a3b-4c5b-a664-69816a36c459",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "9fdce189-1495-4f04-a6f6-bacff8a438f5",
+          "941e16d7-009f-4db8-8f5f-6fc1fa9a1364",
+          "9187351a-1a3b-4c5b-a664-69816a36c459"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 42,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "84f8055a-46d3-40b0-8225-e9690503403c",
+        "title": "EscogerTransaccion.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "EscogerTransaccion.vue \"before all\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a7d0fb42-7e12-472c-bed3-76d911d5df1f",
+            "isHook": true,
+            "skipped": false
+          },
+          {
+            "title": "\"before each\" hook",
+            "fullTitle": "EscogerTransaccion.vue \"before each\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "store = _StoreUtil__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getDefaultStore()\nwrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_EscogerTransaccion_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  {\n    store\n  })",
+            "err": {},
+            "isRoot": false,
+            "uuid": "8b043acf-506f-46d0-aad6-75192e861a88",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "EscogerTransaccion.vue \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "",
+            "err": {},
+            "isRoot": false,
+            "uuid": "e0f3103a-d53c-4605-aed2-f19537d6a899",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "cambio de estado a Ingresos",
+            "fullTitle": "EscogerTransaccion.vue cambio de estado a Ingresos",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "wrapper.vm.irAIngresos()\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.tipoTransaccion).to.equals('Ingresos')",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2f740e81-6f6a-4519-ab78-24be79b5150a",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "cambio de estado a Egresos",
+            "fullTitle": "EscogerTransaccion.vue cambio de estado a Egresos",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "wrapper.vm.irAEgresos()\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.tipoTransaccion).to.equals('Egresos')",
+            "err": {},
+            "isRoot": false,
+            "uuid": "43671db6-6bb6-43ae-8e9f-496388396969",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "2f740e81-6f6a-4519-ab78-24be79b5150a",
+          "43671db6-6bb6-43ae-8e9f-496388396969"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "34952e9b-ac62-4e6c-bd18-c6b05636b71d",
+        "title": "Transfer.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "transferencia registra un ingreso a la cuenta destino y un egreso a la cuenta actual",
+            "fullTitle": "Transfer.vue transferencia registra un ingreso a la cuenta destino y un egreso a la cuenta actual",
+            "timedOut": false,
+            "duration": 17,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_Transfer_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n  store\n})\nvar cuentaNueva = { id: 1000, nombre: 'Prueba', ingresos: [], egresos: [] }\nwrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva)\nlet cuentasStore = wrapper.vm.cuentas\nlet idCuenta2 = 1000\nwrapper.vm.amount = 100\nwrapper.vm.selectedaccount = idCuenta2\nlet egresosC1Antes = JSON.parse(JSON.stringify(cuentasStore[0].egresos))\nlet ingresosC2Antes = JSON.parse(JSON.stringify(cuentasStore[1].ingresos))\nwrapper.vm.saveTransfer()\nlet egresosC1Despues = cuentasStore[0].egresos\nlet ingresosC2Despues = cuentasStore[1].ingresos\nlet bool = !!((egresosC1Antes.length + 1 === egresosC1Despues.length) &&\n        (ingresosC2Antes.length + 1 === ingresosC2Despues.length))\nchai__WEBPACK_IMPORTED_MODULE_0__[\"assert\"].equal(bool, true)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "ea72a69f-f15a-4f3d-8e79-daadfa5d8e2e",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "ea72a69f-f15a-4f3d-8e79-daadfa5d8e2e"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 17,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "487dd991-edb4-4108-bde7-2d99a1715455",
+        "title": "CategoryList.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "La lista de categorías cambia si estás en ingresos o egresos",
+            "fullTitle": "CategoryList.vue La lista de categorías cambia si estás en ingresos o egresos",
+            "timedOut": false,
+            "duration": 5,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"mount\"])(_components_CategoryList_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n  store\n})\nvar listaIngresos = JSON.parse(JSON.stringify(wrapper.vm.escogerTransaccion()))\nlet tipo = 'Egresos'\nwrapper.vm.$store.dispatch('cambiarTransaccion', tipo)\nvar listaEgresos = JSON.parse(JSON.stringify(wrapper.vm.escogerTransaccion()))\nvar bool = listaIngresos === listaEgresos\nchai__WEBPACK_IMPORTED_MODULE_0__[\"assert\"].equal(bool, false)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "969ccf36-f37d-4253-85e9-a242f6120158",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "969ccf36-f37d-4253-85e9-a242f6120158"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 5,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "5068bb4a-27e3-47d7-a290-404c152bea4b",
+        "title": "ListaCuentas.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "Se elimina una cuenta correctamente",
+            "fullTitle": "ListaCuentas.vue Se elimina una cuenta correctamente",
+            "timedOut": false,
+            "duration": 9,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"mount\"])(_components_ListaCuentas_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n  store\n})\nlet cuentaNueva1 = { id: 1000, nombre: 'Prueba 1', ingresos: [], egresos: [] }\nlet cuentaNueva2 = { id: 1001, nombre: 'Prueba 2', ingresos: [], egresos: [] }\nlet cuentaNueva3 = { id: 1002, nombre: 'Prueba 3', ingresos: [], egresos: [] }\nwrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva1)\nwrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva2)\nwrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva3)\nlet cuentas = wrapper.findAll(_components_Cuenta_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"])\nconsole.log(cuentas.length)\nlet largoAntes = cuentas.length\ncuentas.at(0).vm.eliminarCuenta()\nlet cuentasDespues = wrapper.findAll(_components_Cuenta_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"])\nlet largoDespues = cuentasDespues.length\nchai__WEBPACK_IMPORTED_MODULE_0__[\"assert\"].equal(largoAntes, largoDespues + 1)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "080ff0f5-4660-4838-932c-9e9061983f2c",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "080ff0f5-4660-4838-932c-9e9061983f2c"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 9,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "d9c3607d-942c-4048-b1fa-51cdb7023511",
+        "title": "Transfer.vue",
+        "fullFile": "D:\\Personal\\Documents\\upb\\Certificación 3\\gestor\\dist\\main.js",
+        "file": "\\dist\\main.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "verifica no se excede la transferencia",
+            "fullTitle": "Transfer.vue verifica no se excede la transferencia",
+            "timedOut": false,
+            "duration": 226,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "let wrapper = Object(_vue_test_utils__WEBPACK_IMPORTED_MODULE_1__[\"shallowMount\"])(_components_Transfer_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n  store\n})\nvar cuentaNueva = { id: 1000, nombre: 'Prueba', ingresos: [], egresos: [] }\nstore.dispatch('anadirCuenta', cuentaNueva)\nlet idCuenta2 = 1000\nwrapper.vm.amount = -100\nwrapper.vm.selectedaccount = idCuenta2\nwrapper.vm.saveTransfer()\nObject(chai__WEBPACK_IMPORTED_MODULE_0__[\"expect\"])(wrapper.vm.obtenerSaldo()).to.equal(1200)",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a6847bb6-0612-451e-8a76-4d51483fe987",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "a6847bb6-0612-451e-8a76-4d51483fe987"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 226,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2019
+}
