@@ -15,32 +15,32 @@
 export default {
   name: 'categoria',
   props: ['id', 'nombre'],
-  data () {
+  data() {
     return {
       nombreBoton: 'Guardar',
     }
   },
 
   computed: {
-    categoriaIngresos () {
+    categoriaIngresos() {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoriaEgresos () {
+    categoriaEgresos() {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
-    tipoTransaccion () {
+    tipoTransaccion() {
       return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods: {
 
-    editarCategoria () {
-      var idCategoria = this.id
+    editarCategoria() {
+      const idCategoria = this.id
       if (this.nombreBoton === 'Editar') {
         document.getElementById(idCategoria).disabled = false
         this.nombreBoton = 'Guardar'
       } else {
-        var nombreActual = document.getElementById(idCategoria).value
+        const nombreActual = document.getElementById(idCategoria).value
         if (nombreActual === '' || this.nombreRepetido(nombreActual, idCategoria)) {
           console('Nombre inválido')
         } else {
@@ -48,33 +48,33 @@ export default {
           this.nombreBoton = 'Editar'
           let indexCategoria
           if (this.tipoTransaccion === 'Ingresos') {
-            indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
+            indexCategoria = this.categoriaIngresos.findIndex((categoria) => categoria.id === idCategoria)
             this.categoriaIngresos[indexCategoria].nombre = nombreActual
           } else {
-            indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
+            indexCategoria = this.categoriaEgresos.findIndex((categoria) => categoria.id === idCategoria)
             this.categoriaEgresos[indexCategoria].nombre = nombreActual
           }
         }
       }
     },
 
-    borrarCategoria: function () {
-      var idCategoria = this.id
+    borrarCategoria: function() {
+      const idCategoria = this.id
       let categoria
       if (this.tipoTransaccion === 'Ingresos') {
-        categoria = this.categoriaIngresos.find(categoria => categoria.id === idCategoria)
+        categoria = this.categoriaIngresos.find((categoria) => categoria.id === idCategoria)
         this.categoriaIngresos.splice(categoria, 1)
       } else {
-        categoria = this.categoriaEgresos.find(categoria => categoria.id === idCategoria)
+        categoria = this.categoriaEgresos.find((categoria) => categoria.id === idCategoria)
         this.categoriaEgresos.splice(categoria, 1)
       }
     },
-    nombreRepetido (nombreActual, idCategoria) {
+    nombreRepetido(nombreActual, idCategoria) {
       if (this.tipoTransaccion === 'ingresos') {
-        return !!this.categoriaIngresos.find(categoria => categoria.nombre === nombreActual &&
+        return !!this.categoriaIngresos.find((categoria) => categoria.nombre === nombreActual &&
                                           categoria.id !== idCategoria)
       } else {
-        return !!this.categoriaEgresos.find(categoria => categoria.nombre === nombreActual &&
+        return !!this.categoriaEgresos.find((categoria) => categoria.nombre === nombreActual &&
                                           categoria.id !== idCategoria)
       }
     }

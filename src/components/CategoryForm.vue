@@ -17,7 +17,7 @@ export default {
   components: {
     CategoryList: CategoryList
   },
-  data: function () {
+  data: function() {
     return {
       isOpen: false
     }

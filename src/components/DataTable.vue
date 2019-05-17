@@ -103,65 +103,65 @@ export default {
   }),
 
   computed: {
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
-    tipoTransaccion () {
+    tipoTransaccion() {
       return this.$store.state.TIPO_TRANSACCION
     },
-    categoriasIngresos () {
+    categoriasIngresos() {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoriasEgresos () {
+    categoriasEgresos() {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
-    titulo () {
+    titulo() {
       return this.indexEditado === -1 ? 'Nueva Transacción' : 'Editar Transacción'
     }
   },
 
   watch: {
-    dialog (val) {
+    dialog(val) {
       val || this.cerrar()
     }
   },
 
   methods: {
-    categorias () {
+    categorias() {
       if (this.tipoTransaccion === 'Ingresos') {
         return this.categoriasIngresos
       } else {
         return this.categoriasEgresos
       }
     },
-    escogerTransaccion () {
-      var cuenta = this.cuentas.find(cuenta => cuenta.id === this.cuentaActual)
+    escogerTransaccion() {
+      const cuenta = this.cuentas.find((cuenta) => cuenta.id === this.cuentaActual)
       if (this.tipoTransaccion === 'Ingresos') {
         return cuenta.ingresos
       } else {
         return cuenta.egresos
       }
     },
-    editarItem (item) {
+    editarItem(item) {
       this.indexEditado = this.escogerTransaccion().findIndex(
-        transaccion => transaccion.ntrans === item.ntrans
+          (transaccion) => transaccion.ntrans === item.ntrans
       )
       this.itemEditado = Object.assign({}, item)
       this.dialog = true
     },
-    borrarItem (item) {
-      var trans = this.escogerTransaccion()
-      let idTrans = item.ntrans
-      let indexTrans = trans.findIndex(
-        transaccion => transaccion.ntrans === idTrans
+    borrarItem(item) {
+      const trans = this.escogerTransaccion()
+      const idTrans = item.ntrans
+      const indexTrans = trans.findIndex(
+          (transaccion) => transaccion.ntrans === idTrans
       )
       confirm('¿Seguro que quiere borrar este item?') &&
         trans.splice(indexTrans, 1)
     },
-    cerrar () {
+    cerrar() {
       this.dialog = false
       setTimeout(() => {
         this.itemEditado = Object.assign({}, this.itemPorDefecto)
@@ -169,18 +169,18 @@ export default {
       }, 300)
     },
 
-    salvar () {
+    salvar() {
       this.itemEditado.monto = parseFloat(this.itemEditado.monto)
-      var auxFecha = this.itemEditado.fecha.toString().replace('-', '/')
+      const auxFecha = this.itemEditado.fecha.toString().replace('-', '/')
       this.itemEditado.fecha = auxFecha.replace('-', '/')
       this.itemEditado.categoria = this.itemEditado.categoria.toString()
       console.log(this.itemEditado.categoria)
-      var indexTrans = -1
+      let indexTrans = -1
       do {
         this.itemEditado.ntrans = Math.round(Math.random() * (999999 - 100000) + 100000)
-        indexTrans = this.escogerTransaccion().findIndex(transaccion => transaccion.ntrans === this.itemEditado.ntrans)
+        indexTrans = this.escogerTransaccion().findIndex((transaccion) => transaccion.ntrans === this.itemEditado.ntrans)
       } while (indexTrans > 0)
-      var condicion = true
+      let condicion = true
       if (this.itemEditado.monto < 1) {
         condicion = false
         alert('El monto ingresado no puede ser menor a 1')
@@ -198,8 +198,8 @@ export default {
       if (condicion) {
         if (this.indexEditado > -1) {
           Object.assign(
-            this.escogerTransaccion()[this.indexEditado],
-            this.itemEditado
+              this.escogerTransaccion()[this.indexEditado],
+              this.itemEditado
           )
         } else {
           this.escogerTransaccion().push(this.itemEditado)
@@ -207,25 +207,25 @@ export default {
         this.cerrar()
       }
     },
-    obtenerNombreCuenta (cuentaActual) {
-      var idCuentaActual = this.cuentaActual
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
+    obtenerNombreCuenta(cuentaActual) {
+      const idCuentaActual = this.cuentaActual
+      const cuenta1 = this.cuentas.find((cuenta) => cuenta.id === idCuentaActual)
       return cuenta1 === undefined
         ? 'Seleccionar Cuenta'
         : cuenta1.nombre + '.  Saldo: ' + this.obtenerSaldo() + 'Bs'
     },
-    obtenerSaldo () {
-      let idCuentaActual = this.cuentaActual
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      let listaIngresos = cuenta1.ingresos
-      let listaEgresos = cuenta1.egresos
+    obtenerSaldo() {
+      const idCuentaActual = this.cuentaActual
+      const cuenta1 = this.cuentas.find((cuenta) => cuenta.id === idCuentaActual)
+      const listaIngresos = cuenta1.ingresos
+      const listaEgresos = cuenta1.egresos
       let ingresosTotales = 0
       let egresosTotales = 0
 
-      listaIngresos.forEach(transaccion => {
+      listaIngresos.forEach((transaccion) => {
         ingresosTotales += transaccion.monto
       })
-      listaEgresos.forEach(transaccion => {
+      listaEgresos.forEach((transaccion) => {
         egresosTotales += transaccion.monto
       })
       return ingresosTotales - egresosTotales

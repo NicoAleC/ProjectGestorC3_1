@@ -15,23 +15,23 @@
 export default {
   name: 'transaccion',
   props: ['id', 'name'],
-  data () {
+  data() {
     return {
     }
   },
   computed: {
-    tipoTransaccion () {
+    tipoTransaccion() {
       return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods: {
 
-    irAIngresos () {
-      let tipo = 'Ingresos'
+    irAIngresos() {
+      const tipo = 'Ingresos'
       this.$store.dispatch('cambiarTransaccion', tipo)
     },
-    irAEgresos () {
-      let tipo = 'Egresos'
+    irAEgresos() {
+      const tipo = 'Egresos'
       this.$store.dispatch('cambiarTransaccion', tipo)
     }
 

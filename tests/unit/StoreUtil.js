@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 export default {
   name: 'StoreUtil',
 
-  getDefaultStore () {
+  getDefaultStore() {
     return new Vuex.Store({
       state: {
         CUENTAS: [
@@ -29,36 +29,36 @@ export default {
         TIPO_TRANSACCION: 'Ingresos'
       },
       mutations: {
-        anadirCuenta (context, nuevaCuenta) {
+        anadirCuenta(context, nuevaCuenta) {
           context.CUENTAS.push(nuevaCuenta)
         },
-        anadirCategoriaIngreso (context, nuevaCategoria) {
+        anadirCategoriaIngreso(context, nuevaCategoria) {
           context.CATEGORIAS_INGRESOS.push(nuevaCategoria)
         },
-        anadirCategoriaEgreso (context, nuevaCategoria) {
+        anadirCategoriaEgreso(context, nuevaCategoria) {
           context.CATEGORIAS_EGRESOS.push(nuevaCategoria)
         },
-        cambiarCuentaActual (context, nuevoId) {
+        cambiarCuentaActual(context, nuevoId) {
           context.CUENTA_ACTUAL = nuevoId
         },
-        cambiarTransaccion (context, transaccion) {
+        cambiarTransaccion(context, transaccion) {
           context.TIPO_TRANSACCION = transaccion
         }
       },
       actions: {
-        anadirCuenta (context, nuevaCuenta) {
+        anadirCuenta(context, nuevaCuenta) {
           context.commit('anadirCuenta', nuevaCuenta)
         },
-        anadirCategoriaIngreso (context, nuevaCategoria) {
+        anadirCategoriaIngreso(context, nuevaCategoria) {
           context.commit('anadirCategoriaIngreso', nuevaCategoria)
         },
-        anadirCategoriaEgreso (context, nuevaCategoria) {
+        anadirCategoriaEgreso(context, nuevaCategoria) {
           context.commit('anadirCategoriaEgreso', nuevaCategoria)
         },
-        cambiarCuentaActual (context, nuevoId) {
+        cambiarCuentaActual(context, nuevoId) {
           context.commit('cambiarCuentaActual', nuevoId)
         },
-        cambiarTransaccion (context, transaccion) {
+        cambiarTransaccion(context, transaccion) {
           context.commit('cambiarTransaccion', transaccion)
         }
       }

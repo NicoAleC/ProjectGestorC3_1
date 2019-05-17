@@ -15,55 +15,55 @@ export default {
   name: 'cuenta',
   props: ['id', 'nombre', 'ingresos', 'egresos'],
 
-  data () {
+  data() {
     return {
       nombreBoton: 'Guardar',
     }
   },
   computed: {
 
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     }
 
   },
   methods: {
 
-    editarNombre: function () {
-      var idCuenta = this.id
+    editarNombre: function() {
+      const idCuenta = this.id
       if (this.nombreBoton === 'Editar') {
         // this.$refs.accountName
         document.getElementById(idCuenta).disabled = false// Habilitar la edicion en el input
         this.nombreBoton = 'Guardar'// Cambiar el nombre del boton
       } else { // Guardar la edicion
-        var nombreActual = document.getElementById(idCuenta).value
+        const nombreActual = document.getElementById(idCuenta).value
         if (nombreActual === '' || this.nombreRepetido(nombreActual, idCuenta)) {
           console.log('Nombre inválido')// Mostrar ventana de error
         } else {
           document.getElementById(this.id).disabled = true// Deshabilitar la edicion en el input
           this.nombreBoton = 'Editar'// Cambiar el nombre del boton
-          let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
+          const indexCuenta = this.cuentas.findIndex((cuenta) => cuenta.id === idCuenta)
           this.cuentas[indexCuenta].nombre = nombreActual
         }
       }
     },
 
-    eliminarCuenta () {
-      var idCuenta = this.id
-      let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
+    eliminarCuenta() {
+      const idCuenta = this.id
+      const cuenta = this.cuentas.find((cuenta) => cuenta.id === idCuenta)
       this.cuentas.splice(cuenta, 1)
     },
 
-    seleccionarCuenta () {
-      var idAMandar = this.id
+    seleccionarCuenta() {
+      const idAMandar = this.id
       this.$store.dispatch('cambiarCuentaActual', idAMandar)
     },
 
-    nombreRepetido (nombreActual, idCuenta) {
-      return !!this.cuentas.find(cuenta => cuenta.nombre === nombreActual && cuenta.id !== idCuenta)
+    nombreRepetido(nombreActual, idCuenta) {
+      return !!this.cuentas.find((cuenta) => cuenta.nombre === nombreActual && cuenta.id !== idCuenta)
     },
   }
 }

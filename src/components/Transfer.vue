@@ -52,60 +52,60 @@ export default {
     amount: null,
   }),
   computed: {
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
-    fecha () {
-      var myDate = new Date()
-      var month = ('0' + (myDate.getMonth() + 1)).slice(-2)
-      var date = ('0' + myDate.getDate()).slice(-2)
-      var year = myDate.getFullYear()
-      var formattedDate = year + '/' + month + '/' + date
+    fecha() {
+      const myDate = new Date()
+      const month = ('0' + (myDate.getMonth() + 1)).slice(-2)
+      const date = ('0' + myDate.getDate()).slice(-2)
+      const year = myDate.getFullYear()
+      const formattedDate = year + '/' + month + '/' + date
       return formattedDate
     }
   },
   methods: {
-    close () {
+    close() {
       this.dialog = false
     },
-    obtenerSaldo () {
-      let idCuentaActual = this.cuentaActual
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      let listaIngresos = cuenta1.ingresos
-      let listaEgresos = cuenta1.egresos
+    obtenerSaldo() {
+      const idCuentaActual = this.cuentaActual
+      const cuenta1 = this.cuentas.find((cuenta) => cuenta.id === idCuentaActual)
+      const listaIngresos = cuenta1.ingresos
+      const listaEgresos = cuenta1.egresos
       let ingresosTotales = 0
       let egresosTotales = 0
 
-      listaIngresos.forEach(transaccion => {
+      listaIngresos.forEach((transaccion) => {
         ingresosTotales += transaccion.monto
       })
-      listaEgresos.forEach(transaccion => {
+      listaEgresos.forEach((transaccion) => {
         egresosTotales += transaccion.monto
       })
       return ingresosTotales - egresosTotales
     },
-    saveTransfer () {
-      let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
+    saveTransfer() {
+      const indexCuentaAenviar = this.cuentas.findIndex((cuenta) => cuenta.id === this.selectedaccount)
 
       // egreso a nuestra cuenta
-      let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
-      var cuentaActual = this.cuentas[indexCuentaActual]
-      var egresosCuentaActual = cuentaActual.egresos
+      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
+      const cuentaActual = this.cuentas[indexCuentaActual]
+      const egresosCuentaActual = cuentaActual.egresos
 
-      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
 
       // ingreso a la cuentaAenviar
-      var cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      var ingresosCuentaAenviar = cuentaAenviar.ingresos
+      const cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      const ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,

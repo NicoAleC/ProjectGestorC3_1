@@ -22,21 +22,21 @@ export default {
     Category: Category
   },
   computed: {
-    categoriaIngresos () {
+    categoriaIngresos() {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoriaEgresos () {
+    categoriaEgresos() {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
-    transaccionActual () {
+    transaccionActual() {
       return this.$store.state.TIPO_TRANSACCION
     }
   },
   methods: {
 
-    anadirCategoria () {
-      var codigo = Math.random().toString(36).substring(2, 15)
-      var nuevaCategoria = { id: codigo,
+    anadirCategoria() {
+      const codigo = Math.random().toString(36).substring(2, 15)
+      const nuevaCategoria = { id: codigo,
         nombre: 'Categoria ' + codigo }
 
       if (this.transaccionActual === 'Ingresos') {
@@ -45,7 +45,7 @@ export default {
         this.$store.dispatch('anadirCategoriaEgreso', nuevaCategoria)
       }
     },
-    escogerTransaccion () {
+    escogerTransaccion() {
       return this.transaccionActual === 'Ingresos' ? this.categoriaIngresos : this.categoriaEgresos
     }
 

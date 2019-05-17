@@ -1,6 +1,6 @@
 module.exports = {
-  root: true,
-  env: {
+  'root': true,
+  'env': {
     node: true
   },
   'extends': [
@@ -8,12 +8,12 @@ module.exports = {
     '@vue/standard',
     'google'
   ],
-  rules: {
+  'rules': {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'comma-dangle': [0]
   },
-  parserOptions: {
+  'parserOptions': {
     parser: 'babel-eslint'
   }
 }

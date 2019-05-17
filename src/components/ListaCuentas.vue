@@ -21,18 +21,18 @@ export default {
     Cuenta: Cuenta
   },
   computed: {
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     }
   },
   methods: {
 
-    anadirCuenta () {
-      var codigo = Math.random().toString(36).substring(2, 15)
-      var nuevaCuenta = { id: codigo,
+    anadirCuenta() {
+      const codigo = Math.random().toString(36).substring(2, 15)
+      const nuevaCuenta = { id: codigo,
         nombre: 'Cuenta ' + codigo,
         ingresos: [],
         egresos: [] }
