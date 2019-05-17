@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog" persistent max-width="500px">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
+          <v-btn  color="#3C3C3C" dark class="mb-2" v-on="on">New Item</v-btn>
         </template>
         <v-card class="popup">
           <v-responsive :height = 500>

@@ -1,5 +1,6 @@
 <template>
 <div class = "interfazCuentas">
+  <v-layout wrap>
   <div class="listaCuentas">
       <Cuenta
         v-bind:id= "cuenta.id"
@@ -9,6 +10,7 @@
       ></Cuenta>
   </div>
       <button class = "button" @click="anadirCuenta"> <span>AÑADIR CUENTA</span></button>
+  </v-layout>
 </div>
 
 </template>

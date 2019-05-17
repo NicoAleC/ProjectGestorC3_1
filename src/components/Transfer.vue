@@ -2,7 +2,7 @@
 <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Transferir</v-btn>
+        <v-btn color="#3C3C3C" dark v-on="on">Transferir</v-btn>
       </template>
       <v-card>
         <v-responsive :height = 500>
@@ -13,17 +13,18 @@
           <v-container grid-list-md>
               <v-layout wrap>
               <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="cuentas"
+                <v-select
+                  :items="sinactual"
                   item-text = "nombre"
                   item-value = "id"
                   v-model= "selectedaccount"
                   label="Cuenta"
-                ></v-autocomplete>
+                ></v-select>
               </v-flex>
               <v-flex xs12 sm6>
                 <v-text-field label="Cantidad" required
                   v-model= "amount"
+                  type="number"
                >{{amount}}</v-text-field>
               </v-flex>
             </v-layout>
@@ -57,6 +58,12 @@ export default {
     },
     cuentaActual () {
       return this.$store.state.CUENTA_ACTUAL
+    },
+    sinactual () {
+      var cuentasin = JSON.parse(JSON.stringify(this.$store.state.CUENTAS))
+      var pos = cuentasin.map(function (e) { return e.id }).indexOf(this.$store.state.CUENTA_ACTUAL)
+      cuentasin.splice(pos, 1)
+      return cuentasin
     },
     fecha () {
       var myDate = new Date()
@@ -110,7 +117,7 @@ export default {
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
+      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
         egresosCuentaActual.push(nuevoEgreso)
