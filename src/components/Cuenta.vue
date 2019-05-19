@@ -54,7 +54,13 @@ export default {
     eliminarCuenta () {
       var idCuenta = this.id
       let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
-      this.cuentas.splice(cuenta, 1)
+
+      if(cuenta.ingresos.length > 0 || cuenta.ingresos.length > 0){
+        alert("No se pueden eliminar cuentas que tengan ingresos o egresos")
+      }else{
+         this.cuentas.splice(cuenta, 1)
+     
+      }
     },
 
     seleccionarCuenta () {

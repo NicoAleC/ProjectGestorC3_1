@@ -8,7 +8,7 @@
         :key= "cuenta.id"
       ></Cuenta>
   </div>
-      <button class = "button" @click="anadirCuenta"> <span>AÑADIR CUENTA</span></button>
+      <button class = "button" @click="anadirCuenta"> <span>AÑADIR </span></button>
 </div>
 
 </template>
