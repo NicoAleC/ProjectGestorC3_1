@@ -30,7 +30,7 @@ describe('Transfer.vue', () => {
     const egresosC1Despues = cuentasStore[0].egresos
     const ingresosC2Despues = cuentasStore[1].ingresos
     const bool = !!((egresosC1Antes.length + 1 === egresosC1Despues.length) &&
-            (ingresosC2Antes.length + 1 === ingresosC2Despues.length))
+      (ingresosC2Antes.length + 1 === ingresosC2Despues.length))
     assert.equal(bool, true)
   })
 })

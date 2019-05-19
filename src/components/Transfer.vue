@@ -1,44 +1,41 @@
 <template>
-<v-layout row justify-center>
+  <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn color="primary" dark v-on="on">Transferir</v-btn>
       </template>
       <v-card>
-        <v-responsive :height = 500>
-        <v-card-title>
-          <span class="headline">Transferencia</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
+        <v-responsive :height="500">
+          <v-card-title>
+            <span class="headline">Transferencia</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
               <v-layout wrap>
-              <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="cuentas"
-                  item-text = "nombre"
-                  item-value = "id"
-                  v-model= "selectedaccount"
-                  label="Cuenta"
-                ></v-autocomplete>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-text-field label="Cantidad" required
-                  v-model= "amount"
-               >{{amount}}</v-text-field>
-              </v-flex>
-            </v-layout>
-
-          </v-container>
-          <small>Elija la cuenta a transferir y la cantidad:</small>
-          <small> {{ fecha }} </small>
-        </v-card-text>
-        <div class = "divisor"></div>
-        <v-spacer></v-spacer>
-        <v-card-actions>
+                <v-flex xs12 sm6>
+                  <v-autocomplete
+                    :items="cuentas"
+                    item-text="nombre"
+                    item-value="id"
+                    v-model="selectedaccount"
+                    label="Cuenta"
+                  ></v-autocomplete>
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <v-text-field label="Cantidad" required v-model="amount">{{amount}}</v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+            <small>Elija la cuenta a transferir y la cantidad:</small>
+            <small>{{ fecha }}</small>
+          </v-card-text>
+          <div class="divisor"></div>
           <v-spacer></v-spacer>
-          <v-btn color= #3C3C3C flat @click="dialog = false">Close</v-btn>
-          <v-btn color= #3C3C3C flat @click="saveTransfer">Transferir</v-btn>
-        </v-card-actions>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="#3C3C3C" flat @click="dialog = false">Close</v-btn>
+            <v-btn color="#3C3C3C" flat @click="saveTransfer">Transferir</v-btn>
+          </v-card-actions>
         </v-responsive>
       </v-card>
     </v-dialog>
@@ -49,7 +46,7 @@ export default {
   data: () => ({
     dialog: false,
     selectedaccount: null,
-    amount: null,
+    amount: null
   }),
   computed: {
     cuentas() {
@@ -88,29 +85,47 @@ export default {
       return ingresosTotales - egresosTotales
     },
     saveTransfer() {
-      const indexCuentaAenviar = this.cuentas.findIndex((cuenta) => cuenta.id === this.selectedaccount)
+      const indexCuentaAenviar = this.cuentas.findIndex(
+          (cuenta) => cuenta.id === this.selectedaccount
+      )
 
       // egreso a nuestra cuenta
-      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
+      const indexCuentaActual = this.cuentas.findIndex(
+          (cuenta) => cuenta.id === this.cuentaActual
+      )
       const cuentaActual = this.cuentas[indexCuentaActual]
       const egresosCuentaActual = cuentaActual.egresos
 
-      const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
-        descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
+      const nuevoEgreso = {
+        ntrans: Math.random()
+            .toString(36)
+            .substring(2, 15),
+        descripcion:
+          'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia' }
+        categoria: 'Transferencia'
+      }
 
       // ingreso a la cuentaAenviar
       const cuentaAenviar = this.cuentas[indexCuentaAenviar]
       const ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
-        descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
+      const nuevoIngreso = {
+        ntrans: Math.random()
+            .toString(36)
+            .substring(2, 15),
+        descripcion:
+          'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia' }
-      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
+        categoria: 'Transferencia'
+      }
+      if (
+        this.obtenerSaldo() - nuevoEgreso.monto < 0 ||
+        nuevoEgreso.monto < 0 ||
+        Number.isNaN(nuevoEgreso.monto)
+      ) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
         egresosCuentaActual.push(nuevoEgreso)
@@ -126,5 +141,4 @@ export default {
 .divisor {
   margin-top: 200px;
 }
-
 </style>
