@@ -92,29 +92,32 @@ export default {
 
       // egreso a nuestra cuenta
       let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
-      var cuentaActual = this.cuentas[indexCuentaActual]
-      var egresosCuentaActual = cuentaActual.egresos
+      let cuentaActual = this.cuentas[indexCuentaActual]
+      let egresosCuentaActual = cuentaActual.egresos
 
-      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      let nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
 
       // ingreso a la cuentaAenviar
-      var cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      var ingresosCuentaAenviar = cuentaAenviar.ingresos
+      let cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      let ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      let nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
+      let datosTransferencia
       if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
-        egresosCuentaActual.push(nuevoEgreso)
-        ingresosCuentaAenviar.push(nuevoIngreso)
+        datosTransferencia = {nuevoEgreso: nuevoEgreso, nuevoIngreso: nuevoIngreso,
+                              egresosCuentaActual: egresosCuentaActual,
+                              ingresosCuentaAenviar: ingresosCuentaAenviar}
+        this.$store.dispatch('registrarTransferencia',datosTransferencia)
       }
       this.close()
     }

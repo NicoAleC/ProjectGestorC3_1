@@ -35,7 +35,7 @@ export default {
     editarNombre: function () {
       var idCuenta = this.id
       if (this.nombreBoton === 'Editar') {
-        // this.$refs.accountName
+
         document.getElementById(idCuenta).disabled = false// Habilitar la edicion en el input
         this.nombreBoton = 'Guardar'// Cambiar el nombre del boton
       } else { // Guardar la edicion
@@ -43,24 +43,22 @@ export default {
         if (nombreActual === '' || this.nombreRepetido(nombreActual, idCuenta)) {
           console.log('Nombre inválido')// Mostrar ventana de error
         } else {
-          document.getElementById(this.id).disabled = true// Deshabilitar la edicion en el input
+          document.getElementById(idCuenta).disabled = true// Deshabilitar la edicion en el input
           this.nombreBoton = 'Editar'// Cambiar el nombre del boton
           let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
-          this.cuentas[indexCuenta].nombre = nombreActual
+          let datosCuenta = {indexCuenta: indexCuenta, nombreActual: nombreActual}
+          this.$store.dispatch('editarNombreCuenta',datosCuenta)
         }
       }
     },
 
     eliminarCuenta () {
-      var idCuenta = this.id
+      let idCuenta = this.id
       let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
+      let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
+      let datosCuenta = {id:idCuenta,cuenta: cuenta, index: indexCuenta}
 
-      if(cuenta.ingresos.length > 0 || cuenta.ingresos.length > 0){
-        alert("No se pueden eliminar cuentas que tengan ingresos o egresos")
-      }else{
-         this.cuentas.splice(cuenta, 1)
-     
-      }
+      this.$store.dispatch('eliminarCuenta',datosCuenta)
     },
 
     seleccionarCuenta () {
