@@ -2,7 +2,7 @@
 <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="#3C3C3C" dark v-on="on">Transferir</v-btn>
+        <v-btn outline="" color="#ffffff" v-on="on">Transferir</v-btn>
       </template>
       <v-card>
         <v-responsive :height = 500>
@@ -37,8 +37,8 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color= #3C3C3C flat @click="dialog = false">Close</v-btn>
-          <v-btn color= #3C3C3C flat @click="saveTransfer">Transferir</v-btn>
+          <v-btn outline color= #3C3C3C @click="dialog = false">Close</v-btn>
+          <v-btn outline="" color= #3C3C3C @click="saveTransfer">Transferir</v-btn>
         </v-card-actions>
         </v-responsive>
       </v-card>

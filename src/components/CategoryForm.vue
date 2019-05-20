@@ -7,7 +7,7 @@
 
       </div>
      </transition>
-      <button class="button" @click="isOpen=!isOpen">EDITAR CATEGORIAS</button>
+      <v-btn outline color="#ffffff" class="button" @click="isOpen=!isOpen">EDITAR CATEGORIAS</v-btn>
    </div>
 </template>
 

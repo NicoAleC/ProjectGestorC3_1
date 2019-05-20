@@ -9,7 +9,7 @@
       ></Category>
   </div>
 
-      <button class = "button" @click="anadirCategoria"> <span>AÑADIR CATEGORIA</span></button>
+      <button class = "button" @click="anadirCategoria"> <span>AÑADIR</span></button>
 </div>
 
 </template>
