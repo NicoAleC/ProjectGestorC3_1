@@ -57,34 +57,29 @@ export default {
           document.getElementById(this.id).disabled = true
           this.nombreBoton = 'Editar'
           let indexCategoria
+          let datosCategoria
           if (this.tipoTransaccion === 'Ingresos') {
-            indexCategoria = this.categoriaIngresos.findIndex(
-                (categoria) => categoria.id === idCategoria
-            )
-            this.categoriaIngresos[indexCategoria].nombre = nombreActual
+            indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
+            datosCategoria = {indexCategoria: indexCategoria, nombreActual: nombreActual}
+            this.$store.dispatch('editarCategoriaIngresos',datosCategoria)
           } else {
-            indexCategoria = this.categoriaEgresos.findIndex(
-                (categoria) => categoria.id === idCategoria
-            )
-            this.categoriaEgresos[indexCategoria].nombre = nombreActual
+            indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
+            datosCategoria = {indexCategoria: indexCategoria, nombreActual: nombreActual}
+            this.$store.dispatch('editarCategoriaEgresos',datosCategoria)
           }
         }
       }
     },
 
-    borrarCategoria: function() {
-      const idCategoria = this.id
-      let categoria
+    borrarCategoria: function () {
+      var idCategoria = this.id
+      let indexCategoria
       if (this.tipoTransaccion === 'Ingresos') {
-        categoria = this.categoriaIngresos.find(
-            (categoria) => categoria.id === idCategoria
-        )
-        this.categoriaIngresos.splice(categoria, 1)
+        indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
+        this.categoriaIngresos.splice(indexCategoria, 1)
       } else {
-        categoria = this.categoriaEgresos.find(
-            (categoria) => categoria.id === idCategoria
-        )
-        this.categoriaEgresos.splice(categoria, 1)
+        indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
+        this.categoriaEgresos.splice(indexCategoria, 1)
       }
     },
     nombreRepetido(nombreActual, idCategoria) {

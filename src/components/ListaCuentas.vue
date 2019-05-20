@@ -12,6 +12,9 @@
       <span>AÑADIR CUENTA</span>
     </button>
   </div>
+      <button class = "button" @click="anadirCuenta"> <span>AÑADIR </span></button>
+</div>
+
 </template>
 
 <script>

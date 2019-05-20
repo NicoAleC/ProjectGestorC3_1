@@ -42,31 +42,29 @@ export default {
     editarNombre: function() {
       const idCuenta = this.id
       if (this.nombreBoton === 'Editar') {
-        document.getElementById(idCuenta).disabled = false // Habilitar la edicion en el input
-        this.nombreBoton = 'Guardar' // Cambiar el nombre del boton
-      } else {
-        // Guardar la edicion
-        const nombreActual = document.getElementById(idCuenta).value
-        if (
-          nombreActual === '' ||
-          this.nombreRepetido(nombreActual, idCuenta)
-        ) {
-          console.log('Nombre inválido') // Mostrar ventana de error
+        document.getElementById(idCuenta).disabled = false// Habilitar la edicion en el input
+        this.nombreBoton = 'Guardar'// Cambiar el nombre del boton
+      } else { // Guardar la edicion
+        var nombreActual = document.getElementById(idCuenta).value
+        if (nombreActual === '' || this.nombreRepetido(nombreActual, idCuenta)) {
+          console.log('Nombre inválido')// Mostrar ventana de error
         } else {
-          document.getElementById(this.id).disabled = true // Deshabilitar la edicion en el input
-          this.nombreBoton = 'Editar' // Cambiar el nombre del boton
-          const indexCuenta = this.cuentas.findIndex(
-              (cuenta) => cuenta.id === idCuenta
-          )
-          this.cuentas[indexCuenta].nombre = nombreActual
+          document.getElementById(idCuenta).disabled = true// Deshabilitar la edicion en el input
+          this.nombreBoton = 'Editar'// Cambiar el nombre del boton
+          let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
+          let datosCuenta = {indexCuenta: indexCuenta, nombreActual: nombreActual}
+          this.$store.dispatch('editarNombreCuenta',datosCuenta)
         }
       }
     },
 
-    eliminarCuenta() {
-      const idCuenta = this.id
-      const cuenta = this.cuentas.find((cuenta) => cuenta.id === idCuenta)
-      this.cuentas.splice(cuenta, 1)
+    eliminarCuenta () {
+      let idCuenta = this.id
+      let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
+      let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
+      let datosCuenta = {id:idCuenta,cuenta: cuenta, index: indexCuenta}
+
+      this.$store.dispatch('eliminarCuenta',datosCuenta)
     },
 
     seleccionarCuenta() {

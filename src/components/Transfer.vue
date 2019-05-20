@@ -90,46 +90,34 @@ export default {
       )
 
       // egreso a nuestra cuenta
-      const indexCuentaActual = this.cuentas.findIndex(
-          (cuenta) => cuenta.id === this.cuentaActual
-      )
-      const cuentaActual = this.cuentas[indexCuentaActual]
-      const egresosCuentaActual = cuentaActual.egresos
+      let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
+      let cuentaActual = this.cuentas[indexCuentaActual]
+      let egresosCuentaActual = cuentaActual.egresos
 
-      const nuevoEgreso = {
-        ntrans: Math.random()
-            .toString(36)
-            .substring(2, 15),
-        descripcion:
-          'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
+      let nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia'
       }
 
       // ingreso a la cuentaAenviar
-      const cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      const ingresosCuentaAenviar = cuentaAenviar.ingresos
+      let cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      let ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      const nuevoIngreso = {
-        ntrans: Math.random()
-            .toString(36)
-            .substring(2, 15),
-        descripcion:
-          'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
+      let nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia'
-      }
-      if (
-        this.obtenerSaldo() - nuevoEgreso.monto < 0 ||
-        nuevoEgreso.monto < 0 ||
-        Number.isNaN(nuevoEgreso.monto)
-      ) {
+        categoria: 'Transferencia' }
+      let datosTransferencia
+      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
-        egresosCuentaActual.push(nuevoEgreso)
-        ingresosCuentaAenviar.push(nuevoIngreso)
+        datosTransferencia = {nuevoEgreso: nuevoEgreso, nuevoIngreso: nuevoIngreso,
+                              egresosCuentaActual: egresosCuentaActual,
+                              ingresosCuentaAenviar: ingresosCuentaAenviar}
+        this.$store.dispatch('registrarTransferencia',datosTransferencia)
       }
       this.close()
     }

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
     CUENTAS: [
       { id: 11,
@@ -41,6 +43,27 @@ export default new Vuex.Store({
     },
     cambiarTransaccion(context, transaccion) {
       context.TIPO_TRANSACCION = transaccion
+    },
+    eliminarCuenta(context,datosCuenta){
+
+      if(datosCuenta.cuenta.ingresos.length > 0 || datosCuenta.cuenta.egresos.length > 0){
+        alert("No se pueden eliminar cuentas que tengan ingresos o egresos")
+      }else{
+         context.CUENTAS.splice(datosCuenta.index, 1)
+      }
+    },
+    editarNombreCuenta(context,datosCuenta){
+      context.CUENTAS[datosCuenta.indexCuenta].nombre = datosCuenta.nombreActual
+    },
+    editarCategoriaIngresos(context,datosCategoria){
+    context.CATEGORIAS_INGRESOS[datosCategoria.indexCategoria].nombre = datosCategoria.nombreActual
+    },
+    editarCategoriaEgresos(context,datosCategoria){
+    context.CATEGORIAS_EGRESOS[datosCategoria.indexCategoria].nombre = datosCategoria.nombreActual
+    },
+    registrarTransferencia(context,datosTransferencia){
+      datosTransferencia.egresosCuentaActual.push(datosTransferencia.nuevoEgreso)
+      datosTransferencia.ingresosCuentaAenviar.push(datosTransferencia.nuevoIngreso)
     }
   },
   actions: {
@@ -58,6 +81,23 @@ export default new Vuex.Store({
     },
     cambiarTransaccion(context, transaccion) {
       context.commit('cambiarTransaccion', transaccion)
+    },
+    eliminarCuenta(context,datosCuenta){
+      context.commit('eliminarCuenta',datosCuenta)
+    },
+    editarNombreCuenta(context,indexCuenta){
+      context.commit('editarNombreCuenta',indexCuenta)
+    },
+    editarCategoriaIngresos(context,datosCategoria){
+      context.commit('editarCategoriaIngresos',datosCategoria)
+    },
+    editarCategoriaEgresos(context,datosCategoria){
+      context.commit('editarCategoriaEgresos',datosCategoria)
+    },
+    registrarTransferencia(context,datosTransferencia){
+      context.commit('registrarTransferencia',datosTransferencia)
     }
-  }
+  },
+  plugins: [(new VuexPersistence({key: 'gestor',
+                                  storage: window.localStorage})).plugin]
 })
