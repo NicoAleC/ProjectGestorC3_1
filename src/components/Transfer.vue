@@ -94,38 +94,27 @@ export default {
       })
       return ingresosTotales - egresosTotales
     },
-    definirEgreso() {
-      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
-      const cuentaActual = this.cuentas[indexCuentaActual]
-      const egresosCuentaActual = cuentaActual.egresos
-
-      const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+    saveTransfer() {
+      let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
+      
+      // egreso a nuestra cuenta
+      let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
+      var cuentaActual = this.cuentas[indexCuentaActual]
+      var egresosCuentaActual = cuentaActual.egresos
+      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia'
-      }
-      return nuevoEgreso
-    },
-    definirIngreso() {
-      const cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      const ingresosCuentaAenviar = cuentaAenviar.ingresos
+        categoria: 'Transferencia' }
 
-      const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      // ingreso a la cuentaAenviar
+      var cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      var ingresosCuentaAenviar = cuentaAenviar.ingresos
+      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      return nuevoIngreso
-    },
-    saveTransfer() {
-      const indexCuentaAenviar = this.cuentas.findIndex(
-          (cuenta) => cuenta.id === this.selectedaccount
-      )
-
-      const nuevoEgreso = this.definirEgreso()
-
-      const nuevoIngreso = this.definirIngreso()
 
       if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
