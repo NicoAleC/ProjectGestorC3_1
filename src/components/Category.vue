@@ -59,26 +59,26 @@ export default {
           let indexCategoria
           let datosCategoria
           if (this.tipoTransaccion === 'Ingresos') {
-            indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
-            datosCategoria = {indexCategoria: indexCategoria, nombreActual: nombreActual}
-            this.$store.dispatch('editarCategoriaIngresos',datosCategoria)
+            indexCategoria = this.categoriaIngresos.findIndex((categoria) => categoria.id === idCategoria)
+            datosCategoria = { indexCategoria: indexCategoria, nombreActual: nombreActual }
+            this.$store.dispatch('editarCategoriaIngresos', datosCategoria)
           } else {
-            indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
-            datosCategoria = {indexCategoria: indexCategoria, nombreActual: nombreActual}
-            this.$store.dispatch('editarCategoriaEgresos',datosCategoria)
+            indexCategoria = this.categoriaEgresos.findIndex((categoria) => categoria.id === idCategoria)
+            datosCategoria = { indexCategoria: indexCategoria, nombreActual: nombreActual }
+            this.$store.dispatch('editarCategoriaEgresos', datosCategoria)
           }
         }
       }
     },
 
-    borrarCategoria: function () {
-      var idCategoria = this.id
+    borrarCategoria: function() {
+      const idCategoria = this.id
       let indexCategoria
       if (this.tipoTransaccion === 'Ingresos') {
-        indexCategoria = this.categoriaIngresos.findIndex(categoria => categoria.id === idCategoria)
+        indexCategoria = this.categoriaIngresos.findIndex((categoria) => categoria.id === idCategoria)
         this.categoriaIngresos.splice(indexCategoria, 1)
       } else {
-        indexCategoria = this.categoriaEgresos.findIndex(categoria => categoria.id === idCategoria)
+        indexCategoria = this.categoriaEgresos.findIndex((categoria) => categoria.id === idCategoria)
         this.categoriaEgresos.splice(indexCategoria, 1)
       }
     },

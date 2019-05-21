@@ -59,18 +59,18 @@ export default {
     cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
-    sinactual () {
-      var cuentasin = JSON.parse(JSON.stringify(this.$store.state.CUENTAS))
-      var pos = cuentasin.map(function (e) { return e.id }).indexOf(this.$store.state.CUENTA_ACTUAL)
+    sinactual() {
+      const cuentasin = JSON.parse(JSON.stringify(this.$store.state.CUENTAS))
+      const pos = cuentasin.map(function(e) {return e.id}).indexOf(this.$store.state.CUENTA_ACTUAL)
       cuentasin.splice(pos, 1)
       return cuentasin
     },
-    fecha () {
-      var myDate = new Date()
-      var month = ('0' + (myDate.getMonth() + 1)).slice(-2)
-      var date = ('0' + myDate.getDate()).slice(-2)
-      var year = myDate.getFullYear()
-      var formattedDate = year + '/' + month + '/' + date
+    fecha() {
+      const myDate = new Date()
+      const month = ('0' + (myDate.getMonth() + 1)).slice(-2)
+      const date = ('0' + myDate.getDate()).slice(-2)
+      const year = myDate.getFullYear()
+      const formattedDate = year + '/' + month + '/' + date
       return formattedDate
     }
   },
@@ -95,11 +95,11 @@ export default {
       return ingresosTotales - egresosTotales
     },
     definirEgreso() {
-      let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
-      let cuentaActual = this.cuentas[indexCuentaActual]
-      let egresosCuentaActual = cuentaActual.egresos
+      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
+      const cuentaActual = this.cuentas[indexCuentaActual]
+      const egresosCuentaActual = cuentaActual.egresos
 
-      let nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
@@ -108,10 +108,10 @@ export default {
       return nuevoEgreso
     },
     definirIngreso() {
-      let cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      let ingresosCuentaAenviar = cuentaAenviar.ingresos
+      const cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      const ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      let nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
@@ -123,17 +123,18 @@ export default {
           (cuenta) => cuenta.id === this.selectedaccount
       )
 
-      let nuevoEgreso = this.definirEgreso()
+      const nuevoEgreso = this.definirEgreso()
 
-      let nuevoIngreso = this.definirIngreso()
+      const nuevoIngreso = this.definirIngreso()
 
       if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
-        datosTransferencia = {nuevoEgreso: nuevoEgreso, nuevoIngreso: nuevoIngreso,
-                              egresosCuentaActual: egresosCuentaActual,
-                              ingresosCuentaAenviar: ingresosCuentaAenviar}
-        this.$store.dispatch('registrarTransferencia',datosTransferencia)
+        datosTransferencia = { nuevoEgreso: nuevoEgreso,
+          nuevoIngreso: nuevoIngreso,
+          egresosCuentaActual: egresosCuentaActual,
+          ingresosCuentaAenviar: ingresosCuentaAenviar }
+        this.$store.dispatch('registrarTransferencia', datosTransferencia)
       }
       this.close()
     }

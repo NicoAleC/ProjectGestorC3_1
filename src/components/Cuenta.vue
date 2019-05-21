@@ -45,26 +45,26 @@ export default {
         document.getElementById(idCuenta).disabled = false// Habilitar la edicion en el input
         this.nombreBoton = 'Guardar'// Cambiar el nombre del boton
       } else { // Guardar la edicion
-        var nombreActual = document.getElementById(idCuenta).value
+        const nombreActual = document.getElementById(idCuenta).value
         if (nombreActual === '' || this.nombreRepetido(nombreActual, idCuenta)) {
           console.log('Nombre inválido')// Mostrar ventana de error
         } else {
           document.getElementById(idCuenta).disabled = true// Deshabilitar la edicion en el input
           this.nombreBoton = 'Editar'// Cambiar el nombre del boton
-          let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
-          let datosCuenta = {indexCuenta: indexCuenta, nombreActual: nombreActual}
-          this.$store.dispatch('editarNombreCuenta',datosCuenta)
+          const indexCuenta = this.cuentas.findIndex((cuenta) => cuenta.id === idCuenta)
+          const datosCuenta = { indexCuenta: indexCuenta, nombreActual: nombreActual }
+          this.$store.dispatch('editarNombreCuenta', datosCuenta)
         }
       }
     },
 
-    eliminarCuenta () {
-      let idCuenta = this.id
-      let cuenta = this.cuentas.find(cuenta => cuenta.id === idCuenta)
-      let indexCuenta = this.cuentas.findIndex(cuenta => cuenta.id === idCuenta)
-      let datosCuenta = {id:idCuenta,cuenta: cuenta, index: indexCuenta}
+    eliminarCuenta() {
+      const idCuenta = this.id
+      const cuenta = this.cuentas.find((cuenta) => cuenta.id === idCuenta)
+      const indexCuenta = this.cuentas.findIndex((cuenta) => cuenta.id === idCuenta)
+      const datosCuenta = { id: idCuenta, cuenta: cuenta, index: indexCuenta }
 
-      this.$store.dispatch('eliminarCuenta',datosCuenta)
+      this.$store.dispatch('eliminarCuenta', datosCuenta)
     },
 
     seleccionarCuenta() {

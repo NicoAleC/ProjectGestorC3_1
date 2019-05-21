@@ -6,10 +6,10 @@
 
 <script>
 export default {
-    name: 'reporte',
-    components: {
-        
-    }
+  name: 'reporte',
+  components: {
+
+  }
 }
 </script>
 

@@ -8,17 +8,15 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-suite('Cuenta', function(){
-
-
-test('Objeto cuentas debería mantenerse igual después de intentar eliminar cuenta con ingresos o egresos',
-  function(){
-    let store = StoreUtil.getDefaultStore()
-    let wrapper  = shallowMount(ListaCuentas,{store})
-    let cuentas = wrapper.findAll(Cuenta)
-    let cuentasAntes = JSON.parse(JSON.stringify(cuentas))
-    cuentas.at(0).vm.eliminarCuenta()  
-    assert.equal(cuentasAntes,cuentas)
-  })
+suite('Cuenta', function() {
+  test('Objeto cuentas debería mantenerse igual después de intentar eliminar cuenta con ingresos o egresos',
+      function() {
+        const store = StoreUtil.getDefaultStore()
+        const wrapper = shallowMount(ListaCuentas, { store })
+        const cuentas = wrapper.findAll(Cuenta)
+        const cuentasAntes = JSON.parse(JSON.stringify(cuentas))
+        cuentas.at(0).vm.eliminarCuenta()
+        assert.equal(cuentasAntes, cuentas)
+      })
 })
 

@@ -45,9 +45,8 @@ export default {
           context.TIPO_TRANSACCION = transaccion
         },
         eliminarCuenta(context, datosCuenta) {
-    
           if (datosCuenta.cuenta.ingresos.length > 0 || datosCuenta.cuenta.egresos.length > 0) {
-            alert("No se pueden eliminar cuentas que tengan ingresos o egresos")
+            alert('No se pueden eliminar cuentas que tengan ingresos o egresos')
           } else {
             context.CUENTAS.splice(datosCuenta.index, 1)
           }
@@ -66,30 +65,30 @@ export default {
           datosTransferencia.ingresosCuentaAenviar.push(datosTransferencia.nuevoIngreso)
         },
         modificarItem(context, datosItem) {
-          let index = context.CUENTAS.findIndex(cuenta => cuenta.id === context.CUENTA_ACTUAL)
+          const index = context.CUENTAS.findIndex((cuenta) => cuenta.id === context.CUENTA_ACTUAL)
           if (context.TIPO_TRANSACCION === 'Ingresos') {
             Object.assign(
-              context.CUENTAS[index].ingresos[datosItem[0]],
-              datosItem[1]
+                context.CUENTAS[index].ingresos[datosItem[0]],
+                datosItem[1]
             )
           } else {
             Object.assign(
-              context.CUENTAS[index].egresos[datosItem[0]],
-              datosItem[1]
+                context.CUENTAS[index].egresos[datosItem[0]],
+                datosItem[1]
             )
           }
         },
         guardarItem(context, datosItem) {
-          let index = context.CUENTAS.findIndex(cuenta => cuenta.id === context.CUENTA_ACTUAL)
-          if(context.TIPO_TRANSACCION === 'Ingresos'){
+          const index = context.CUENTAS.findIndex((cuenta) => cuenta.id === context.CUENTA_ACTUAL)
+          if (context.TIPO_TRANSACCION === 'Ingresos') {
             context.CUENTAS[index].ingresos.push(datosItem)
           } else {
             context.CUENTAS[index].egresos.push(datosItem)
           }
         },
-        eliminarItem(context, datosItem){
-          let index = context.CUENTAS.findIndex(cuenta => cuenta.id === context.CUENTA_ACTUAL)
-          if(context.TIPO_TRANSACCION === 'Ingresos'){
+        eliminarItem(context, datosItem) {
+          const index = context.CUENTAS.findIndex((cuenta) => cuenta.id === context.CUENTA_ACTUAL)
+          if (context.TIPO_TRANSACCION === 'Ingresos') {
             context.CUENTAS[index].ingresos.splice(datosItem, 1)
           } else {
             context.CUENTAS[index].egresos.splice(datosItem, 1)
@@ -133,7 +132,7 @@ export default {
         guardarItem(context, datosItem) {
           context.commit('guardarItem', datosItem)
         },
-        eliminarItem(context, datosItem){
+        eliminarItem(context, datosItem) {
           context.commit('eliminarItem', datosItem)
         }
       },

@@ -171,7 +171,7 @@ export default {
       )
       confirm('¿Seguro que quiere borrar este item?') &&
         this.$store.dispatch('eliminarItem', indexTrans)
-        //trans.splice(indexTrans, 1)
+        // trans.splice(indexTrans, 1)
     },
     cerrar() {
       this.dialog = false
@@ -221,7 +221,7 @@ export default {
       const condicion = this.validarItem()
       if (condicion) {
         if (this.indexEditado > -1) {
-          var datosItem = [this.indexEditado, this.itemEditado]
+          const datosItem = [this.indexEditado, this.itemEditado]
           this.$store.dispatch('modificarItem', datosItem)
         } else {
           this.$store.dispatch('guardarItem', this.itemEditado)
