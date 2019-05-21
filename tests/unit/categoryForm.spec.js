@@ -5,7 +5,7 @@ import CategoryForm from '@/components/CategoryForm.vue'
 describe('CategoryForm.vue', () => {
   const msg = 'new message'
   let wrapper
-  beforeEach(function () {
+  beforeEach(function() {
     wrapper = shallowMount(CategoryForm, {
       propsData: { msg }
     })

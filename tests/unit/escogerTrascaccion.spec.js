@@ -10,16 +10,16 @@ describe('EscogerTransaccion.vue', () => {
   let wrapper
   let store
 
-  before(function () {
+  before(function() {
 
   })
 
-  beforeEach(function () {
+  beforeEach(function() {
     store = StoreUtil.getDefaultStore()
     wrapper = shallowMount(EscogerTransaccion,
-      {
-        store
-      })
+        {
+          store
+        })
   })
 
   it('cambio de estado a Ingresos', () => {
@@ -32,7 +32,7 @@ describe('EscogerTransaccion.vue', () => {
     expect(wrapper.vm.tipoTransaccion).to.equals('Egresos')
   })
 
-  afterEach(function () {
+  afterEach(function() {
 
   })
 })

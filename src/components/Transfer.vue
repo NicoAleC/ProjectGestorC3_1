@@ -1,16 +1,16 @@
 <template>
-<v-layout row justify-center>
+  <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn outline="" color="#ffffff" v-on="on">Transferir</v-btn>
       </template>
       <v-card>
-        <v-responsive :height = 500>
-        <v-card-title>
-          <span class="headline">Transferencia</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
+        <v-responsive :height="500">
+          <v-card-title>
+            <span class="headline">Transferencia</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
               <v-layout wrap>
               <v-flex xs12 sm6>
                 <v-select
@@ -50,13 +50,13 @@ export default {
   data: () => ({
     dialog: false,
     selectedaccount: null,
-    amount: null,
+    amount: null
   }),
   computed: {
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
     sinactual () {
@@ -75,53 +75,65 @@ export default {
     }
   },
   methods: {
-    close () {
+    close() {
       this.dialog = false
     },
-    obtenerSaldo () {
-      let idCuentaActual = this.cuentaActual
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      let listaIngresos = cuenta1.ingresos
-      let listaEgresos = cuenta1.egresos
+    obtenerSaldo() {
+      const idCuentaActual = this.cuentaActual
+      const cuenta1 = this.cuentas.find((cuenta) => cuenta.id === idCuentaActual)
+      const listaIngresos = cuenta1.ingresos
+      const listaEgresos = cuenta1.egresos
       let ingresosTotales = 0
       let egresosTotales = 0
 
-      listaIngresos.forEach(transaccion => {
+      listaIngresos.forEach((transaccion) => {
         ingresosTotales += transaccion.monto
       })
-      listaEgresos.forEach(transaccion => {
+      listaEgresos.forEach((transaccion) => {
         egresosTotales += transaccion.monto
       })
       return ingresosTotales - egresosTotales
     },
-    saveTransfer () {
-      let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
-
-      // egreso a nuestra cuenta
+    definirEgreso() {
       let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
-      var cuentaActual = this.cuentas[indexCuentaActual]
-      var egresosCuentaActual = cuentaActual.egresos
+      let cuentaActual = this.cuentas[indexCuentaActual]
+      let egresosCuentaActual = cuentaActual.egresos
 
-      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      let nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia' }
+        categoria: 'Transferencia'
+      }
+      return nuevoEgreso
+    },
+    definirIngreso() {
+      let cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      let ingresosCuentaAenviar = cuentaAenviar.ingresos
 
-      // ingreso a la cuentaAenviar
-      var cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      var ingresosCuentaAenviar = cuentaAenviar.ingresos
-
-      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+      let nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
+      return nuevoIngreso
+    },
+    saveTransfer() {
+      const indexCuentaAenviar = this.cuentas.findIndex(
+          (cuenta) => cuenta.id === this.selectedaccount
+      )
+
+      let nuevoEgreso = this.definirEgreso()
+
+      let nuevoIngreso = this.definirIngreso()
+
       if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
-        egresosCuentaActual.push(nuevoEgreso)
-        ingresosCuentaAenviar.push(nuevoIngreso)
+        datosTransferencia = {nuevoEgreso: nuevoEgreso, nuevoIngreso: nuevoIngreso,
+                              egresosCuentaActual: egresosCuentaActual,
+                              ingresosCuentaAenviar: ingresosCuentaAenviar}
+        this.$store.dispatch('registrarTransferencia',datosTransferencia)
       }
       this.close()
     }
@@ -133,5 +145,4 @@ export default {
 .divisor {
   margin-top: 200px;
 }
-
 </style>

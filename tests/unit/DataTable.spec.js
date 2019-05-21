@@ -10,16 +10,16 @@ describe('DataTable.vue', () => {
   let wrapper
   let store
 
-  before(function () {
+  before(function() {
 
   })
 
-  beforeEach(function () {
+  beforeEach(function() {
     store = StoreUtil.getDefaultStore()
     wrapper = shallowMount(DataTable,
-      {
-        store
-      })
+        {
+          store
+        })
   })
 
   it('detectada lista de egresos', () => {
@@ -44,7 +44,7 @@ describe('DataTable.vue', () => {
     expect(wrapper.vm.escogerTransaccion()[1].monto).to.equals(20)
   })
 
-  afterEach(function () {
+  afterEach(function() {
 
   })
 })
