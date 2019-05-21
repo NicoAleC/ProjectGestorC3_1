@@ -170,7 +170,8 @@ export default {
           (transaccion) => transaccion.ntrans === idTrans
       )
       confirm('¿Seguro que quiere borrar este item?') &&
-        trans.splice(indexTrans, 1)
+        this.$store.dispatch('eliminarItem', indexTrans)
+        //trans.splice(indexTrans, 1)
     },
     cerrar() {
       this.dialog = false
@@ -186,6 +187,7 @@ export default {
       this.itemEditado.categoria = this.itemEditado.categoria.toString()
       console.log(this.itemEditado.categoria)
       let indexTrans = -1
+
       do {
         this.itemEditado.ntrans = Math.round(
             Math.random() * (999999 - 100000) + 100000
@@ -194,14 +196,12 @@ export default {
             (transaccion) => transaccion.ntrans === this.itemEditado.ntrans
         )
       } while (indexTrans > 0)
+
       let condicion = true
-      if (this.itemEditado.monto < 1) {
+      if (this.itemEditado.monto <= 0) {
         condicion = false
-        alert('El monto ingresado no puede ser menor a 1')
-      } else if (
-        this.itemEditado.fecha === '' ||
-        this.itemEditado.fecha === ''
-      ) {
+        alert('El monto ingresado no puede ser menor o igual a 0')
+      } else if (this.itemEditado.fecha === '') {
         condicion = false
         alert('La fecha no puede estar vacía')
       } else if (this.itemEditado.categoria.length === 0) {
@@ -209,7 +209,7 @@ export default {
         alert('La categoría no puede estar vacía')
       } else if (
         this.itemEditado.monto > this.obtenerSaldo() &&
-        this.tipoTransaccion === 'Egregsos'
+        this.tipoTransaccion === 'Egresos'
       ) {
         condicion = false
         alert('¡No tiene suficiente saldo para realizar este gasto!')
@@ -218,15 +218,13 @@ export default {
     },
 
     salvar() {
-      const condicion = validarItem()
+      const condicion = this.validarItem()
       if (condicion) {
         if (this.indexEditado > -1) {
-          Object.assign(
-              this.escogerTransaccion()[this.indexEditado],
-              this.itemEditado
-          )
+          var datosItem = [this.indexEditado, this.itemEditado]
+          this.$store.dispatch('modificarItem', datosItem)
         } else {
-          this.escogerTransaccion().push(this.itemEditado)
+          this.$store.dispatch('guardarItem', this.itemEditado)
         }
         this.cerrar()
       }

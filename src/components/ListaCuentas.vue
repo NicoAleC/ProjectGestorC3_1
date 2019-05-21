@@ -9,12 +9,9 @@
       ></Cuenta>
     </div>
     <button class="button" @click="anadirCuenta">
-      <span>AÑADIR CUENTA</span>
+      <span>AÑADIR</span>
     </button>
   </div>
-      <button class = "button" @click="anadirCuenta"> <span>AÑADIR </span></button>
-</div>
-
 </template>
 
 <script>
