@@ -7,6 +7,8 @@
               {{ item.ntrans }}
               {{ item.descripcion }}
               {{ item.monto }}
+              {{ item.fecha }}
+              {{ item.categoria }}
             </li>
             </ul>
         </div>
