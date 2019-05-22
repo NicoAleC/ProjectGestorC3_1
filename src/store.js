@@ -59,5 +59,10 @@ export default new Vuex.Store({
     cambiarTransaccion(context, transaccion) {
       context.commit('cambiarTransaccion', transaccion)
     }
+  },
+  getters: {
+    obtenerCuentas(state){
+      return state.CUENTAS
+    }
   }
 })
