@@ -2,7 +2,13 @@
     <div>
         <h1>Esta es la vista de reporte</h1>
         <div>
-          <h2>hola</h2>
+          <ul id="example-1">
+            <li v-bind:key="item" v-for="item in ingresosEgresos">
+              {{ item.ntrans }}
+              {{ item.descripcion }}
+              {{ item.monto }}
+            </li>
+            </ul>
         </div>
     </div>
 </template>
