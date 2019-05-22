@@ -33,9 +33,9 @@ export default {
       return this.$store.state.CUENTAS.filter(cuenta => cuenta.id === this.cuentaActual)[0].egresos
     },
     ingresosEgresos(){
-      var merged = [].concat.apply([], this.ingresosCuentaActual)
-      var merged = merged.concat.apply(merged,this.egresosCuentaActual)
-      return merged
+      var listaUnica = [].concat.apply([], this.ingresosCuentaActual)
+      var listaUnica = listaUnica.concat.apply(listaUnica,this.egresosCuentaActual)
+      return listaUnica
     }
   },
   methods:
