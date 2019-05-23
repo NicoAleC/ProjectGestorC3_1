@@ -1,5 +1,5 @@
 <template>
-  <div class="cuenta">
+  <div class="cuenta" :id="nombre">
     <form class="form" action>
       <input
         class="input"

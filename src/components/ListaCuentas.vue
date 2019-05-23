@@ -8,7 +8,7 @@
         :key="cuenta.id"
       ></Cuenta>
     </div>
-    <button class="button" @click="anadirCuenta">
+    <button class="button" @click="anadirCuenta" id="CrearCuenta">
       <span>AÑADIR</span>
     </button>
   </div>
@@ -36,7 +36,7 @@ export default {
           .substring(2, 15)
       const nuevaCuenta = {
         id: codigo,
-        nombre: 'Cuenta ' + codigo,
+        nombre: 'Cuenta',
         ingresos: [],
         egresos: []
       }
