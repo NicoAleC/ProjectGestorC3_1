@@ -61,7 +61,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    obtenerCuentas(state){
+    obtenerCuentas(state) {
       return state.CUENTAS
     }
   }

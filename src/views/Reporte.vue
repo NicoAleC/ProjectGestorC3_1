@@ -13,9 +13,9 @@
           </ul>
         </div>
         <div>
-        <select @change="printSelectedCategory()" v-model="selectedCategory">
+        <select @change="categoriaASeleccionar()" v-model="selectedCategory">
             <option value="" selected disabled hidden>Elija la Categoria</option>
-            <option :key="index" v-bind:value="categoria.nombre" 
+            <option :key="index" v-bind:value="categoria.nombre"
             v-for="(categoria, index) in todasLasCategorias">{{categoria.nombre}}</option>
           </select>
         </div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { throws } from 'assert';
+import { throws } from 'assert'
 export default {
   name: 'reporte',
   components: {
@@ -35,56 +35,55 @@ export default {
       selectedCategory: '',
       nuevaList: []
     }
-    
   },
   mounted() {
-    var listaUnica = [].concat.apply([], this.ingresosCuentaActual)
-    var listaUnica = listaUnica.concat.apply(listaUnica,this.egresosCuentaActual)
+    var listaUnica = [].concat([], this.ingresosCuentaActual)
+    listaUnica = listaUnica.concat(listaUnica, this.egresosCuentaActual)
     this.nuevaList = listaUnica
   },
-  computed:{
-    cuentaActual(){
+  computed: {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
-    ingresosCuentaActual(){
-      return this.$store.state.CUENTAS.filter(cuenta => cuenta.id === this.cuentaActual)[0].ingresos
+    ingresosCuentaActual() {
+      return this.$store.state.CUENTAS.filter((cuenta) => cuenta.id === this.cuentaActual)[0].ingresos
     },
-    egresosCuentaActual(){
-      return this.$store.state.CUENTAS.filter(cuenta => cuenta.id === this.cuentaActual)[0].egresos
+    egresosCuentaActual() {
+      return this.$store.state.CUENTAS.filter((cuenta) => cuenta.id === this.cuentaActual)[0].egresos
     },
-    ingresosEgresos(){
-      var listaUnica = [].concat.apply([], this.ingresosCuentaActual)
-      var listaUnica = listaUnica.concat.apply(listaUnica,this.egresosCuentaActual)
+    ingresosEgresos() {
+      var listaUnica = [].concat([], this.ingresosCuentaActual)
+      listaUnica = listaUnica.concat(listaUnica, this.egresosCuentaActual)
       return listaUnica
     },
-    categoriasIngresos(){
+    categoriasIngresos() {
       return this.$store.state.CATEGORIAS_INGRESOS
     },
-    categoriasEgresos(){
+    categoriasEgresos() {
       return this.$store.state.CATEGORIAS_EGRESOS
     },
-    todasLasCategorias(){
-      var listaCategorias = [].concat.apply([],[this.categoriasIngresos])
-      var listaCategorias = listaCategorias.concat.apply(listaCategorias,[this.categoriasEgresos])
+    todasLasCategorias() {
+      let listaCategorias = [].concat([], [this.categoriasIngresos])
+      listaCategorias = listaCategorias.concat(listaCategorias, [this.categoriasEgresos])
       return listaCategorias
     }
   },
   methods:
   {
-    cadenaAFecha(fecha){
-      var tipoFecha= new Date(fecha)
+    cadenaAFecha(fecha) {
+      const tipoFecha = new Date(fecha)
       return tipoFecha
     },
-    printSelectedCategory() {
+    categoriaASeleccionar() {
       this.nuevaList = []
-      var index
-      var listaPorCategoria = []
-      for (index = 0; index < this.ingresosEgresos.length; index++){
-        if(this.ingresosEgresos[index].categoria === this.selectedCategory){
+      let index
+      const listaPorCategoria = []
+      for (index = 0; index < this.ingresosEgresos.length; index++) {
+        if (this.ingresosEgresos[index].categoria === this.selectedCategory) {
           listaPorCategoria.push(this.ingresosEgresos[index])
         }
       }
-      this.nuevaList=listaPorCategoria
+      this.nuevaList = listaPorCategoria
     }
   }
 }
