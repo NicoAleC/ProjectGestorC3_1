@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import ListaCuentas from '@/components/Lista.vue'
 import Cuenta from '@/components/Cuenta.vue'
 import StoreUtil from './StoreUtil.js'

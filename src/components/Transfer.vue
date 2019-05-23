@@ -110,7 +110,6 @@ export default {
     },
     ingresoDef() {
       const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
-      const cuentaActual = this.cuentas[indexCuentaActual]
       const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),

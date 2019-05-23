@@ -7,22 +7,13 @@ module.exports = {
     const categoria = 'Otros'
     const descripcion = 'Prueba_E2E'
     const fechaEntrada = '22/10/2009'
-    const fechaSalida = '2009/10/22'
     const monto = '47'
     const montoTrans = '32'
-    browser/*
-        .url(process.env.VUE_DEV_SERVER_URL)
-        .waitForElementVisible('#app', 5000)
-        .assert.elementPresent('.hello')
-        .assert.containsText('h1', 'Welcome to Your Vue.js App')
-        .assert.elementCount('img', 1)
-        .end()*/
+    browser
         .url('http://localhost:8080')
         .pause(3000)
         .click('#CrearCuenta')
-        // .pause(3000)
         .waitForElementVisible('#Cuenta', 3000)
-        // .assert.elementPresent('#Cuenta')
         .click('#Cuenta .input')
         .pause(3000)
         .clearValue('#Cuenta .input')
@@ -54,13 +45,7 @@ module.exports = {
         .click('#popup' + nombre + ' #Salvar')
         .waitForElementVisible('#TablaIngresos' + nombre, 3000)
         .waitForElementVisible('#TablaIngresos' + nombre + ' #' + categoria, 3000)
-        // .assert.elementPresent('#Tabla' + nombre + ' #' + categoria)
         .waitForElementVisible('#TablaIngresos' + nombre + ' #' + descripcion, 3000)
-        // .assert.elementPresent('#Tabla' + nombre + ' #' + descripcion)
-        // .waitForElementVisible('#Tabla' + nombre + ' #' + parseFloat(monto), 3000)
-        // .assert.elementPresent('#Tabla' + nombre + ' #' + monto)
-        // .waitForElementVisible('#Tabla' + nombre + ' #' + fechaSalida, 3000)
-        // .assert.elementPresent('#Tabla' + nombre + ' #' + fechaSalida)
         .click('#Transferir')
         .waitForElementVisible('#popupTransferir', 3000)
         .clearValue('#popupTransferir #Cuenta')
