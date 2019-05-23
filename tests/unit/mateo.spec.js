@@ -53,6 +53,28 @@ describe('CategoryList.vue', () => {
 
 describe('ListaCuentas.vue', () => {
   const store = StoreUtil.getDefaultStore()
+  it('Se crean cuentas correctamente', () => {
+    const wrapper = mount(ListaCuentas, {
+      store
+    })
+    const cuentaNueva1 = { id: 1000, nombre: 'Prueba 1', ingresos: [], egresos: [] }
+    const cuentaNueva2 = { id: 1001, nombre: 'Prueba 2', ingresos: [], egresos: [] }
+    const cuentaNueva3 = { id: 1002, nombre: 'Prueba 3', ingresos: [], egresos: [] }
+
+    wrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva1)
+    wrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva2)
+    wrapper.vm.$store.dispatch('anadirCuenta', cuentaNueva3)
+
+    const cuentas = wrapper.findAll(Cuenta)
+    const largoAntes = cuentas.length
+    assert.equal(largoAntes, 4,'pasa valores incorrectos')
+
+    
+  })
+})
+
+describe('ListaCuentas.vue', () => {
+  const store = StoreUtil.getDefaultStore()
   it('Se elimina una cuenta correctamente', () => {
     const wrapper = mount(ListaCuentas, {
       store
@@ -71,6 +93,7 @@ describe('ListaCuentas.vue', () => {
     cuentas.at(0).vm.eliminarCuenta()
     const cuentasDespues = wrapper.findAll(Cuenta)
     const largoDespues = cuentasDespues.length
-    assert.equal(largoAntes, largoDespues + 1)
+    assert.equal(largoAntes, largoDespues + 1,'valores cuentas no iguales')
   })
 })
+
