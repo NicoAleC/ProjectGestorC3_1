@@ -1,29 +1,32 @@
 <template>
-<v-layout row justify-center>
+  <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Transferir</v-btn>
+        <v-btn outline="" color="#ffffff" v-on="on" id="Transferir">Transferir</v-btn>
       </template>
-      <v-card>
-        <v-responsive :height = 500>
-        <v-card-title>
-          <span class="headline">Transferencia</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
+      <v-card id="popupTransferir">
+        <v-responsive :height="500">
+          <v-card-title>
+            <span class="headline">Transferencia</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
               <v-layout wrap>
               <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="cuentas"
+                <v-select
+                  :items="sinactual"
                   item-text = "nombre"
                   item-value = "id"
                   v-model= "selectedaccount"
                   label="Cuenta"
-                ></v-autocomplete>
+                  id="Cuenta"
+                ></v-select>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field label="Cantidad" required
+                <v-text-field label="Monto" required
                   v-model= "amount"
+                  type="number"
+                  id="Monto"
                >{{amount}}</v-text-field>
               </v-flex>
             </v-layout>
@@ -36,8 +39,8 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color= #3C3C3C flat @click="dialog = false">Close</v-btn>
-          <v-btn color= #3C3C3C flat @click="saveTransfer">Transferir</v-btn>
+          <v-btn outline color= #3C3C3C @click="dialog = false" id="Cerrar">Cerrar</v-btn>
+          <v-btn outline="" color= #3C3C3C @click="saveTransfer" id="Transferir">Transferir</v-btn>
         </v-card-actions>
         </v-responsive>
       </v-card>
@@ -49,72 +52,94 @@ export default {
   data: () => ({
     dialog: false,
     selectedaccount: null,
-    amount: null,
+    amount: null
   }),
   computed: {
-    cuentas () {
+    cuentas() {
       return this.$store.state.CUENTAS
     },
-    cuentaActual () {
+    cuentaActual() {
       return this.$store.state.CUENTA_ACTUAL
     },
-    fecha () {
-      var myDate = new Date()
-      var month = ('0' + (myDate.getMonth() + 1)).slice(-2)
-      var date = ('0' + myDate.getDate()).slice(-2)
-      var year = myDate.getFullYear()
-      var formattedDate = year + '/' + month + '/' + date
+    sinactual() {
+      const cuentasin = JSON.parse(JSON.stringify(this.$store.state.CUENTAS))
+      const pos = cuentasin.map(function(e) {return e.id}).indexOf(this.$store.state.CUENTA_ACTUAL)
+      cuentasin.splice(pos, 1)
+      return cuentasin
+    },
+    fecha() {
+      const myDate = new Date()
+      const month = ('0' + (myDate.getMonth() + 1)).slice(-2)
+      const date = ('0' + myDate.getDate()).slice(-2)
+      const year = myDate.getFullYear()
+      const formattedDate = year + '/' + month + '/' + date
       return formattedDate
     }
   },
   methods: {
-    close () {
+    close() {
       this.dialog = false
     },
-    obtenerSaldo () {
-      let idCuentaActual = this.cuentaActual
-      let cuenta1 = this.cuentas.find(cuenta => cuenta.id === idCuentaActual)
-      let listaIngresos = cuenta1.ingresos
-      let listaEgresos = cuenta1.egresos
+    obtenerSaldo() {
+      const idCuentaActual = this.cuentaActual
+      const cuenta1 = this.cuentas.find((cuenta) => cuenta.id === idCuentaActual)
+      const listaIngresos = cuenta1.ingresos
+      const listaEgresos = cuenta1.egresos
       let ingresosTotales = 0
       let egresosTotales = 0
 
-      listaIngresos.forEach(transaccion => {
+      listaIngresos.forEach((transaccion) => {
         ingresosTotales += transaccion.monto
       })
-      listaEgresos.forEach(transaccion => {
+      listaEgresos.forEach((transaccion) => {
         egresosTotales += transaccion.monto
       })
       return ingresosTotales - egresosTotales
     },
-    saveTransfer () {
-      let indexCuentaAenviar = this.cuentas.findIndex(cuenta => cuenta.id === this.selectedaccount)
-
-      // egreso a nuestra cuenta
-      let indexCuentaActual = this.cuentas.findIndex(cuenta => cuenta.id === this.cuentaActual)
-      var cuentaActual = this.cuentas[indexCuentaActual]
-      var egresosCuentaActual = cuentaActual.egresos
-
-      var nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
-        descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
+    egresoDef() {
+      const indexCuentaAenviar = this.cuentas.findIndex(
+          (cuenta) => cuenta.id === this.selectedaccount
+      )
+      const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        descripcion: 'Transferencia_' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
-        categoria: 'Transferencia' }
-
-      // ingreso a la cuentaAenviar
-      var cuentaAenviar = this.cuentas[indexCuentaAenviar]
-      var ingresosCuentaAenviar = cuentaAenviar.ingresos
-
-      var nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
+        categoria: 'Transferencia'
+      }
+      return nuevoEgreso
+    },
+    ingresoDef() {
+      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
+      const cuentaActual = this.cuentas[indexCuentaActual]
+      const nuevoIngreso = { ntrans: Math.random().toString(36).substring(2, 15),
         descripcion: 'Transferencia de' + this.cuentas[indexCuentaActual].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia' }
-      if (this.obtenerSaldo() - nuevoEgreso.monto < 0 || nuevoEgreso.monto < 0 || Number.isNaN(nuevoEgreso.monto)) {
+      return nuevoIngreso
+    },
+    saveTransfer() {
+      const indexCuentaAenviar = this.cuentas.findIndex(
+          (cuenta) => cuenta.id === this.selectedaccount
+      )
+      // egreso a nuestra cuenta
+      const indexCuentaActual = this.cuentas.findIndex((cuenta) => cuenta.id === this.cuentaActual)
+      const cuentaActual = this.cuentas[indexCuentaActual]
+      const egresosCuentaActual = cuentaActual.egresos
+
+      // ingreso a la cuentaAenviar
+      const cuentaAenviar = this.cuentas[indexCuentaAenviar]
+      const ingresosCuentaAenviar = cuentaAenviar.ingresos
+
+      let datosTransferencia
+      if (this.obtenerSaldo() - this.egresoDef().monto < 0 || this.egresoDef().monto < 0 || Number.isNaN(this.egresoDef().monto)) {
         alert('El Saldo no es suficiente. Ingrese una catidad correcta.')
       } else {
-        egresosCuentaActual.push(nuevoEgreso)
-        ingresosCuentaAenviar.push(nuevoIngreso)
+        datosTransferencia = { nuevoEgreso: this.egresoDef(),
+          nuevoIngreso: this.ingresoDef(),
+          egresosCuentaActual: egresosCuentaActual,
+          ingresosCuentaAenviar: ingresosCuentaAenviar }
+        this.$store.dispatch('registrarTransferencia', datosTransferencia)
       }
       this.close()
     }
@@ -126,5 +151,4 @@ export default {
 .divisor {
   margin-top: 200px;
 }
-
 </style>

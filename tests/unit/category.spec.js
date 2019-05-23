@@ -9,7 +9,7 @@ Vue.use(Vuex)
 describe('Category.vue', () => {
   let wrapper
   let store
-  beforeEach(function () {
+  beforeEach(function() {
     store = StoreUtil.getDefaultStore()
     wrapper = shallowMount(Category, {
       store
