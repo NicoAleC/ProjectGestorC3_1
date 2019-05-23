@@ -3,13 +3,13 @@
 
 module.exports = {
   'default e2e tests': (browser) => {
-    var nombre = 'Nico'
-    var categoria = 'Otros'
-    var descripcion = 'Prueba_E2E'
-    var fechaEntrada = '22/10/2009'
-    var fechaSalida = '2009/10/22'
-    var monto = '47'
-    var montoTrans = '32'
+    const nombre = 'Nico'
+    const categoria = 'Otros'
+    const descripcion = 'Prueba_E2E'
+    const fechaEntrada = '22/10/2009'
+    const fechaSalida = '2009/10/22'
+    const monto = '47'
+    const montoTrans = '32'
     browser/*
         .url(process.env.VUE_DEV_SERVER_URL)
         .waitForElementVisible('#app', 5000)
@@ -20,9 +20,9 @@ module.exports = {
         .url('http://localhost:8080')
         .pause(3000)
         .click('#CrearCuenta')
-        //.pause(3000)
+        // .pause(3000)
         .waitForElementVisible('#Cuenta', 3000)
-        //.assert.elementPresent('#Cuenta')
+        // .assert.elementPresent('#Cuenta')
         .click('#Cuenta .input')
         .pause(3000)
         .clearValue('#Cuenta .input')
@@ -54,13 +54,13 @@ module.exports = {
         .click('#popup' + nombre + ' #Salvar')
         .waitForElementVisible('#TablaIngresos' + nombre, 3000)
         .waitForElementVisible('#TablaIngresos' + nombre + ' #' + categoria, 3000)
-        //.assert.elementPresent('#Tabla' + nombre + ' #' + categoria)
+        // .assert.elementPresent('#Tabla' + nombre + ' #' + categoria)
         .waitForElementVisible('#TablaIngresos' + nombre + ' #' + descripcion, 3000)
-        //.assert.elementPresent('#Tabla' + nombre + ' #' + descripcion)
-        //.waitForElementVisible('#Tabla' + nombre + ' #' + parseFloat(monto), 3000)
-        //.assert.elementPresent('#Tabla' + nombre + ' #' + monto)
-        //.waitForElementVisible('#Tabla' + nombre + ' #' + fechaSalida, 3000)
-        //.assert.elementPresent('#Tabla' + nombre + ' #' + fechaSalida)
+        // .assert.elementPresent('#Tabla' + nombre + ' #' + descripcion)
+        // .waitForElementVisible('#Tabla' + nombre + ' #' + parseFloat(monto), 3000)
+        // .assert.elementPresent('#Tabla' + nombre + ' #' + monto)
+        // .waitForElementVisible('#Tabla' + nombre + ' #' + fechaSalida, 3000)
+        // .assert.elementPresent('#Tabla' + nombre + ' #' + fechaSalida)
         .click('#Transferir')
         .waitForElementVisible('#popupTransferir', 3000)
         .clearValue('#popupTransferir #Cuenta')
@@ -72,8 +72,8 @@ module.exports = {
         .click('#popupTransferir #Transferir')
         .pause(1000)
         .click('#irAEgresos')
-      console.log('viendo egresos')
-      browser
+    console.log('viendo egresos')
+    browser
         .waitForElementVisible('#TablaEgresos' + nombre, 3000)
         .assert.elementPresent('#TablaEgresos' + nombre + ' #Transferencia_Mateo')
         .assert.elementPresent('#TablaEgresos' + nombre + ' #Transferencia')
