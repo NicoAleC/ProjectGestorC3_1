@@ -135,11 +135,7 @@ export default {
         eliminarItem(context, datosItem) {
           context.commit('eliminarItem', datosItem)
         }
-      },
-      plugins: [(new VuexPersistence({
-        key: 'gestor',
-        storage: window.localStorage
-      })).plugin]
+      }
     })
   }
 }

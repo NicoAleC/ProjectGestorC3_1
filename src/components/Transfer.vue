@@ -2,9 +2,9 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn outline="" color="#ffffff" v-on="on">Transferir</v-btn>
+        <v-btn outline="" color="#ffffff" v-on="on" id="Transferir">Transferir</v-btn>
       </template>
-      <v-card>
+      <v-card id="popupTransferir">
         <v-responsive :height="500">
           <v-card-title>
             <span class="headline">Transferencia</span>
@@ -19,12 +19,14 @@
                   item-value = "id"
                   v-model= "selectedaccount"
                   label="Cuenta"
+                  id="Cuenta"
                 ></v-select>
               </v-flex>
               <v-flex xs12 sm6>
-                <v-text-field label="Cantidad" required
+                <v-text-field label="Monto" required
                   v-model= "amount"
                   type="number"
+                  id="Monto"
                >{{amount}}</v-text-field>
               </v-flex>
             </v-layout>
@@ -37,8 +39,8 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn outline color= #3C3C3C @click="dialog = false">Close</v-btn>
-          <v-btn outline="" color= #3C3C3C @click="saveTransfer">Transferir</v-btn>
+          <v-btn outline color= #3C3C3C @click="dialog = false" id="Cerrar">Cerrar</v-btn>
+          <v-btn outline="" color= #3C3C3C @click="saveTransfer" id="Transferir">Transferir</v-btn>
         </v-card-actions>
         </v-responsive>
       </v-card>
@@ -99,7 +101,7 @@ export default {
           (cuenta) => cuenta.id === this.selectedaccount
       )
       const nuevoEgreso = { ntrans: Math.random().toString(36).substring(2, 15),
-        descripcion: 'Transferencia a' + this.cuentas[indexCuentaAenviar].nombre,
+        descripcion: 'Transferencia_' + this.cuentas[indexCuentaAenviar].nombre,
         monto: parseFloat(this.amount),
         fecha: this.fecha,
         categoria: 'Transferencia'
