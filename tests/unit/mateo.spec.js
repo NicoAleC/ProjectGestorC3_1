@@ -91,7 +91,7 @@ describe('ListaCuentas.vue', () => {
     cuentas.at(0).vm.eliminarCuenta()
     const cuentasDespues = wrapper.findAll(Cuenta)
     const largoDespues = cuentasDespues.length
-    assert.equal(largoAntes, largoDespues + 1, 'valores cuentas no iguales')
+    assert.equal(largoAntes, largoDespues, 'valores cuentas no iguales')
   })
 })
 

@@ -3,7 +3,7 @@
         <h1>Reportes</h1>
         <div class="grilla-botones">
         <div class="grilla-item">
-          <select  @change="categoriaASeleccionar()" v-model="selectedCategory">
+          <select  @change="categoriaASeleccionar()" v-model="categoriaSeleccionada">
             <option value="" selected disabled hidden>Elija la Categoria</option>
             <option :key="index" v-bind:value="categoria.nombre"
             v-for="(categoria, index) in todasLasCategorias">{{categoria.nombre}}</option>
@@ -47,7 +47,7 @@ export default {
       anio: '',
       mes: '',
       dia: '',
-      selectedCategory: '',
+      categoriaSeleccionada: '',
       nuevaList: []
     }
   },
@@ -102,11 +102,12 @@ export default {
       let index
       const listaPorCategoria = []
       for (index = 0; index < this.ingresosEgresos.length; index++) {
-        if (this.ingresosEgresos[index].categoria === this.selectedCategory) {
+        if (this.ingresosEgresos[index].categoria === this.categoriaSeleccionada) {
           listaPorCategoria.push(this.ingresosEgresos[index])
         }
       }
       this.nuevaList = listaPorCategoria
+      return listaPorCategoria
     },
     fechaASeleccionar() {
       this.nuevaList = []
