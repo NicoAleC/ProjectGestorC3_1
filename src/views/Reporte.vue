@@ -14,6 +14,7 @@
         </div>
         <div>
         <select @change="printSelectedCategory()" v-model="selectedCategory">
+            <option value="" selected disabled hidden>Elija la Categoria</option>
             <option :key="index" v-bind:value="categoria.nombre" 
             v-for="(categoria, index) in todasLasCategorias">{{categoria.nombre}}</option>
           </select>
@@ -51,6 +52,11 @@ export default {
     egresosCuentaActual(){
       return this.$store.state.CUENTAS.filter(cuenta => cuenta.id === this.cuentaActual)[0].egresos
     },
+    ingresosEgresos(){
+      var listaUnica = [].concat.apply([], this.ingresosCuentaActual)
+      var listaUnica = listaUnica.concat.apply(listaUnica,this.egresosCuentaActual)
+      return listaUnica
+    },
     categoriasIngresos(){
       return this.$store.state.CATEGORIAS_INGRESOS
     },
@@ -70,8 +76,15 @@ export default {
       return tipoFecha
     },
     printSelectedCategory() {
-      this.nuevaList = [];
-      console.log('------' + this.selectedCategory)
+      this.nuevaList = []
+      var index
+      var listaPorCategoria = []
+      for (index = 0; index < this.ingresosEgresos.length; index++){
+        if(this.ingresosEgresos[index].categoria === this.selectedCategory){
+          listaPorCategoria.push(this.ingresosEgresos[index])
+        }
+      }
+      this.nuevaList=listaPorCategoria
     }
   }
 }
