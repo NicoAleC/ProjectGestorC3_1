@@ -1,18 +1,20 @@
 module.exports = {
-  root: true,
-  env: {
+  'root': true,
+  'env': {
     node: true
   },
   'extends': [
     'plugin:vue/essential',
-    '@vue/standard'
+    '@vue/standard',
+    'google'
   ],
-  rules: {
+  'rules': {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off', 
-    'comma-dangle' : [0]
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'comma-dangle': [0],
+    'max-len': ['error', { 'code': 150 }]
   },
-  parserOptions: {
+  'parserOptions': {
     parser: 'babel-eslint'
   }
 }
