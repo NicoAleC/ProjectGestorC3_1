@@ -218,7 +218,7 @@ export default {
     },
 
     salvar() {
-      const condicion = validarItem()
+      const condicion = this.validarItem()
       if (condicion) {
         if (this.indexEditado > -1) {
           Object.assign(
