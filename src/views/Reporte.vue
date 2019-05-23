@@ -1,12 +1,19 @@
 <template>
     <div>
         <h1>Reportes</h1>
-        <div>
-          <select @change="categoriaASeleccionar()" v-model="selectedCategory">
+        <div class="grilla-botones">
+        <div class="grilla-item">
+          <select  @change="categoriaASeleccionar()" v-model="selectedCategory">
             <option value="" selected disabled hidden>Elija la Categoria</option>
             <option :key="index" v-bind:value="categoria.nombre"
             v-for="(categoria, index) in todasLasCategorias">{{categoria.nombre}}</option>
           </select>
+        </div>
+        <div class= "grilla-item">
+          <input class="entrada" v-model="anio" placeholder="Año">
+          <input class="entrada" v-model="mes" placeholder="Mes">
+          <input class="entrada" v-model="dia" placeholder="Dia" v-on:keyup.enter="fechaASeleccionar">
+        </div>
         </div>
         <div>
           <table style="width:100%" id="customers">
@@ -37,6 +44,9 @@ export default {
   },
   data() {
     return {
+      anio: '',
+      mes: '',
+      dia: '',
       selectedCategory: '',
       nuevaList: []
     }
@@ -87,16 +97,25 @@ export default {
   },
   methods:
   {
-    cadenaAFecha(fecha) {
-      const tipoFecha = new Date(fecha)
-      return tipoFecha
-    },
     categoriaASeleccionar() {
       this.nuevaList = []
       let index
       const listaPorCategoria = []
       for (index = 0; index < this.ingresosEgresos.length; index++) {
         if (this.ingresosEgresos[index].categoria === this.selectedCategory) {
+          listaPorCategoria.push(this.ingresosEgresos[index])
+        }
+      }
+      this.nuevaList = listaPorCategoria
+    },
+    fechaASeleccionar() {
+      this.nuevaList = []
+      let index
+      let fechaBuscada = ''
+      fechaBuscada = fechaBuscada.concat(this.anio, '/', this.mes, '/', this.dia)
+      const listaPorCategoria = []
+      for (index = 0; index < this.ingresosEgresos.length; index++) {
+        if (this.ingresosEgresos[index].fecha === fechaBuscada) {
           listaPorCategoria.push(this.ingresosEgresos[index])
         }
       }
@@ -114,5 +133,31 @@ export default {
   background-color: gray;
   color: white;
 }
-
+.grilla-botones{
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: gray;
+  padding: 10px;
+}
+.grilla-item{
+  width: 100%;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 1);
+  font-size: 18px;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 0.01px black;
+}
+.entrada{
+  width: 33.33%;
+  grid-template-columns: auto auto auto;
+  border: 1px solid gray;
+  font-size: 18px;
+  color: white;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke: 0.01px white;
+}
+::placeholder{
+  color: black;
+  background-color: white;
+}
 </style>
